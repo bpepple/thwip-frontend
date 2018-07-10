@@ -1,6 +1,6 @@
 import React from "react";
 import DataProvider from "./DataProvider";
-import SeriesDetailCard from "./SeriesDetailCard";
+import IssueListCard from "./IssueListCard";
 
 const SeriesDetail = props => (
   <DataProvider
@@ -9,7 +9,7 @@ const SeriesDetail = props => (
       props.match.params.slug +
       "/issue_list/"
     }
-    render={data => <SeriesDetailCard data={data} />}
+    render={data => <IssueListCard data={data} />}
   />
 );
 
