@@ -10,9 +10,9 @@ import {
 
 const Header = () => (
   <Container>
-    <Navbar color="light" light expand="md">
+    <Navbar className="mb-3" color="dark" dark expand="lg">
       <NavbarBrand href="/series">Thwip!</NavbarBrand>
-      <Nav navbar>
+      <Nav className="mr-auto" navbar>
         <NavItem>
           <NavLink href="/series">Series</NavLink>
         </NavItem>
