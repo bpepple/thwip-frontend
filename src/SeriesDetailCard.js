@@ -10,27 +10,27 @@ import {
   CardImg,
   CardHeader,
   CardLink,
-  CardText,
-  CardBody
+  CardBody,
+  Progress
 } from "reactstrap";
 
 const uuid = shortid.generate;
 
-const SeriesListCard = ({ data }) => (
+const SeriesDetailCard = ({ data }) => (
   <Container>
     <Row>
       {data.map(el => (
         <Col xs="3" key={uuid()}>
           <Card className="text-white bg-dark mb-3" key={uuid()}>
             <CardHeader className="text-center" key={uuid()}>
-              {el.name}
+              {el.__str__}
             </CardHeader>
             <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
+            <Progress animated value={el.read_percentage} />
             <CardBody className="text-right">
-              <CardText>{el.issue_count} issues</CardText>
               {/* Might be better to use a button here. */}
-              <CardLink href={`/series/${el.slug}`} key={uuid()}>
-                Open
+              <CardLink href="" key={uuid()}>
+                Read
               </CardLink>
             </CardBody>
           </Card>
@@ -40,8 +40,8 @@ const SeriesListCard = ({ data }) => (
   </Container>
 );
 
-SeriesListCard.propTypes = {
+SeriesDetailCard.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-export default SeriesListCard;
+export default SeriesDetailCard;

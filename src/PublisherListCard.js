@@ -16,7 +16,7 @@ import {
 
 const uuid = shortid.generate;
 
-const SeriesListCard = ({ data }) => (
+const PublisherListCard = ({ data }) => (
   <Container>
     <Row>
       {data.map(el => (
@@ -27,9 +27,9 @@ const SeriesListCard = ({ data }) => (
             </CardHeader>
             <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
             <CardBody className="text-right">
-              <CardText>{el.issue_count} issues</CardText>
+              <CardText>{el.series_count} Series</CardText>
               {/* Might be better to use a button here. */}
-              <CardLink href={`/series/${el.slug}`} key={uuid()}>
+              <CardLink href={`/publisher/${el.slug}`} key={uuid()}>
                 Open
               </CardLink>
             </CardBody>
@@ -40,8 +40,8 @@ const SeriesListCard = ({ data }) => (
   </Container>
 );
 
-SeriesListCard.propTypes = {
+PublisherListCard.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-export default SeriesListCard;
+export default PublisherListCard;

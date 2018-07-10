@@ -2,11 +2,15 @@ import React from "react";
 import DataProvider from "./DataProvider";
 import SeriesListCard from "./SeriesListCard";
 
-const SeriesList = () => (
+const PublisherDetail = props => (
   <DataProvider
-    endpoint="http://127.0.0.1:8000/api/series/"
+    endpoint={
+      "http://127.0.0.1:8000/api/publisher/" +
+      props.match.params.slug +
+      "/series_list/"
+    }
     render={data => <SeriesListCard data={data} />}
   />
 );
 
-export default SeriesList;
+export default PublisherDetail;
