@@ -9,6 +9,7 @@ import {
   Card,
   CardImg,
   CardHeader,
+  CardFooter,
   CardText,
   CardBody,
   Button
@@ -26,12 +27,14 @@ const SeriesListCard = ({ data }) => (
               {el.name}
             </CardHeader>
             <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
-            <CardBody className="text-right">
+            <CardBody>
               <CardText>{el.issue_count} issues</CardText>
+            </CardBody>
+            <CardFooter>
               <Button color="primary" href={`/series/${el.slug}`} key={uuid()}>
                 Open
               </Button>
-            </CardBody>
+            </CardFooter>
           </Card>
         </Col>
       ))}

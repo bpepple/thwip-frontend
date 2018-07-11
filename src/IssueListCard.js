@@ -9,6 +9,7 @@ import {
   Card,
   CardImg,
   CardHeader,
+  CardFooter,
   CardBody,
   CardText,
   Progress,
@@ -28,12 +29,14 @@ const IssueListCard = ({ data }) => (
             </CardHeader>
             <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
             <Progress animated value={el.read_percentage} />
-            <CardBody className="text-right">
+            <CardBody>
               <CardText key={uuid()}>{el.page_count} pages</CardText>
+            </CardBody>
+            <CardFooter>
               <Button color="primary" href="" key={uuid()}>
                 Read
               </Button>
-            </CardBody>
+            </CardFooter>
           </Card>
         </Col>
       ))}

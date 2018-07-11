@@ -9,6 +9,7 @@ import {
   Card,
   CardImg,
   CardHeader,
+  CardFooter,
   CardText,
   CardBody,
   Button
@@ -26,8 +27,10 @@ const PublisherListCard = ({ data }) => (
               {el.name}
             </CardHeader>
             <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
-            <CardBody className="text-right">
+            <CardBody>
               <CardText>{el.series_count} Series</CardText>
+            </CardBody>
+            <CardFooter>
               <Button
                 color="primary"
                 href={`/publisher/${el.slug}`}
@@ -35,7 +38,7 @@ const PublisherListCard = ({ data }) => (
               >
                 Open
               </Button>
-            </CardBody>
+            </CardFooter>
           </Card>
         </Col>
       ))}
