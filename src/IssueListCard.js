@@ -9,9 +9,10 @@ import {
   Card,
   CardImg,
   CardHeader,
-  CardLink,
   CardBody,
-  Progress
+  CardText,
+  Progress,
+  Button
 } from "reactstrap";
 
 const uuid = shortid.generate;
@@ -28,10 +29,10 @@ const IssueListCard = ({ data }) => (
             <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
             <Progress animated value={el.read_percentage} />
             <CardBody className="text-right">
-              {/* Might be better to use a button here. */}
-              <CardLink href="" key={uuid()}>
+              <CardText key={uuid()}>{el.page_count} pages</CardText>
+              <Button color="primary" href="" key={uuid()}>
                 Read
-              </CardLink>
+              </Button>
             </CardBody>
           </Card>
         </Col>

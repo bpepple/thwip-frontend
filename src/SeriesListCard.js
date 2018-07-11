@@ -9,9 +9,9 @@ import {
   Card,
   CardImg,
   CardHeader,
-  CardLink,
   CardText,
-  CardBody
+  CardBody,
+  Button
 } from "reactstrap";
 
 const uuid = shortid.generate;
@@ -28,10 +28,9 @@ const SeriesListCard = ({ data }) => (
             <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
             <CardBody className="text-right">
               <CardText>{el.issue_count} issues</CardText>
-              {/* Might be better to use a button here. */}
-              <CardLink href={`/series/${el.slug}`} key={uuid()}>
+              <Button color="primary" href={`/series/${el.slug}`} key={uuid()}>
                 Open
-              </CardLink>
+              </Button>
             </CardBody>
           </Card>
         </Col>
