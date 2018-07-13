@@ -28,7 +28,7 @@ const IssueListCard = ({ data }) => (
               {el.__str__}
             </CardHeader>
             <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
-            <Progress animated value={el.read_percentage} />
+            <Progress value={el.read_percentage}>{el.read_percentage}%</Progress>
             <CardBody>
               <CardText key={uuid()}>{el.page_count} pages</CardText>
             </CardBody>
