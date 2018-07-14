@@ -17,6 +17,10 @@ class ReaderCarousel extends Component {
     this.onExited = this.onExited.bind(this);
   }
 
+  componentDidMount() {
+    document.body.style.backgroundColor = "black";
+  }
+
   onExiting() {
     this.animating = true;
   }
