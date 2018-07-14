@@ -33,7 +33,7 @@ const IssueListCard = ({ data }) => (
               <CardText key={uuid()}>{el.page_count} pages</CardText>
             </CardBody>
             <CardFooter>
-              <Button color="primary" href="" key={uuid()}>
+              <Button color="primary" href={`/reader/${el.slug}`} key={uuid()}>
                 Read
               </Button>
             </CardFooter>
