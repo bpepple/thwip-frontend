@@ -9,7 +9,9 @@ const uuid = shortid.generate;
 class ReaderCarousel extends Component {
   constructor(props) {
     super(props);
+
     this.state = { activeIndex: 0 };
+
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
@@ -58,8 +60,9 @@ class ReaderCarousel extends Component {
 
   render() {
     const { activeIndex } = this.state;
+    const { data } = this.props;
 
-    const slides = this.props.data.map(el => {
+    const slides = data.map(el => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
