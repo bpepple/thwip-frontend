@@ -1,6 +1,6 @@
 import React from "react";
 import DataProvider from "./DataProvider";
-import PublisherListCard from "./PublisherListCard";
+import PublisherCard from "./PublisherCard";
 import Header from "./Header";
 
 const Publisher = () => (
@@ -8,7 +8,7 @@ const Publisher = () => (
     <Header />
     <DataProvider
       endpoint="http://127.0.0.1:8000/api/publisher/"
-      render={data => <PublisherListCard data={data} />}
+      render={data => <PublisherCard data={data} />}
     />
   </div>
 );

@@ -17,7 +17,7 @@ import {
 
 const uuid = shortid.generate;
 
-const PublisherListCard = ({ data }) => (
+const PublisherCard = ({ data }) => (
   <Container>
     <Row>
       {data.map(el => (
@@ -46,8 +46,8 @@ const PublisherListCard = ({ data }) => (
   </Container>
 );
 
-PublisherListCard.propTypes = {
+PublisherCard.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-export default PublisherListCard;
+export default PublisherCard;
