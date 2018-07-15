@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import PublisherList from "./PublisherList";
 import PublisherDetail from "./PublisherDetail";
 import SeriesList from "./SeriesList";
@@ -9,6 +9,7 @@ import { Container } from "reactstrap";
 
 const App = () => (
   <Container fluid={true}>
+    <Redirect from="/" to="/series" />
     <Switch>
       <Route exact path="/series" component={SeriesList} />
       <Route path="/series/:slug" component={SeriesDetail} />
