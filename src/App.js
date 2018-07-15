@@ -9,7 +9,6 @@ import { Container } from "reactstrap";
 
 const App = () => (
   <Container fluid={true}>
-    <Redirect from="/" to="/series" />
     <Switch>
       <Route exact path="/series" component={SeriesList} />
       <Route path="/series/:slug" component={SeriesDetail} />
@@ -19,6 +18,7 @@ const App = () => (
         path="/reader/:slug/"
         render={props => <Reader pages="5" {...props} />}
       />
+      <Redirect from="/" to="/series" />
     </Switch>
   </Container>
 );
