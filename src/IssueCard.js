@@ -39,7 +39,7 @@ const IssueCard = ({ data }) => (
               <CardFooter>
                 <Button
                   color="primary"
-                  href={`/reader/${el.slug}`}
+                  href={`/reader/${el.slug}/${el.page_count}`}
                   key={uuid()}
                 >
                   Read

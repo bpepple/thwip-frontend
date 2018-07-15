@@ -15,8 +15,8 @@ const App = () => (
       <Route exact path="/publisher" component={PublisherList} />
       <Route path="/publisher/:slug" component={PublisherDetail} />
       <Route
-        path="/reader/:slug/"
-        render={props => <Reader pages="5" {...props} />}
+        path="/reader/:slug/:pages"
+        render={props => <Reader {...props} />}
       />
       <Redirect from="/" to="/series" />
     </Switch>

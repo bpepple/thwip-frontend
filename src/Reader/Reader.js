@@ -9,7 +9,7 @@ const Reader = props => (
       props.match.params.slug +
       "/get-page/"
     }
-    pages={props.pages}
+    pages={props.match.params.pages}
     render={data => <ReaderCarousel data={data} />}
   />
 );
