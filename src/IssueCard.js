@@ -18,7 +18,7 @@ import {
 
 const uuid = shortid.generate;
 
-const IssueListCard = ({ data }) => (
+const IssueCard = ({ data }) => (
   <Container>
     <Row>
       {data.map(el => (
@@ -44,8 +44,8 @@ const IssueListCard = ({ data }) => (
   </Container>
 );
 
-IssueListCard.propTypes = {
+IssueCard.propTypes = {
   data: PropTypes.array.isRequired
 };
 
-export default IssueListCard;
+export default IssueCard;

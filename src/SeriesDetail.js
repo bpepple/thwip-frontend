@@ -1,6 +1,6 @@
 import React from "react";
 import DataProvider from "./DataProvider";
-import IssueListCard from "./IssueListCard";
+import IssueCard from "./IssueCard";
 import Header from "./Header";
 
 const SeriesDetail = props => (
@@ -12,7 +12,7 @@ const SeriesDetail = props => (
         props.match.params.slug +
         "/issue_list/"
       }
-      render={data => <IssueListCard data={data} />}
+      render={data => <IssueCard data={data} />}
     />
   </div>
 );
