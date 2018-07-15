@@ -4,6 +4,7 @@ import shortid from "shortid";
 
 import {
   Container,
+  Fade,
   Col,
   Row,
   Card,
@@ -20,27 +21,35 @@ const uuid = shortid.generate;
 
 const IssueCard = ({ data }) => (
   <Container fluid={true}>
-    <Row>
-      {data.map(el => (
-        <Col xs="2" key={uuid()}>
-          <Card className="text-white bg-dark mb-3" key={uuid()}>
-            <CardHeader className="text-center" key={uuid()}>
-              {el.__str__}
-            </CardHeader>
-            <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
-            <Progress value={el.read_percentage}>{el.read_percentage}%</Progress>
-            <CardBody>
-              <CardText key={uuid()}>{el.page_count} pages</CardText>
-            </CardBody>
-            <CardFooter>
-              <Button color="primary" href={`/reader/${el.slug}`} key={uuid()}>
-                Read
-              </Button>
-            </CardFooter>
-          </Card>
-        </Col>
-      ))}
-    </Row>
+    <Fade in={true}>
+      <Row>
+        {data.map(el => (
+          <Col xs="2" key={uuid()}>
+            <Card className="text-white bg-dark mb-3" key={uuid()}>
+              <CardHeader className="text-center" key={uuid()}>
+                {el.__str__}
+              </CardHeader>
+              <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
+              <Progress value={el.read_percentage}>
+                {el.read_percentage}%
+              </Progress>
+              <CardBody>
+                <CardText key={uuid()}>{el.page_count} pages</CardText>
+              </CardBody>
+              <CardFooter>
+                <Button
+                  color="primary"
+                  href={`/reader/${el.slug}`}
+                  key={uuid()}
+                >
+                  Read
+                </Button>
+              </CardFooter>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Fade>
   </Container>
 );
 
