@@ -4,7 +4,7 @@ import IssueCard from "./IssueCard";
 import Header from "./Header";
 
 const SeriesDetail = props => (
-  <div>
+  <React.Fragment>
     <Header />
     <DataProvider
       endpoint={
@@ -14,7 +14,7 @@ const SeriesDetail = props => (
       }
       render={data => <IssueCard data={data} />}
     />
-  </div>
+  </React.Fragment>
 );
 
 export default SeriesDetail;

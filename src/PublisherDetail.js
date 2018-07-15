@@ -4,7 +4,7 @@ import SeriesCard from "./SeriesCard";
 import Header from "./Header";
 
 const PublisherDetail = props => (
-  <div>
+  <React.Fragment>
     <Header />
     <DataProvider
       endpoint={
@@ -14,7 +14,7 @@ const PublisherDetail = props => (
       }
       render={data => <SeriesCard data={data} />}
     />
-  </div>
+  </React.Fragment>
 );
 
 export default PublisherDetail;
