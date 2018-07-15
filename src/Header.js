@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 
 const Header = () => (
-  <Container>
+  <Container fluid={true}>
     <Navbar className="mb-3" color="dark" dark expand="lg">
       <NavbarBrand href="/series">Thwip!</NavbarBrand>
       <Nav className="mr-auto" navbar>

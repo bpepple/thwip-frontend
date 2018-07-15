@@ -19,10 +19,10 @@ import {
 const uuid = shortid.generate;
 
 const IssueCard = ({ data }) => (
-  <Container>
+  <Container fluid={true}>
     <Row>
       {data.map(el => (
-        <Col xs="3" key={uuid()}>
+        <Col xs="2" key={uuid()}>
           <Card className="text-white bg-dark mb-3" key={uuid()}>
             <CardHeader className="text-center" key={uuid()}>
               {el.__str__}

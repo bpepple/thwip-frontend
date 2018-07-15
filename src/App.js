@@ -8,7 +8,7 @@ import Reader from "./Reader/Reader";
 import { Container } from "reactstrap";
 
 const App = () => (
-  <Container>
+  <Container fluid={true}>
     <Switch>
       <Route exact path="/series" component={SeriesList} />
       <Route path="/series/:slug" component={SeriesDetail} />
