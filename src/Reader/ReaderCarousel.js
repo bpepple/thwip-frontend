@@ -6,6 +6,12 @@ import { Carousel, CarouselItem, CarouselControl } from "reactstrap";
 
 const uuid = shortid.generate;
 
+const imgStyle = {
+  height: "100vh",
+  display: "block",
+  margin: "auto"
+};
+
 class ReaderCarousel extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +75,7 @@ class ReaderCarousel extends Component {
           onExited={this.onExited}
           key={uuid()}
         >
-          <img className="d-block w-100" src={el.page} alt="Page" />
+          <img style={imgStyle} src={el.page} alt="Page" />
         </CarouselItem>
       );
     });
