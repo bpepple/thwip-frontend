@@ -10,7 +10,7 @@ class DataProvider extends Component {
   state = {
     data: [],
     loaded: false,
-    placeholder: "Loading..."
+    placeholder: ""
   };
 
   componentDidMount() {
