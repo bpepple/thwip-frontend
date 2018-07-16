@@ -1,6 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactLoading from "react-loading";
+import { Container } from "reactstrap";
+
+const loadingStyle = {
+  position: "fixed",
+  zindex: "1031",
+  height: "2em",
+  width: "2em",
+  margin: "auto",
+  top: "0",
+  left: "0",
+  bottom: "0",
+  right: "0"
+};
 
 class ComicPageProvider extends Component {
   static propTypes = {
@@ -47,7 +60,9 @@ class ComicPageProvider extends Component {
     return loaded ? (
       this.props.render(data)
     ) : (
-      <ReactLoading type="spinningBubbles" color="blue" />
+      <Container style={loadingStyle}>
+        <ReactLoading type="spinningBubbles" color="blue" />
+      </Container>
     );
   }
 }
