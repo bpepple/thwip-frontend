@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ReactLoading from "react-loading";
 
 class ComicPageProvider extends Component {
   static propTypes = {
@@ -10,11 +11,12 @@ class ComicPageProvider extends Component {
 
   state = {
     data: [],
-    loaded: false,
-    placeholder: "Loading..."
+    loaded: false
   };
 
   componentDidMount() {
+    document.body.style.backgroundColor = "black";
+
     let i;
     let pageList = [];
 
@@ -25,7 +27,7 @@ class ComicPageProvider extends Component {
     const pageImgs = pageList.map(p => {
       return fetch(this.props.endpoint + p + "/").then(response => {
         if (response.status !== 200) {
-          return this.setState({ placeholder: "Something went wrong" });
+          console.log("Something went wrong while loading a comic page.");
         }
         return response.json();
       });
@@ -36,9 +38,17 @@ class ComicPageProvider extends Component {
     );
   }
 
+  componentWillUnmount() {
+    document.body.style.backgroundColor = null;
+  }
+
   render() {
-    const { data, loaded, placeholder } = this.state;
-    return loaded ? this.props.render(data) : <p>{placeholder}</p>;
+    const { data, loaded } = this.state;
+    return loaded ? (
+      this.props.render(data)
+    ) : (
+      <ReactLoading type="spinningBubbles" color="blue" />
+    );
   }
 }
 
