@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import shortid from "shortid";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
-import { Carousel, CarouselItem, CarouselControl } from "reactstrap";
+import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
 
 const uuid = shortid.generate;
 
 const imgStyle = {
-  height: "100vh",
-  display: "block",
-  margin: "auto"
+  height: '100vh',
+  display: 'block',
+  margin: 'auto'
 };
 
 class ReaderCarousel extends Component {
@@ -26,7 +26,7 @@ class ReaderCarousel extends Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundColor = "black";
+    document.body.style.backgroundColor = 'black';
   }
 
   componentWillUnmount() {

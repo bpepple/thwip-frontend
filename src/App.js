@@ -1,11 +1,11 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import PublisherList from "./PublisherList";
-import PublisherDetail from "./PublisherDetail";
-import SeriesList from "./SeriesList";
-import SeriesDetail from "./SeriesDetail";
-import Reader from "./Reader/Reader";
-import { Container } from "reactstrap";
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import PublisherList from './PublisherList';
+import PublisherDetail from './PublisherDetail';
+import SeriesList from './SeriesList';
+import SeriesDetail from './SeriesDetail';
+import Reader from './Reader/Reader';
+import { Container } from 'reactstrap';
 
 const App = () => (
   <Container fluid={true}>

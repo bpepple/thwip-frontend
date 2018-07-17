@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Container,
   NavbarBrand,
@@ -6,7 +6,7 @@ import {
   Navbar,
   NavItem,
   NavLink
-} from "reactstrap";
+} from 'reactstrap';
 
 const Header = () => (
   <Container fluid={true}>

@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import ReactLoading from "react-loading";
-import { Container } from "reactstrap";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ReactLoading from 'react-loading';
+import { Container } from 'reactstrap';
 
 const loadingStyle = {
-  position: "fixed",
-  zindex: "1031",
-  height: "2em",
-  width: "2em",
-  margin: "auto",
-  top: "0",
-  left: "0",
-  bottom: "0",
-  right: "0"
+  position: 'fixed',
+  zindex: '1031',
+  height: '2em',
+  width: '2em',
+  margin: 'auto',
+  top: '0',
+  left: '0',
+  bottom: '0',
+  right: '0'
 };
 
 class ComicPageProvider extends Component {
@@ -28,7 +28,7 @@ class ComicPageProvider extends Component {
   };
 
   componentDidMount() {
-    document.body.style.backgroundColor = "black";
+    document.body.style.backgroundColor = 'black';
 
     let i;
     let pageList = [];
@@ -38,9 +38,9 @@ class ComicPageProvider extends Component {
     }
 
     const pageImgs = pageList.map(p => {
-      return fetch(this.props.endpoint + p + "/").then(response => {
+      return fetch(this.props.endpoint + p + '/').then(response => {
         if (response.status !== 200) {
-          console.log("Something went wrong while loading a comic page.");
+          console.log('Something went wrong while loading a comic page.');
         }
         return response.json();
       });

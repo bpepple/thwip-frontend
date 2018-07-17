@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class DataProvider extends Component {
   static propTypes = {
@@ -10,14 +10,14 @@ class DataProvider extends Component {
   state = {
     data: [],
     loaded: false,
-    placeholder: ""
+    placeholder: ''
   };
 
   componentDidMount() {
     fetch(this.props.endpoint)
       .then(response => {
         if (response.status !== 200) {
-          return this.setState({ placeholder: "Something went wrong" });
+          return this.setState({ placeholder: 'Something went wrong' });
         }
         return response.json();
       })

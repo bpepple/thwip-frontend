@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import shortid from "shortid";
+import React from 'react';
+import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
 import {
   Container,
@@ -14,7 +14,7 @@ import {
   CardText,
   CardBody,
   Button
-} from "reactstrap";
+} from 'reactstrap';
 
 const uuid = shortid.generate;
 
