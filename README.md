@@ -2,8 +2,10 @@ Thwip-Frontend is a React project that allows you to read comic book archives fr
 
 ### Screenshots ###
 #### Series List ####
-![series](/screenshots/thwip-series.png?raw=true "Series List")
+![series](/screenshots/thwip-series.jpg?raw=true "Series List")
 #### Issues List ####
-![issues](/screenshots/thwip-issues.png?raw=true "Issues List")
+![issues](/screenshots/thwip-issues.jpg?raw=true "Issues List")
+#### Publisher List ####
+![publisher](/screenshots/thwip-publisher.jpg?raw=true "Publisher List")
 #### Reader ####
-![reader](/screenshots/thwip-reader.png?raw=true "Reader")
+![reader](/screenshots/thwip-reader.jpg?raw=true "Reader")
