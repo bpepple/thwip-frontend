@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
-
 import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
+import ReaderNavbar from './ReaderNavbar';
 
 const uuid = shortid.generate;
 
@@ -16,13 +16,14 @@ class ReaderCarousel extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { activeIndex: 0 };
+    this.state = { activeIndex: 0, showNav: false };
 
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
+    this.showNavbar = this.showNavbar.bind(this);
   }
 
   componentDidMount() {
@@ -64,6 +65,13 @@ class ReaderCarousel extends Component {
     this.setState({ activeIndex: newIndex });
   }
 
+  showNavbar() {
+    this.setState({ showNav: true });
+    setTimeout(() => {
+      this.setState({ showNav: false });
+    }, 2500);
+  }
+
   render() {
     const { activeIndex } = this.state;
     const { data } = this.props;
@@ -81,24 +89,27 @@ class ReaderCarousel extends Component {
     });
 
     return (
-      <Carousel
-        activeIndex={activeIndex}
-        next={this.next}
-        previous={this.previous}
-        interval={false}
-      >
-        {slides}
-        <CarouselControl
-          direction="prev"
-          directionText="Previous"
-          onClickHandler={this.previous}
-        />
-        <CarouselControl
-          direction="next"
-          directionText="Next"
-          onClickHandler={this.next}
-        />
-      </Carousel>
+      <div onMouseMove={this.showNavbar}>
+        {this.state.showNav ? <ReaderNavbar /> : null}
+        <Carousel
+          activeIndex={activeIndex}
+          next={this.next}
+          previous={this.previous}
+          interval={false}
+        >
+          {slides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={this.previous}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={this.next}
+          />
+        </Carousel>
+      </div>
     );
   }
 }
