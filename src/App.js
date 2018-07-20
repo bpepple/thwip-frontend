@@ -7,6 +7,15 @@ import SeriesDetail from './SeriesDetail';
 import Reader from './Reader/Reader';
 import { Container } from 'reactstrap';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faTimesCircle,
+  faArrowsAltV,
+  faArrowsAltH
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faTimesCircle, faArrowsAltV, faArrowsAltH);
+
 const App = () => (
   <Container fluid={true}>
     <Switch>

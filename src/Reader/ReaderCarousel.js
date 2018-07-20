@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
-import ReaderNavbar from './ReaderNavbar';
+import ReaderButtonGroup from './ReaderButtonGroup';
 
 const uuid = shortid.generate;
 
@@ -16,14 +16,14 @@ class ReaderCarousel extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { activeIndex: 0, showNav: false };
+    this.state = { activeIndex: 0, showButtons: false };
 
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
-    this.showNavbar = this.showNavbar.bind(this);
+    this.showBtnGroup = this.showBtnGroup.bind(this);
   }
 
   componentDidMount() {
@@ -65,11 +65,11 @@ class ReaderCarousel extends Component {
     this.setState({ activeIndex: newIndex });
   }
 
-  showNavbar() {
-    this.setState({ showNav: true });
+  showBtnGroup() {
+    this.setState({ showButtons: true });
     setTimeout(() => {
-      this.setState({ showNav: false });
-    }, 2500);
+      this.setState({ showButtons: false });
+    }, 3000);
   }
 
   render() {
@@ -89,8 +89,8 @@ class ReaderCarousel extends Component {
     });
 
     return (
-      <div onMouseMove={this.showNavbar}>
-        {this.state.showNav ? <ReaderNavbar /> : null}
+      <div onMouseMove={this.showBtnGroup}>
+        {this.state.showButtons ? <ReaderButtonGroup /> : null}
         <Carousel
           activeIndex={activeIndex}
           next={this.next}
