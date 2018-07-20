@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 
 const loadingStyle = {
   position: 'fixed',
-  zindex: '1031',
+  zIndex: '1031',
   height: '2em',
   width: '2em',
   margin: 'auto',
