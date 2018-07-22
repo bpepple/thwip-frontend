@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import {
+  Alert,
   Button,
   Container,
   NavbarBrand,
   Nav,
   Navbar,
   NavItem,
-  NavLink,
-  UncontrolledAlert
+  NavLink
 } from 'reactstrap';
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = { success: false, color: 'info', placeholder: '' };
+    this.state = { visible: false, color: 'info', placeholder: '' };
 
+    this.onDismiss = this.onDismiss.bind(this);
     this.importComics = this.importComics.bind(this);
+  }
+
+  onDismiss() {
+    this.setState({ visible: false });
   }
 
   importComics() {
@@ -24,13 +29,13 @@ class Header extends Component {
     fetch(url).then(response => {
       if (response.status !== 200) {
         return this.setState({
-          success: true,
+          visible: true,
           color: 'danger',
           placeholder: 'Something went wrong with the import.'
         });
       } else {
         return this.setState({
-          success: true,
+          visible: true,
           color: 'info',
           placeholder: 'Started Comic Import.'
         });
@@ -60,10 +65,14 @@ class Header extends Component {
             </NavItem>
           </Nav>
         </Navbar>
-        {this.state.success ? (
-          <UncontrolledAlert color={this.state.color}>
+        {this.state.visible ? (
+          <Alert
+            color={this.state.color}
+            isOpen={this.state.visible}
+            toggle={this.onDismiss}
+          >
             {this.state.placeholder}
-          </UncontrolledAlert>
+          </Alert>
         ) : null}
       </Container>
     );
