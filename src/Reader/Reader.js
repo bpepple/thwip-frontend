@@ -8,9 +8,8 @@ const Reader = props => (
       process.env.REACT_APP_API_URL +
       '/api/issue/' +
       props.match.params.slug +
-      '/get-page/'
+      '/'
     }
-    pages={props.match.params.pages}
     render={data => <ReaderCarousel data={data} />}
   />
 );

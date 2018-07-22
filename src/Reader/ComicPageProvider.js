@@ -18,41 +18,65 @@ const loadingStyle = {
 class ComicPageProvider extends Component {
   static propTypes = {
     endpoint: PropTypes.string.isRequired,
-    pages: PropTypes.string.isRequired,
     render: PropTypes.func.isRequired
   };
 
   state = {
     data: [],
+    pages: 0,
     loaded: false
   };
 
   componentDidMount() {
     document.body.style.backgroundColor = 'black';
 
-    let i;
-    let pageList = [];
-
-    for (i = 0; i < this.props.pages; i++) {
-      pageList.push(i);
-    }
-
-    const pageImgs = pageList.map(p => {
-      return fetch(this.props.endpoint + p + '/').then(response => {
+    fetch(this.props.endpoint)
+      .then(response => {
         if (response.status !== 200) {
-          console.log('Something went wrong while loading a comic page.');
+          throw Error('Network Request Failed');
         }
-        return response.json();
-      });
-    });
+        return response;
+      })
+      .then(d => d.json())
+      .then(d => {
+        this.setState({
+          pages: d.page_count
+        });
 
-    Promise.all(pageImgs).then(data =>
-      this.setState({ data: data, loaded: true })
-    );
+        let i;
+        let pageList = [];
+
+        for (i = 0; i < this.state.pages; i++) {
+          pageList.push(i);
+        }
+
+        const pageImgs = pageList.map(p => {
+          return fetch(this.props.endpoint + 'get-page/' + p + '/').then(
+            response => {
+              if (response.status !== 200) {
+                throw Error('Network Request Failed');
+              }
+              return response.json();
+            }
+          );
+        });
+
+        Promise.all(pageImgs).then(data =>
+          this.setState({ data: data, loaded: true })
+        );
+      });
   }
 
   componentWillUnmount() {
     document.body.style.backgroundColor = null;
+  }
+
+  getIssue(slug) {
+    let url = process.env.REACT_APP_API_URL + '/api/issue/' + slug + '/';
+
+    return fetch(url).then(response => {
+      return response.json();
+    });
   }
 
   render() {
