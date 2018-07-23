@@ -30,9 +30,7 @@ const IssueCard = ({ data }) => (
                 {el.__str__}
               </CardHeader>
               <CardImg src={el.image} alt="Placeholder image" key={uuid()} />
-              <Progress value={el.read_percentage}>
-                {el.read_percentage}%
-              </Progress>
+              <Progress value={el.read_percentage} />
               <CardBody>
                 <CardText key={uuid()}>{el.page_count} pages</CardText>
               </CardBody>
