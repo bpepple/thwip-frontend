@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
   Container,
@@ -41,6 +42,14 @@ const IssueCard = ({ data }) => (
                   key={uuid()}
                 >
                   Read
+                </Button>
+                <Button
+                  className="float-right"
+                  color="info"
+                  href="#"
+                  key={uuid()}
+                >
+                  <FontAwesomeIcon icon="info-circle" size="lg" />
                 </Button>
               </CardFooter>
             </Card>
