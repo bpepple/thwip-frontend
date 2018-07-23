@@ -1,11 +1,11 @@
 import React from 'react';
 import DataProvider from './DataProvider';
 import PublisherCard from './PublisherCard';
-import Header from './Header';
+import MainBar from './MainBar';
 
 const Publisher = () => (
   <React.Fragment>
-    <Header />
+    <MainBar />
     <DataProvider
       endpoint={process.env.REACT_APP_API_URL + '/api/publisher/'}
       render={data => <PublisherCard data={data} />}

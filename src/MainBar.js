@@ -10,7 +10,7 @@ import {
   NavLink
 } from 'reactstrap';
 
-class Header extends Component {
+class MainBar extends Component {
   constructor(props) {
     super(props);
     this.state = { visible: false, color: 'info', placeholder: '' };
@@ -79,4 +79,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default MainBar;

@@ -1,11 +1,11 @@
 import React from 'react';
 import DataProvider from './DataProvider';
 import IssueCard from './IssueCard';
-import Header from './Header';
+import MainBar from './MainBar';
 
 const SeriesDetail = props => (
   <React.Fragment>
-    <Header />
+    <MainBar />
     <DataProvider
       endpoint={
         process.env.REACT_APP_API_URL +
