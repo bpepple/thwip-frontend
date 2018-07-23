@@ -23,8 +23,8 @@ class ReaderCarousel extends Component {
     this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
-    this.showBtnGroup = this.showBtnGroup.bind(this);
-    this.updateReadLocation = this.updateReadLocation.bind(this);
+    this.mouseMove = this.mouseMove.bind(this);
+    this.updateLeaf = this.updateLeaf.bind(this);
   }
 
   componentDidMount() {
@@ -51,7 +51,7 @@ class ReaderCarousel extends Component {
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
-    this.updateReadLocation(slug, nextIndex);
+    this.updateLeaf(slug, nextIndex);
   }
 
   previous() {
@@ -62,7 +62,7 @@ class ReaderCarousel extends Component {
         ? data.length - 1
         : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
-    this.updateReadLocation(slug, nextIndex);
+    this.updateLeaf(slug, nextIndex);
   }
 
   goToIndex(newIndex) {
@@ -70,14 +70,14 @@ class ReaderCarousel extends Component {
     this.setState({ activeIndex: newIndex });
   }
 
-  showBtnGroup() {
+  mouseMove() {
     this.setState({ showButtons: true });
     setTimeout(() => {
       this.setState({ showButtons: false });
     }, 3000);
   }
 
-  updateReadLocation(slug, page) {
+  updateLeaf(slug, page) {
     const formData = new FormData();
     const url = process.env.REACT_APP_API_URL + '/api/issue/' + slug + '/';
 
@@ -103,7 +103,7 @@ class ReaderCarousel extends Component {
     });
 
     return (
-      <div onMouseMove={this.showBtnGroup}>
+      <div onMouseMove={this.mouseMove}>
         {this.state.showButtons ? <ReaderButtonGroup /> : null}
         <Carousel
           activeIndex={activeIndex}
