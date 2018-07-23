@@ -10,7 +10,9 @@ const Reader = props => (
       props.match.params.slug +
       '/'
     }
-    render={data => <ReaderCarousel data={data} />}
+    render={({ data, leaf, slug }) => (
+      <ReaderCarousel data={data} leaf={leaf} slug={slug} />
+    )}
   />
 );
 

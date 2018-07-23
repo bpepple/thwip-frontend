@@ -24,6 +24,8 @@ class ComicPageProvider extends Component {
   state = {
     data: [],
     pages: 0,
+    leaf: 0,
+    slug: '',
     loaded: false
   };
 
@@ -40,7 +42,9 @@ class ComicPageProvider extends Component {
       .then(d => d.json())
       .then(d => {
         this.setState({
-          pages: d.page_count
+          pages: d.page_count,
+          leaf: d.leaf,
+          slug: d.slug
         });
 
         let i;
@@ -80,9 +84,10 @@ class ComicPageProvider extends Component {
   }
 
   render() {
-    const { data, loaded } = this.state;
+    const { loaded } = this.state;
+
     return loaded ? (
-      this.props.render(data)
+      this.props.render(this.state)
     ) : (
       <Container style={loadingStyle}>
         <ReactLoading type="spinningBubbles" color="blue" />

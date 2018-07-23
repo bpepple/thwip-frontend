@@ -16,7 +16,7 @@ class ReaderCarousel extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { activeIndex: 0, showButtons: false };
+    this.state = { activeIndex: this.props.leaf, showButtons: false };
 
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -24,6 +24,7 @@ class ReaderCarousel extends Component {
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
     this.showBtnGroup = this.showBtnGroup.bind(this);
+    this.updateReadLocation = this.updateReadLocation.bind(this);
   }
 
   componentDidMount() {
@@ -44,20 +45,24 @@ class ReaderCarousel extends Component {
 
   next() {
     if (this.animating) return;
+    const { data, slug } = this.props;
     const nextIndex =
-      this.state.activeIndex === this.props.data.length - 1
+      this.state.activeIndex === data.length - 1
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
+    this.updateReadLocation(slug, nextIndex);
   }
 
   previous() {
     if (this.animating) return;
+    const { data, slug } = this.props;
     const nextIndex =
       this.state.activeIndex === 0
-        ? this.props.data.length - 1
+        ? data.length - 1
         : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
+    this.updateReadLocation(slug, nextIndex);
   }
 
   goToIndex(newIndex) {
@@ -70,6 +75,15 @@ class ReaderCarousel extends Component {
     setTimeout(() => {
       this.setState({ showButtons: false });
     }, 3000);
+  }
+
+  updateReadLocation(slug, page) {
+    const formData = new FormData();
+    const url = process.env.REACT_APP_API_URL + '/api/issue/' + slug + '/';
+
+    formData.append('leaf', page);
+
+    fetch(url, { method: 'PUT', body: formData });
   }
 
   render() {
@@ -115,7 +129,9 @@ class ReaderCarousel extends Component {
 }
 
 ReaderCarousel.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  leaf: PropTypes.number.isRequired,
+  slug: PropTypes.string.isRequired
 };
 
 export default ReaderCarousel;
