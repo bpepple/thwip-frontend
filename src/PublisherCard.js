@@ -50,7 +50,7 @@ class PublisherCard extends Component {
 
     return (
       <Container fluid={true}>
-        <Modal isOpen={modal} toggle={this.toggle}>
+        <Modal isOpen={modal} toggle={this.toggle} centered>
           <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
           <ModalBody>{desc}</ModalBody>
           <ModalFooter>
