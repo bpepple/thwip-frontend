@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
 import ReaderButtonGroup from './ReaderButtonGroup';
-
-const uuid = shortid.generate;
 
 const imgStyle = {
   height: '100vh',
@@ -90,12 +87,12 @@ class ReaderCarousel extends Component {
     const { activeIndex } = this.state;
     const { data } = this.props;
 
-    const slides = data.map(el => {
+    const slides = data.map((el, index) => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={uuid()}
+          key={index}
         >
           <img style={imgStyle} src={el.page} alt="Page" />
         </CarouselItem>

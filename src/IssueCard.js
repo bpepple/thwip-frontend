@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
@@ -21,8 +20,6 @@ import {
   ModalBody,
   ModalFooter
 } from 'reactstrap';
-
-const uuid = shortid.generate;
 
 class IssueCard extends Component {
   constructor(props) {
@@ -61,33 +58,22 @@ class IssueCard extends Component {
         <Fade in={true}>
           <Row>
             {data.map(el => (
-              <Col xs="2" key={uuid()}>
-                <Card className="text-white bg-dark mb-3" key={uuid()}>
-                  <CardHeader className="text-center" key={uuid()}>
-                    {el.__str__}
-                  </CardHeader>
-                  <CardImg
-                    src={el.image}
-                    alt="Placeholder image"
-                    key={uuid()}
-                  />
+              <Col xs="2" key={el.slug}>
+                <Card className="text-white bg-dark mb-3">
+                  <CardHeader className="text-center">{el.__str__}</CardHeader>
+                  <CardImg src={el.image} alt="Placeholder image" />
                   <Progress value={el.read_percentage} />
                   <CardBody>
-                    <CardText key={uuid()}>{el.page_count} pages</CardText>
+                    <CardText>{el.page_count} pages</CardText>
                   </CardBody>
                   <CardFooter>
-                    <Button
-                      color="primary"
-                      href={`/reader/${el.slug}`}
-                      key={uuid()}
-                    >
+                    <Button color="primary" href={`/reader/${el.slug}`}>
                       Read
                     </Button>
                     <Button
                       className="float-right"
                       color="info"
                       onClick={this.open.bind(this, el.desc, el.__str__)}
-                      key={uuid()}
                     >
                       <FontAwesomeIcon icon="info-circle" size="lg" />
                     </Button>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
@@ -20,8 +19,6 @@ import {
   ModalFooter,
   ModalHeader
 } from 'reactstrap';
-
-const uuid = shortid.generate;
 
 class PublisherCard extends Component {
   constructor(props) {
@@ -60,32 +57,21 @@ class PublisherCard extends Component {
         <Fade in={true}>
           <Row>
             {data.map(el => (
-              <Col xs="2" key={uuid()}>
-                <Card className="text-white bg-dark mb-3" key={uuid()}>
-                  <CardHeader className="text-center" key={uuid()}>
-                    {el.name}
-                  </CardHeader>
-                  <CardImg
-                    src={el.image}
-                    alt="Placeholder image"
-                    key={uuid()}
-                  />
+              <Col xs="2" key={el.slug}>
+                <Card className="text-white bg-dark mb-3">
+                  <CardHeader className="text-center">{el.name}</CardHeader>
+                  <CardImg src={el.image} alt="Placeholder image" />
                   <CardBody>
                     <CardText>{el.series_count} Series</CardText>
                   </CardBody>
                   <CardFooter>
-                    <Button
-                      color="primary"
-                      href={`/publisher/${el.slug}`}
-                      key={uuid()}
-                    >
+                    <Button color="primary" href={`/publisher/${el.slug}`}>
                       Open
                     </Button>
                     <Button
                       className="float-right"
                       color="info"
                       onClick={this.open.bind(this, el.desc, el.name)}
-                      key={uuid()}
                     >
                       <FontAwesomeIcon icon="info-circle" size="lg" />
                     </Button>
