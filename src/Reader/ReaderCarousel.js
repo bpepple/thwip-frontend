@@ -109,16 +109,20 @@ class ReaderCarousel extends Component {
           interval={false}
         >
           {slides}
-          <CarouselControl
-            direction="prev"
-            directionText="Previous"
-            onClickHandler={this.previous}
-          />
-          <CarouselControl
-            direction="next"
-            directionText="Next"
-            onClickHandler={this.next}
-          />
+          {activeIndex > 0 ? (
+            <CarouselControl
+              direction="prev"
+              directionText="Previous"
+              onClickHandler={this.previous}
+            />
+          ) : null}
+          {activeIndex < data.length - 1 ? (
+            <CarouselControl
+              direction="next"
+              directionText="Next"
+              onClickHandler={this.next}
+            />
+          ) : null}
         </Carousel>
       </div>
     );
