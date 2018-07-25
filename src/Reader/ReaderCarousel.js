@@ -9,6 +9,12 @@ const imgStyle = {
   margin: 'auto'
 };
 
+const txtStyle = {
+  position: 'absolute',
+  top: '10px',
+  right: '20px'
+};
+
 class ReaderCarousel extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +28,7 @@ class ReaderCarousel extends Component {
     this.onExited = this.onExited.bind(this);
     this.mouseMove = this.mouseMove.bind(this);
     this.updateLeaf = this.updateLeaf.bind(this);
+    this.pageNumber = this.pageNumber.bind(this);
   }
 
   componentDidMount() {
@@ -83,6 +90,12 @@ class ReaderCarousel extends Component {
     fetch(url, { method: 'PUT', body: formData });
   }
 
+  pageNumber() {
+    let i = this.state.activeIndex + 1;
+
+    return i;
+  }
+
   render() {
     const { activeIndex } = this.state;
     const { data } = this.props;
@@ -102,6 +115,10 @@ class ReaderCarousel extends Component {
     return (
       <div onMouseMove={this.mouseMove}>
         {this.state.showButtons ? <ReaderButtonGroup /> : null}
+
+        <p className="text-white" style={txtStyle}>
+          Page {this.pageNumber()} of {data.length}
+        </p>
         <Carousel
           activeIndex={activeIndex}
           next={this.next}
