@@ -18,14 +18,16 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  ModalFooter
+  ModalFooter,
+  ListGroup,
+  ListGroupItem
 } from 'reactstrap';
 
 class IssueCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, desc: '', title: '' };
+    this.state = { modal: false, desc: '', title: '', creators: [] };
 
     this.toggle = this.toggle.bind(this);
   }
@@ -34,23 +36,39 @@ class IssueCard extends Component {
     this.setState({ modal: !this.state.modal });
   }
 
-  open(description, title) {
+  open(description, title, creators) {
     this.setState({
       modal: true,
       desc: description,
-      title: title
+      title: title,
+      creators: creators
     });
   }
 
   render() {
     const { data } = this.props;
-    const { modal, desc, title } = this.state;
+    const { modal, desc, title, creators } = this.state;
 
     return (
       <Container fluid={true}>
         <Modal isOpen={modal} toggle={this.toggle} centered>
-          <ModalHeader toggle={this.toggle}>{title} Summary</ModalHeader>
-          <ModalBody>{desc}</ModalBody>
+          <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
+          <ModalBody>
+            <p className="font-weight-bold">Summary</p>
+            <p>{desc}</p>
+            <p className="font-weight-bold">Creators</p>
+            <ListGroup>
+              <Row>
+                {creators.map(function(listValue, index) {
+                  return (
+                    <Col md="6" key={index}>
+                      <ListGroupItem>{listValue}</ListGroupItem>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </ListGroup>
+          </ModalBody>
           <ModalFooter>
             <Button onClick={this.toggle}>Close</Button>
           </ModalFooter>
@@ -73,7 +91,12 @@ class IssueCard extends Component {
                     <Button
                       className="float-right"
                       color="info"
-                      onClick={this.open.bind(this, el.desc, el.__str__)}
+                      onClick={this.open.bind(
+                        this,
+                        el.desc,
+                        el.__str__,
+                        el.creators
+                      )}
                     >
                       <FontAwesomeIcon icon="info-circle" size="lg" />
                     </Button>
