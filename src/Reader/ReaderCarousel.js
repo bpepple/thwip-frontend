@@ -19,7 +19,11 @@ class ReaderCarousel extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { activeIndex: this.props.leaf, showButtons: false };
+    this.state = {
+      activeIndex: this.props.leaf,
+      showButtons: false,
+      readStatus: 0
+    };
 
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
@@ -29,6 +33,7 @@ class ReaderCarousel extends Component {
     this.mouseMove = this.mouseMove.bind(this);
     this.updateLeaf = this.updateLeaf.bind(this);
     this.pageNumber = this.pageNumber.bind(this);
+    this.newReadStatus = this.newReadStatus.bind(this);
   }
 
   componentDidMount() {
@@ -84,8 +89,10 @@ class ReaderCarousel extends Component {
   updateLeaf(slug, page) {
     const formData = new FormData();
     const url = process.env.REACT_APP_API_URL + '/api/issue/' + slug + '/';
+    const status = this.newReadStatus();
 
     formData.append('leaf', page);
+    formData.append('status', status);
 
     fetch(url, { method: 'PUT', body: formData });
   }
@@ -94,6 +101,22 @@ class ReaderCarousel extends Component {
     let i = this.state.activeIndex + 1;
 
     return i;
+  }
+
+  newReadStatus() {
+    const { activeIndex } = this.state;
+    const { data } = this.props;
+    let status = 0;
+
+    if (activeIndex < 1) {
+      status = 0;
+    } else if (activeIndex === data.length - 1) {
+      status = 2;
+    } else {
+      status = 1;
+    }
+
+    return status;
   }
 
   render() {
