@@ -28,7 +28,6 @@ class SeriesCard extends Component {
     this.state = { modal: false, desc: '', title: '' };
 
     this.toggle = this.toggle.bind(this);
-    this.seriesProgress = this.seriesProgress.bind(this);
   }
 
   toggle() {
@@ -41,13 +40,6 @@ class SeriesCard extends Component {
       desc: description,
       title: title
     });
-  }
-
-  seriesProgress(unread, total) {
-    const readTotal = total - unread;
-    const progressPercent = (readTotal / total) * 100;
-
-    return progressPercent;
   }
 
   render() {
@@ -70,12 +62,7 @@ class SeriesCard extends Component {
                 <Card className="text-white bg-dark mb-3">
                   <CardHeader className="text-center">{el.name}</CardHeader>
                   <CardImg src={el.image} alt="Placeholder image" />
-                  <Progress
-                    value={this.seriesProgress(
-                      `${el.unread_issue_count}`,
-                      `${el.issue_count}`
-                    )}
-                  />
+                  <Progress value={el.percent_read} />
                   <CardBody>
                     <CardText>{el.issue_count} issues</CardText>
                   </CardBody>
