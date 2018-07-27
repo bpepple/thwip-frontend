@@ -24,7 +24,7 @@ class MainBar extends Component {
   }
 
   importComics() {
-    let url = process.env.REACT_APP_API_URL + '/api/issue/import_comics/';
+    let url = process.env.REACT_APP_API_URL + '/api/issue/import-comics/';
 
     fetch(url).then(response => {
       if (response.status !== 200) {
