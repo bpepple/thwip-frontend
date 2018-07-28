@@ -15,7 +15,7 @@ library.add(faTimesCircle, faInfoCircle);
 
 const App = withRouter(({ location }) => (
   <Container fluid={true}>
-    {!location.pathname.includes('/reader/') ? <MainBar /> : null}
+    {!location.pathname.includes('/reader/') && <MainBar />}
     <Switch>
       <Route exact path="/series" component={SeriesList} />
       <Route path="/series/:slug" component={SeriesDetail} />
