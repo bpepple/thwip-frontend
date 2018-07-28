@@ -4,7 +4,7 @@ import PublisherList from './PublisherList';
 import PublisherDetail from './PublisherDetail';
 import SeriesList from './SeriesList';
 import SeriesDetail from './SeriesDetail';
-import Reader from './Reader/Reader';
+import Reader from './reader/Reader';
 import MainBar from './MainBar';
 import { Container } from 'reactstrap';
 
