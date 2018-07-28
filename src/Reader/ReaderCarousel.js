@@ -15,6 +15,12 @@ const txtStyle = {
   right: '20px'
 };
 
+const STATUS = Object.freeze({
+  unread: 0,
+  partial: 1,
+  read: 2
+});
+
 class ReaderCarousel extends Component {
   constructor(props) {
     super(props);
@@ -106,14 +112,14 @@ class ReaderCarousel extends Component {
   newReadStatus() {
     const { activeIndex } = this.state;
     const { data } = this.props;
-    let status = 0;
+    let status = STATUS.unread;
 
     if (activeIndex < 1) {
-      status = 0;
+      status = STATUS.unread;
     } else if (activeIndex === data.length - 1) {
-      status = 2;
+      status = STATUS.read;
     } else {
-      status = 1;
+      status = STATUS.partial;
     }
 
     return status;
