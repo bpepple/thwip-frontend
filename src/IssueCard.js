@@ -56,9 +56,9 @@ class IssueCard extends Component {
           <ModalBody>
             <p className="font-weight-bold">Summary</p>
             <p>{desc}</p>
-            {creators.length > 0 ? (
+            {creators.length > 0 && (
               <p className="font-weight-bold">Creators</p>
-            ) : null}
+            )}
             <ListGroup>
               <Row>
                 {creators.map(function(listValue, index) {
