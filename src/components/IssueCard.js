@@ -77,7 +77,7 @@ class IssueCard extends Component {
         </Modal>
         <Fade in={true}>
           <Row>
-            {data.map(el => (
+            {data.results.map(el => (
               <Col xs="2" key={el.slug}>
                 <Card className="text-white bg-dark mb-3">
                   <CardHeader className="text-center">{el.__str__}</CardHeader>
@@ -114,7 +114,7 @@ class IssueCard extends Component {
 }
 
 IssueCard.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.object.isRequired
 };
 
 export default IssueCard;
