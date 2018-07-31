@@ -113,8 +113,13 @@ class MainPagination extends Component {
     return range(1, totalPages);
   };
 
+  componentDidMount() {
+    this.gotoPage(1);
+  }
+
   gotoPage = page => {
     const { onPageChanged = f => f } = this.props;
+
     const currentPage = Math.max(0, Math.min(page, this.totalPages));
 
     const paginationData = {
@@ -186,7 +191,7 @@ class MainPagination extends Component {
                   key={index}
                   active={Boolean(`${currentPage === page ? true : ''}`)}
                 >
-                  <PaginationLink href="#" onClick={this.handleClick(page)}>
+                  <PaginationLink onClick={this.handleClick(page)}>
                     {page}
                   </PaginationLink>
                 </PaginationItem>
@@ -201,6 +206,8 @@ class MainPagination extends Component {
 
 MainPagination.propTypes = {
   totalRecords: PropTypes.number.isRequired,
+  pageLimit: PropTypes.number,
+  pageNeighbours: PropTypes.number,
   onPageChanged: PropTypes.func
 };
 

@@ -7,19 +7,42 @@ class IssuePage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { data: [], loaded: false };
+    this.state = {
+      data: [],
+      currentPage: 1,
+      loaded: false
+    };
   }
 
   componentDidMount() {
-    fetch(this.props.endpoint)
+    let url = this.props.endpoint + '?page=' + this.state.currentPage;
+
+    fetch(url)
       .then(response => {
         if (response.status !== 200) {
-          console.log('Something went wrong');
+          console.error('Something went wrong');
         }
         return response.json();
       })
       .then(data => this.setState({ data: data, loaded: true }));
   }
+
+  onPageChanged = pageData => {
+    const { currentPage } = pageData;
+
+    let url = this.props.endpoint + '?page=' + currentPage;
+
+    fetch(url)
+      .then(response => {
+        if (response.status !== 200) {
+          console.error('Something went wrong');
+        }
+        return response.json();
+      })
+      .then(data =>
+        this.setState({ data: data, currentPage: currentPage, loaded: true })
+      );
+  };
 
   render() {
     const { data, loaded } = this.state;
@@ -27,7 +50,10 @@ class IssuePage extends Component {
     return loaded ? (
       <React.Fragment>
         <IssueCard data={data} />
-        <MainPagination totalRecords={data.count} />
+        <MainPagination
+          totalRecords={data.count}
+          onPageChanged={this.onPageChanged}
+        />
       </React.Fragment>
     ) : null;
   }
