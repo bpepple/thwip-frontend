@@ -156,7 +156,7 @@ class MainPagination extends Component {
     return (
       <Container fluid={true}>
         <Row className="justify-content-center">
-          <Pagination className="justify-content-center">
+          <Pagination>
             {pages.map((page, index) => {
               if (page === LEFT_PAGE)
                 return (
