@@ -12,11 +12,11 @@ class MainPagination extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { itemsPerPage: 30 };
+    this.state = { itemsPerPage: 30, currentPage: 1 };
   }
 
   render() {
-    const { itemsPerPage } = this.state;
+    const { itemsPerPage, currentPage } = this.state;
     const { totalRecords } = this.props;
 
     const pageNumbers = [];
@@ -24,10 +24,13 @@ class MainPagination extends Component {
       pageNumbers.push(i);
     }
 
-    const renderPageNumbers = pageNumbers.map(number => {
+    const renderPageNumbers = pageNumbers.map(page => {
       return (
-        <PaginationItem key={number}>
-          <PaginationLink>{number}</PaginationLink>
+        <PaginationItem
+          key={page}
+          active={`${currentPage === page ? true : ''}`}
+        >
+          <PaginationLink>{page}</PaginationLink>
         </PaginationItem>
       );
     });
