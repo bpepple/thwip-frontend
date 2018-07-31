@@ -29,6 +29,12 @@ class IssuePage extends Component {
 
   onPageChanged = pageData => {
     const { currentPage } = pageData;
+    /**
+     * Don't fetch the page twice.
+     */
+    if (currentPage === Number(this.state.currentPage)) {
+      return;
+    }
 
     let url = this.props.endpoint + '?page=' + currentPage;
 
