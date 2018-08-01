@@ -16,7 +16,15 @@ class IssuePage extends Component {
 
   componentDidMount() {
     let url = this.props.endpoint + '?page=' + this.state.currentPage;
-    this.fetchIssues(url);
+
+    fetch(url)
+      .then(response => {
+        if (response.status !== 200) {
+          console.error('Something went wrong');
+        }
+        return response.json();
+      })
+      .then(data => this.setState({ data: data, loaded: true }));
   }
 
   onPageChanged = pageData => {
@@ -29,10 +37,7 @@ class IssuePage extends Component {
     }
 
     let url = this.props.endpoint + '?page=' + currentPage;
-    this.fetchIssues(url);
-  };
 
-  fetchIssues(url) {
     fetch(url)
       .then(response => {
         if (response.status !== 200) {
@@ -40,8 +45,10 @@ class IssuePage extends Component {
         }
         return response.json();
       })
-      .then(data => this.setState({ data: data, loaded: true }));
-  }
+      .then(data =>
+        this.setState({ data: data, currentPage: currentPage, loaded: true })
+      );
+  };
 
   render() {
     const { data, loaded } = this.state;
