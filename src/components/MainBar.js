@@ -53,7 +53,7 @@ class MainBar extends Component {
               <NavLink href="/series/page/1">Series</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/publisher">Publisher</NavLink>
+              <NavLink href="/publisher/page/1">Publisher</NavLink>
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>

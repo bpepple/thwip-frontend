@@ -19,7 +19,7 @@ const App = withRouter(({ location }) => (
     <Switch>
       <Route exact path="/series/page/:page" component={SeriesList} />
       <Route path="/series/:slug/page/:page" component={SeriesDetail} />
-      <Route exact path="/publisher" component={PublisherList} />
+      <Route exact path="/publisher/page/:page" component={PublisherList} />
       <Route path="/publisher/:slug/page/:page" component={PublisherDetail} />
       <Route path="/reader/:slug" component={Reader} />} />
       <Redirect from="/" to="/series/page/1" />

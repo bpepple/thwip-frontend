@@ -1,11 +1,10 @@
 import React from 'react';
-import DataProvider from './DataProvider';
-import PublisherCard from './PublisherCard';
+import PublisherPage from './PublisherPage';
 
-const Publisher = () => (
-  <DataProvider
+const Publisher = props => (
+  <PublisherPage
     endpoint={process.env.REACT_APP_API_URL + '/api/publisher/'}
-    render={data => <PublisherCard data={data} />}
+    page={props.match.params.page}
   />
 );
 
