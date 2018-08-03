@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IssueCard from './IssueCard';
 import MainPagination from './MainPagination';
+import Footer from './Footer';
 import history from './History';
 
 class IssuePage extends Component {
@@ -62,6 +63,7 @@ class IssuePage extends Component {
           onPageChanged={this.onPageChanged}
           page={page}
         />
+        <Footer cvUrl="https://comicvine.gamespot.com/" />
       </React.Fragment>
     ) : null;
   }
