@@ -18,7 +18,7 @@ const App = withRouter(({ location }) => (
     {!location.pathname.includes('/reader/') && <MainBar />}
     <Switch>
       <Route exact path="/series" component={SeriesList} />
-      <Route path="/series/:slug" component={SeriesDetail} />
+      <Route path="/series/:slug/page/:page" component={SeriesDetail} />
       <Route exact path="/publisher" component={PublisherList} />
       <Route path="/publisher/:slug" component={PublisherDetail} />
       <Route path="/reader/:slug" component={Reader} />} />

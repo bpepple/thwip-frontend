@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import IssueCard from './IssueCard';
 import MainPagination from './MainPagination';
+import history from './History';
 
 class IssuePage extends Component {
   constructor(props) {
@@ -9,49 +10,49 @@ class IssuePage extends Component {
 
     this.state = {
       data: [],
-      currentPage: 1,
+      page: this.props.page,
       loaded: false
     };
   }
 
   componentDidMount() {
-    let url = this.props.endpoint + '?page=' + this.state.currentPage;
-
-    fetch(url)
-      .then(response => {
-        if (response.status !== 200) {
-          console.error('Something went wrong');
-        }
-        return response.json();
-      })
-      .then(data => this.setState({ data: data, loaded: true }));
+    this.fetchIssues(this.state.page);
   }
 
   onPageChanged = pageData => {
     const { currentPage } = pageData;
-    /**
-     * Don't fetch the page twice.
-     */
-    if (currentPage === Number(this.state.currentPage)) {
+
+    /* Don't fetch the page twice. */
+    if (currentPage === Number(this.state.page)) {
       return;
     }
 
-    let url = this.props.endpoint + '?page=' + currentPage;
+    this.fetchIssues(currentPage);
+  };
 
-    fetch(url)
+  fetchIssues(page) {
+    const { endpoint, slug } = this.props;
+
+    const apiUrl = endpoint + '?page=' + page;
+    const newUrl = '/series/' + slug + '/page/' + page;
+
+    fetch(apiUrl)
       .then(response => {
         if (response.status !== 200) {
           console.error('Something went wrong');
         }
         return response.json();
       })
-      .then(data =>
-        this.setState({ data: data, currentPage: currentPage, loaded: true })
-      );
-  };
+      .then(data => this.setState({ data: data, page: page, loaded: true }));
+
+    /* If our curent url is the same as our new one don't push it. */
+    if (history.location.pathname !== newUrl) {
+      history.push(newUrl);
+    }
+  }
 
   render() {
-    const { data, loaded } = this.state;
+    const { data, loaded, page } = this.state;
 
     return loaded ? (
       <React.Fragment>
@@ -59,6 +60,7 @@ class IssuePage extends Component {
         <MainPagination
           totalRecords={data.count}
           onPageChanged={this.onPageChanged}
+          page={page}
         />
       </React.Fragment>
     ) : null;
@@ -66,7 +68,9 @@ class IssuePage extends Component {
 }
 
 IssuePage.propTypes = {
-  endpoint: PropTypes.string.isRequired
+  endpoint: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired
 };
 
 export default IssuePage;

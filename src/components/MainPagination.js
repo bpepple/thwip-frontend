@@ -43,7 +43,7 @@ class MainPagination extends Component {
 
     this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
 
-    this.state = { currentPage: 1 };
+    this.state = { currentPage: this.props.page };
   }
 
   /**
@@ -114,7 +114,7 @@ class MainPagination extends Component {
   };
 
   componentDidMount() {
-    this.gotoPage(1);
+    this.gotoPage(this.state.currentPage);
   }
 
   gotoPage = page => {

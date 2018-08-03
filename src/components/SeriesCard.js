@@ -67,7 +67,7 @@ class SeriesCard extends Component {
                     <CardText>{el.issue_count} issues</CardText>
                   </CardBody>
                   <CardFooter>
-                    <Button color="primary" href={`/series/${el.slug}`}>
+                    <Button color="primary" href={`/series/${el.slug}/page/1`}>
                       Open
                     </Button>
                     <Button

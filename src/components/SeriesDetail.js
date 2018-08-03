@@ -9,6 +9,8 @@ const SeriesDetail = props => (
       props.match.params.slug +
       '/issue_list/'
     }
+    page={props.match.params.page}
+    slug={props.match.params.slug}
   />
 );
 
