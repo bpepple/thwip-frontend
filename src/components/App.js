@@ -17,12 +17,12 @@ const App = withRouter(({ location }) => (
   <Container fluid={true}>
     {!location.pathname.includes('/reader/') && <MainBar />}
     <Switch>
-      <Route exact path="/series" component={SeriesList} />
+      <Route exact path="/series/page/:page" component={SeriesList} />
       <Route path="/series/:slug/page/:page" component={SeriesDetail} />
       <Route exact path="/publisher" component={PublisherList} />
-      <Route path="/publisher/:slug" component={PublisherDetail} />
+      <Route path="/publisher/:slug/page/:page" component={PublisherDetail} />
       <Route path="/reader/:slug" component={Reader} />} />
-      <Redirect from="/" to="/series" />
+      <Redirect from="/" to="/series/page/1" />
     </Switch>
   </Container>
 ));

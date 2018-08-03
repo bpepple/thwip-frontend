@@ -65,7 +65,10 @@ class PublisherCard extends Component {
                     <CardText>{el.series_count} Series</CardText>
                   </CardBody>
                   <CardFooter>
-                    <Button color="primary" href={`/publisher/${el.slug}`}>
+                    <Button
+                      color="primary"
+                      href={`/publisher/${el.slug}/page/1`}
+                    >
                       Open
                     </Button>
                     <Button

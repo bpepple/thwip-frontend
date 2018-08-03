@@ -1,16 +1,16 @@
 import React from 'react';
-import DataProvider from './DataProvider';
-import SeriesCard from './SeriesCard';
+import SeriesPage from './SeriesPage';
 
 const PublisherDetail = props => (
-  <DataProvider
+  <SeriesPage
     endpoint={
       process.env.REACT_APP_API_URL +
       '/api/publisher/' +
       props.match.params.slug +
       '/series_list/'
     }
-    render={data => <SeriesCard data={data} />}
+    page={props.match.params.page}
+    slug={props.match.params.slug}
   />
 );
 

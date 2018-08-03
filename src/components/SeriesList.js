@@ -1,11 +1,10 @@
 import React from 'react';
-import DataProvider from './DataProvider';
-import SeriesCard from './SeriesCard';
+import SeriesPage from './SeriesPage';
 
-const SeriesList = () => (
-  <DataProvider
+const SeriesList = props => (
+  <SeriesPage
     endpoint={process.env.REACT_APP_API_URL + '/api/series'}
-    render={data => <SeriesCard data={data} />}
+    page={props.match.params.page}
   />
 );
 

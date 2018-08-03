@@ -50,7 +50,7 @@ class MainBar extends Component {
           <NavbarBrand href="/series">Thwip!</NavbarBrand>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/series">Series</NavLink>
+              <NavLink href="/series/page/1">Series</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/publisher">Publisher</NavLink>
