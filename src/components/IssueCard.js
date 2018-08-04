@@ -18,6 +18,24 @@ import {
   Button
 } from 'reactstrap';
 
+const Body = ({ text }) => (
+  <CardBody>
+    <CardText>{text} Pages</CardText>
+  </CardBody>
+);
+
+const ReadButton = ({ url }) => (
+  <Button color="primary" href={url}>
+    Read
+  </Button>
+);
+
+const InfoButton = ({ click }) => (
+  <Button className="float-right" color="info" onClick={click}>
+    <FontAwesomeIcon icon="info-circle" size="lg" />
+  </Button>
+);
+
 class IssueCard extends Component {
   constructor(props) {
     super(props);
@@ -58,20 +76,10 @@ class IssueCard extends Component {
                   <CardHeader className="text-center">{el.__str__}</CardHeader>
                   <CardImg src={el.image} alt="Placeholder image" />
                   <Progress value={el.read_percentage} />
-                  <CardBody>
-                    <CardText>{el.page_count} pages</CardText>
-                  </CardBody>
+                  <Body text={el.page_count} />
                   <CardFooter>
-                    <Button color="primary" href={`/reader/${el.slug}`}>
-                      Read
-                    </Button>
-                    <Button
-                      className="float-right"
-                      color="info"
-                      onClick={this.open.bind(this, el)}
-                    >
-                      <FontAwesomeIcon icon="info-circle" size="lg" />
-                    </Button>
+                    <ReadButton url={`/reader/${el.slug}`} />
+                    <InfoButton click={this.open.bind(this, el)} />
                   </CardFooter>
                 </Card>
               </Col>
