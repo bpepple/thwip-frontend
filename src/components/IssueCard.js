@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import IssueModal from './IssueModal';
 
 import {
   Container,
@@ -14,21 +15,14 @@ import {
   CardBody,
   CardText,
   Progress,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ListGroup,
-  ListGroupItem
+  Button
 } from 'reactstrap';
 
 class IssueCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, desc: '', title: '', creators: [] };
-
+    this.state = { modal: false, issueData: [], creators: [] };
     this.toggle = this.toggle.bind(this);
   }
 
@@ -36,45 +30,26 @@ class IssueCard extends Component {
     this.setState({ modal: !this.state.modal });
   }
 
-  open(description, title, creators) {
+  open(issueData) {
     this.setState({
       modal: true,
-      desc: description,
-      title: title,
-      creators: creators
+      issueData: issueData,
+      creators: issueData.creators
     });
   }
 
   render() {
     const { data } = this.props;
-    const { modal, desc, title, creators } = this.state;
+    const { modal, issueData, creators } = this.state;
 
     return (
       <Container fluid={true}>
-        <Modal isOpen={modal} toggle={this.toggle} centered>
-          <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
-          <ModalBody>
-            <p className="font-weight-bold">Summary</p>
-            <p>{desc}</p>
-            {creators.length > 0 && (
-              <p className="font-weight-bold">Creators</p>
-            )}
-            <ListGroup>
-              <Row>
-                {creators.map(function(listValue, index) {
-                  return (
-                    <Col md="6" key={index}>
-                      <ListGroupItem>{listValue}</ListGroupItem>
-                    </Col>
-                  );
-                })}
-              </Row>
-            </ListGroup>
-          </ModalBody>
-          <ModalFooter>
-            <Button onClick={this.toggle}>Close</Button>
-          </ModalFooter>
-        </Modal>
+        <IssueModal
+          toggle={this.toggle}
+          modal={modal}
+          data={issueData}
+          creators={creators}
+        />
         <Fade in={true}>
           <Row>
             {data.results.map(el => (
@@ -93,12 +68,7 @@ class IssueCard extends Component {
                     <Button
                       className="float-right"
                       color="info"
-                      onClick={this.open.bind(
-                        this,
-                        el.desc,
-                        el.__str__,
-                        el.creators
-                      )}
+                      onClick={this.open.bind(this, el)}
                     >
                       <FontAwesomeIcon icon="info-circle" size="lg" />
                     </Button>
