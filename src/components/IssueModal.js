@@ -15,13 +15,12 @@ const ModalHeadings = ({ text }) => <p className="font-weight-bold">{text}</p>;
 
 class ModalDate extends Component {
   render() {
-    /* TODO: Format the date. */
     const { date } = this.props;
 
     return (
       <React.Fragment>
         <ModalHeadings text="Date" />
-        <p>{date}</p>
+        <p>{new Date(date).toLocaleDateString()}</p>
       </React.Fragment>
     );
   }
