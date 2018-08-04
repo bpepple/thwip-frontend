@@ -18,12 +18,29 @@ import {
   Progress
 } from 'reactstrap';
 
+const Body = ({ text }) => (
+  <CardBody>
+    <CardText>{text} issues</CardText>
+  </CardBody>
+);
+
+const OpenButton = ({ url }) => (
+  <Button color="primary" href={url}>
+    Open
+  </Button>
+);
+
+const InfoButton = ({ click }) => (
+  <Button className="float-right" color="info" onClick={click}>
+    <FontAwesomeIcon icon="info-circle" size="lg" />
+  </Button>
+);
+
 class SeriesCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = { modal: false, seriesData: [] };
-
     this.toggle = this.toggle.bind(this);
   }
 
@@ -58,20 +75,10 @@ class SeriesCard extends Component {
                   <CardHeader className="text-center">{el.name}</CardHeader>
                   <CardImg src={el.image} alt="Placeholder image" />
                   <Progress value={el.percent_read} />
-                  <CardBody>
-                    <CardText>{el.issue_count} issues</CardText>
-                  </CardBody>
+                  <Body text={el.issue_count} />
                   <CardFooter>
-                    <Button color="primary" href={`/series/${el.slug}/page/1`}>
-                      Open
-                    </Button>
-                    <Button
-                      className="float-right"
-                      color="info"
-                      onClick={this.open.bind(this, el)}
-                    >
-                      <FontAwesomeIcon icon="info-circle" size="lg" />
-                    </Button>
+                    <OpenButton url={`/series/${el.slug}/page/1`} />
+                    <InfoButton click={this.open.bind(this, el)} />
                   </CardFooter>
                 </Card>
               </Col>
