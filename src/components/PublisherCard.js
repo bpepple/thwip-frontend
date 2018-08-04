@@ -17,6 +17,24 @@ import {
   Button
 } from 'reactstrap';
 
+const Body = ({ text }) => (
+  <CardBody>
+    <CardText>{text} Series</CardText>
+  </CardBody>
+);
+
+const OpenButton = ({ url }) => (
+  <Button color="primary" href={url}>
+    Open
+  </Button>
+);
+
+const InfoButton = ({ click }) => (
+  <Button className="float-right" color="info" onClick={click}>
+    <FontAwesomeIcon icon="info-circle" size="lg" />
+  </Button>
+);
+
 class PublisherCard extends Component {
   constructor(props) {
     super(props);
@@ -56,23 +74,10 @@ class PublisherCard extends Component {
                 <Card className="text-white bg-dark mb-3">
                   <CardHeader className="text-center">{el.name}</CardHeader>
                   <CardImg src={el.image} alt="Placeholder image" />
-                  <CardBody>
-                    <CardText>{el.series_count} Series</CardText>
-                  </CardBody>
+                  <Body text={el.series_count} />
                   <CardFooter>
-                    <Button
-                      color="primary"
-                      href={`/publisher/${el.slug}/page/1`}
-                    >
-                      Open
-                    </Button>
-                    <Button
-                      className="float-right"
-                      color="info"
-                      onClick={this.open.bind(this, el)}
-                    >
-                      <FontAwesomeIcon icon="info-circle" size="lg" />
-                    </Button>
+                    <OpenButton url={`/publisher/${el.slug}/page/1`} />
+                    <InfoButton click={this.open.bind(this, el)} />
                   </CardFooter>
                 </Card>
               </Col>
