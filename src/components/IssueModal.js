@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Modal,
   ModalBody,
@@ -13,18 +13,12 @@ import {
 
 const ModalHeadings = ({ text }) => <p className="font-weight-bold">{text}</p>;
 
-class ModalDate extends Component {
-  render() {
-    const { date } = this.props;
-
-    return (
-      <React.Fragment>
-        <ModalHeadings text="Date" />
-        <p>{new Date(date).toLocaleDateString()}</p>
-      </React.Fragment>
-    );
-  }
-}
+const ModalDate = ({ date }) => (
+  <React.Fragment>
+    <ModalHeadings text="Date" />
+    <p>{new Date(date).toLocaleDateString()}</p>
+  </React.Fragment>
+);
 
 const ModalSummary = ({ text }) => (
   <React.Fragment>
