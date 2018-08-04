@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CardsModal from './CardsModal';
 
 import {
   Container,
@@ -13,18 +14,14 @@ import {
   CardFooter,
   CardText,
   CardBody,
-  Button,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader
+  Button
 } from 'reactstrap';
 
 class PublisherCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, desc: '', title: '' };
+    this.state = { modal: false, publisherData: [] };
 
     this.toggle = this.toggle.bind(this);
   }
@@ -33,27 +30,25 @@ class PublisherCard extends Component {
     this.setState({ modal: !this.state.modal });
   }
 
-  open(description, title) {
+  open(publisherData) {
     this.setState({
       modal: true,
-      desc: description,
-      title: title
+      publisherData: publisherData
     });
   }
 
   render() {
     const { data } = this.props;
-    const { modal, desc, title } = this.state;
+    const { modal, publisherData } = this.state;
 
     return (
       <Container fluid={true}>
-        <Modal isOpen={modal} toggle={this.toggle} centered>
-          <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
-          <ModalBody>{desc}</ModalBody>
-          <ModalFooter>
-            <Button onClick={this.toggle}>Close</Button>
-          </ModalFooter>
-        </Modal>
+        <CardsModal
+          toggle={this.toggle}
+          modal={modal}
+          data={publisherData}
+          creators=""
+        />
         <Fade in={true}>
           <Row>
             {data.results.map(el => (
@@ -74,7 +69,7 @@ class PublisherCard extends Component {
                     <Button
                       className="float-right"
                       color="info"
-                      onClick={this.open.bind(this, el.desc, el.name)}
+                      onClick={this.open.bind(this, el)}
                     >
                       <FontAwesomeIcon icon="info-circle" size="lg" />
                     </Button>

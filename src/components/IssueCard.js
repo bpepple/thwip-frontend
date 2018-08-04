@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import IssueModal from './IssueModal';
+import CardsModal from './CardsModal';
 
 import {
   Container,
@@ -44,7 +44,7 @@ class IssueCard extends Component {
 
     return (
       <Container fluid={true}>
-        <IssueModal
+        <CardsModal
           toggle={this.toggle}
           modal={modal}
           data={issueData}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CardsModal from './CardsModal';
 
 import {
   Container,
@@ -14,10 +15,6 @@ import {
   CardText,
   CardBody,
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Progress
 } from 'reactstrap';
 
@@ -25,7 +22,7 @@ class SeriesCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, desc: '', title: '' };
+    this.state = { modal: false, seriesData: [] };
 
     this.toggle = this.toggle.bind(this);
   }
@@ -34,27 +31,25 @@ class SeriesCard extends Component {
     this.setState({ modal: !this.state.modal });
   }
 
-  open(description, title) {
+  open(seriesData) {
     this.setState({
       modal: true,
-      desc: description,
-      title: title
+      seriesData: seriesData
     });
   }
 
   render() {
     const { data } = this.props;
-    const { modal, desc, title } = this.state;
+    const { modal, seriesData } = this.state;
 
     return (
       <Container fluid={true}>
-        <Modal isOpen={modal} toggle={this.toggle} centered>
-          <ModalHeader toggle={this.toggle}>{title}</ModalHeader>
-          <ModalBody>{desc}</ModalBody>
-          <ModalFooter>
-            <Button onClick={this.toggle}>Close</Button>
-          </ModalFooter>
-        </Modal>
+        <CardsModal
+          toggle={this.toggle}
+          modal={modal}
+          data={seriesData}
+          creators=""
+        />
         <Fade in={true}>
           <Row>
             {data.results.map(el => (
@@ -73,7 +68,7 @@ class SeriesCard extends Component {
                     <Button
                       className="float-right"
                       color="info"
-                      onClick={this.open.bind(this, el.desc, el.name)}
+                      onClick={this.open.bind(this, el)}
                     >
                       <FontAwesomeIcon icon="info-circle" size="lg" />
                     </Button>

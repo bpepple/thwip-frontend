@@ -44,9 +44,13 @@ const ModalCreators = ({ creators }) => (
   </React.Fragment>
 );
 
-const IssueModal = ({ toggle, modal, data, creators }) => (
+const CardsModal = ({ toggle, modal, data, creators }) => (
   <Modal isOpen={modal} toggle={toggle} centered>
-    <ModalHeader toggle={toggle}>{data.__str__}</ModalHeader>
+    {data.__str__ ? (
+      <ModalHeader toggle={toggle}>{data.__str__}</ModalHeader>
+    ) : (
+      <ModalHeader toggle={toggle}>{data.name}</ModalHeader>
+    )}
     <ModalBody>
       {data.date && <ModalDate date={data.date} />}
       {data.desc && <ModalSummary text={data.desc} />}
@@ -58,4 +62,4 @@ const IssueModal = ({ toggle, modal, data, creators }) => (
   </Modal>
 );
 
-export default IssueModal;
+export default CardsModal;
