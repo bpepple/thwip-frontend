@@ -20,7 +20,7 @@ import {
 
 const Body = ({ text }) => (
   <CardBody>
-    <CardText>{text} issues</CardText>
+    <CardText>{text} Issues</CardText>
   </CardBody>
 );
 
