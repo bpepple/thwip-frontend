@@ -75,7 +75,7 @@ class IssueCard extends Component {
                 <Card className="text-white bg-dark mb-3">
                   <CardHeader className="text-center">{el.__str__}</CardHeader>
                   <CardImg src={el.image} alt="Placeholder image" />
-                  <Progress value={el.read_percentage} />
+                  <Progress value={el.percent_read} />
                   <Body text={el.page_count} />
                   <CardFooter>
                     <ReadButton url={`/reader/${el.slug}`} />
