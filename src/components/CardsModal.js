@@ -27,6 +27,20 @@ const ModalSummary = ({ text }) => (
   </React.Fragment>
 );
 
+const ModelRole = ({ roles }) => (
+  <React.Fragment>
+    {roles
+      .map(t => (
+        <span>
+          <small>
+            <em>{t.name}</em>
+          </small>
+        </span>
+      ))
+      .reduce((prev, curr) => [prev, ', ', curr])}
+  </React.Fragment>
+);
+
 const ModalCreators = ({ creators }) => (
   <React.Fragment>
     <ModalHeadings text="Creators" />
@@ -35,7 +49,10 @@ const ModalCreators = ({ creators }) => (
         {creators.map(function(listValue, index) {
           return (
             <Col md="6" key={index}>
-              <ListGroupItem>{listValue.creator}</ListGroupItem>
+              <ListGroupItem>
+                <p>{listValue.creator}</p>
+                <ModelRole roles={listValue.role} />
+              </ListGroupItem>
             </Col>
           );
         })}
