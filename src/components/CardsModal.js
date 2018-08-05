@@ -50,7 +50,8 @@ const ModalCreators = ({ creators }) => (
           return (
             <Col md="6" key={index}>
               <ListGroupItem>
-                <p>{listValue.creator}</p>
+                {listValue.creator}
+                <br />
                 <ModelRole roles={listValue.role} />
               </ListGroupItem>
             </Col>
