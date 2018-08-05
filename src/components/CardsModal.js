@@ -27,7 +27,7 @@ const ModalSummary = ({ text }) => (
   </React.Fragment>
 );
 
-const ModelRole = ({ roles }) => (
+const ModalRole = ({ roles }) => (
   <React.Fragment>
     {roles
       .map(t => (
@@ -52,7 +52,7 @@ const ModalCreators = ({ creators }) => (
               <ListGroupItem>
                 {listValue.creator}
                 <br />
-                <ModelRole roles={listValue.role} />
+                <ModalRole roles={listValue.role} />
               </ListGroupItem>
             </Col>
           );
