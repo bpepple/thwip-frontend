@@ -35,7 +35,7 @@ const ModalCreators = ({ creators }) => (
         {creators.map(function(listValue, index) {
           return (
             <Col md="6" key={index}>
-              <ListGroupItem>{listValue}</ListGroupItem>
+              <ListGroupItem>{listValue.creator}</ListGroupItem>
             </Col>
           );
         })}

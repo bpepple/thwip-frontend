@@ -52,7 +52,7 @@ class IssueCard extends Component {
     this.setState({
       modal: true,
       issueData: issueData,
-      creators: issueData.creators
+      creators: issueData.credits
     });
   }
 
