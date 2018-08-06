@@ -49,7 +49,8 @@ class SeriesPage extends Component {
         }
         return response.json();
       })
-      .then(data => this.setState({ data: data, page: page, loaded: true }));
+      .then(data => this.setState({ data: data, page: page, loaded: true }))
+      .catch(error => console.error('Fetch Series Error:\n', error));
 
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
