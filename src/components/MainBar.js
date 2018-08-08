@@ -55,6 +55,9 @@ class MainBar extends Component {
             <NavItem>
               <NavLink href="/publisher/page/1">Publisher</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/issues/recent/page/1">Recently Added</NavLink>
+            </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
             <Button onClick={this.importComics}>Import</Button>

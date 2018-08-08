@@ -35,7 +35,12 @@ class IssuePage extends Component {
     const { endpoint, slug } = this.props;
 
     const apiUrl = endpoint + '?page=' + page;
-    const newUrl = '/series/' + slug + '/page/' + page;
+    let newUrl;
+    if (slug) {
+      newUrl = '/series/' + slug + '/page/' + page;
+    } else {
+      newUrl = '/issues/recent/page/' + page;
+    }
 
     fetch(apiUrl)
       .then(response => {
@@ -72,7 +77,7 @@ class IssuePage extends Component {
 IssuePage.propTypes = {
   endpoint: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired
+  slug: PropTypes.string
 };
 
 export default IssuePage;
