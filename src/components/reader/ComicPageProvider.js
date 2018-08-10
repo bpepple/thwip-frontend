@@ -47,10 +47,9 @@ class ComicPageProvider extends Component {
           slug: d.slug
         });
 
-        let i;
         let pageList = [];
 
-        for (i = 0; i < this.state.pages; i++) {
+        for (let i = 0; i < this.state.pages; i++) {
           pageList.push(i);
         }
 
