@@ -1,13 +1,13 @@
 import React from 'react';
+import missingImg from '../img/creator-not-found.png';
 import {
+  Media,
   Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
   Row,
   Col,
-  ListGroup,
-  ListGroupItem,
   Button
 } from 'reactstrap';
 
@@ -30,8 +30,8 @@ const ModalSummary = ({ text }) => (
 const ModalRole = ({ roles }) => (
   <React.Fragment>
     {roles
-      .map(t => (
-        <span>
+      .map((t, index) => (
+        <span key={index}>
           <small>
             <em>{t.name}</em>
           </small>
@@ -44,21 +44,38 @@ const ModalRole = ({ roles }) => (
 const ModalCreators = ({ creators }) => (
   <React.Fragment>
     <ModalHeadings text="Creators" />
-    <ListGroup>
-      <Row>
-        {creators.map(function(listValue, index) {
-          return (
-            <Col md="6" key={index}>
-              <ListGroupItem>
+    <Row>
+      {creators.map(function(listValue, index) {
+        return (
+          <Col md="6" key={index}>
+            <Media className="mb-3 border rounded">
+              <Media left>
+                {listValue.image !== null ? (
+                  <Media
+                    object
+                    className="rounded-left"
+                    src={listValue.image}
+                    alt="{listValue.creator} image"
+                  />
+                ) : (
+                  <Media
+                    object
+                    className="rounded-left"
+                    src={missingImg}
+                    alt="Generic placeholder image"
+                  />
+                )}
+              </Media>
+              <Media body className="ml-2 mt-2">
                 {listValue.creator}
                 <br />
                 <ModalRole roles={listValue.role} />
-              </ListGroupItem>
-            </Col>
-          );
-        })}
-      </Row>
-    </ListGroup>
+              </Media>
+            </Media>
+          </Col>
+        );
+      })}
+    </Row>
   </React.Fragment>
 );
 
