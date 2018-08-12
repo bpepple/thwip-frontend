@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CardsModal from './CardsModal';
+import missingImg from '../img/image-not-found.png';
 
 import {
   Container,
@@ -74,7 +75,11 @@ class IssueCard extends Component {
               <Col xs="2" key={el.slug}>
                 <Card className="text-white bg-dark mb-3">
                   <CardHeader className="text-center">{el.__str__}</CardHeader>
-                  <CardImg src={el.image} alt="Placeholder image" />
+                  {el.image !== null ? (
+                    <CardImg src={el.image} alt="Issue Image" />
+                  ) : (
+                    <CardImg src={missingImg} alt="Placeholder image" />
+                  )}
                   <Progress value={el.percent_read} />
                   <Body text={el.page_count} />
                   <CardFooter>
