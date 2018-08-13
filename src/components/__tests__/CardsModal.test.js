@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import CardsModal from './CardsModal';
+import CardsModal from '../CardsModal';
 
 describe('CardsModal', () => {
   let props;
