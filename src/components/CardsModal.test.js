@@ -79,5 +79,23 @@ describe('CardsModal', () => {
     it('always renders a `ModalFooter`', () => {
       expect(cardsModal().find('ModalFooter').length).toBe(1);
     });
+    describe('rendered `ModalDate`', () => {
+      it('check for `ModalDate`', () => {
+        expect(cardsModal().find('ModalDate').length).toBe(1);
+      });
+      it('received props', () => {
+        const m = cardsModal().find('ModalDate');
+        expect(Object.keys(m.props()).length).toBe(1);
+      });
+    });
+    describe('rendered `ModalSummary`', () => {
+      it('check for `ModalSummary`', () => {
+        expect(cardsModal().find('ModalSummary').length).toBe(1);
+      });
+      it('received props', () => {
+        const m = cardsModal().find('ModalSummary');
+        expect(Object.keys(m.props()).length).toBe(1);
+      });
+    });
   });
 });
