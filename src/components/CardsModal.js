@@ -20,6 +20,13 @@ const ModalDate = ({ date }) => (
   </React.Fragment>
 );
 
+const ModalYear = ({ year }) => (
+  <React.Fragment>
+    <ModalHeadings text="Year" />
+    <p>{year}</p>
+  </React.Fragment>
+);
+
 const ModalSummary = ({ text }) => (
   <React.Fragment>
     <ModalHeadings text="Summary" />
@@ -88,6 +95,7 @@ const CardsModal = ({ toggle, modal, data, creators }) => (
     )}
     <ModalBody>
       {data.date && <ModalDate date={data.date} />}
+      {data.year && <ModalYear year={data.year} />}
       {data.desc && <ModalSummary text={data.desc} />}
       {creators.length > 0 && <ModalCreators creators={creators} />}
     </ModalBody>
