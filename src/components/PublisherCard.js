@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CardsModal from './CardsModal';
+import missingImg from '../img/image-not-found.png';
 
 import {
   Container,
@@ -73,7 +74,11 @@ class PublisherCard extends Component {
               <Col xs="2" key={el.slug}>
                 <Card className="text-white bg-dark mb-3">
                   <CardHeader className="text-center">{el.name}</CardHeader>
-                  <CardImg src={el.image} alt="Placeholder image" />
+                  {el.image !== null ? (
+                    <CardImg src={el.image} alt="Publisher Logo" />
+                  ) : (
+                    <CardImg src={missingImg} alt="Placeholder image" />
+                  )}
                   <Body text={el.series_count} />
                   <CardFooter>
                     <OpenButton url={`/publisher/${el.slug}/page/1`} />
