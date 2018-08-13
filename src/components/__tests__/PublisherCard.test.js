@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import PublisherCard from './PublisherCard';
+import PublisherCard from '../PublisherCard';
 
 describe('PublisherCard', () => {
   let props;

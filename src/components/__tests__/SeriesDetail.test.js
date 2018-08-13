@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PublisherDetail from './PublisherDetail';
+import SeriesDetail from '../SeriesDetail';
 
 test('it renders', () => {
   shallow(
-    <PublisherDetail
-      endpoint="http://127.0.0.1/api/publisher/marvel/series_list/"
+    <SeriesDetail
+      endpoint="http://127.0.0.1/api/series/52/issue_list/"
       match={{
-        params: { page: '2', slug: 'marvel' },
+        params: { page: '2', slug: '52' },
         isExact: false,
         path: '',
         url: ''
