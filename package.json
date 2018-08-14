@@ -15,7 +15,9 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "reactstrap": "^6.3.1",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
