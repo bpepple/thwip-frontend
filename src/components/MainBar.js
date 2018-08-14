@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Alert,
   Button,
@@ -43,6 +44,14 @@ class MainBar extends Component {
     });
   }
 
+  renderLinks() {
+    if (this.props.authenticated) {
+      return <NavLink href="/signout">Logout</NavLink>;
+    } else {
+      return <NavLink href="/signin">Login</NavLink>;
+    }
+  }
+
   render() {
     return (
       <Container fluid={true}>
@@ -61,11 +70,7 @@ class MainBar extends Component {
           </Nav>
           <Nav className="ml-auto" navbar>
             <Button onClick={this.importComics}>Import</Button>
-            <NavItem>
-              <NavLink disabled href="#">
-                Login
-              </NavLink>
-            </NavItem>
+            <NavItem>{this.renderLinks()}</NavItem>
           </Nav>
         </Navbar>
         {this.state.visible ? (
@@ -82,4 +87,8 @@ class MainBar extends Component {
   }
 }
 
-export default MainBar;
+const mapStateToProps = state => {
+  return { authenticated: state.auth.authenticated };
+};
+
+export default connect(mapStateToProps)(MainBar);
