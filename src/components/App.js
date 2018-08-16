@@ -38,7 +38,7 @@ const App = () => (
       <PrivateRoute path="/issues/recent/page/:page" component={RecentIssues} />
       <PrivateRoute path="/reader/:slug" component={Reader} />} />
       <Route path="/login" exact component={Login} />
-      <Route path="/Logout" component={Logout} />
+      <Route path="/logout" component={Logout} />
       <Redirect from="/" to="/series/page/1" />
     </Switch>
   </Container>
