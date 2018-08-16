@@ -4,6 +4,7 @@ import SeriesCard from './SeriesCard';
 import MainPagination from './MainPagination';
 import Footer from './Footer';
 import history from './History';
+import { authHeader } from './helpers/auth-header';
 
 class SeriesPage extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class SeriesPage extends Component {
       newUrl = '/publisher/' + slug + '/page/' + page;
     }
 
-    fetch(apiUrl)
+    fetch(apiUrl, { method: 'GET', headers: authHeader() })
       .then(response => {
         if (response.status !== 200) {
           console.error('Something went wrong');

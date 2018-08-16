@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import { Container } from 'reactstrap';
+import { authHeader } from '../helpers/auth-header';
 
 const loadingStyle = {
   position: 'fixed',
@@ -32,7 +33,7 @@ class ComicPageProvider extends Component {
   componentDidMount() {
     document.body.style.backgroundColor = 'black';
 
-    fetch(this.props.endpoint)
+    fetch(this.props.endpoint, { method: 'GET', headers: authHeader() })
       .then(response => {
         if (response.status !== 200) {
           throw Error('Network Request Failed');
@@ -54,14 +55,15 @@ class ComicPageProvider extends Component {
         }
 
         const pageImgs = pageList.map(p => {
-          return fetch(this.props.endpoint + 'get-page/' + p + '/').then(
-            response => {
-              if (response.status !== 200) {
-                throw Error('Network Request Failed');
-              }
-              return response.json();
+          return fetch(this.props.endpoint + 'get-page/' + p + '/', {
+            method: 'GET',
+            headers: authHeader()
+          }).then(response => {
+            if (response.status !== 200) {
+              throw Error('Network Request Failed');
             }
-          );
+            return response.json();
+          });
         });
 
         Promise.all(pageImgs).then(data =>
@@ -77,9 +79,11 @@ class ComicPageProvider extends Component {
   getIssue(slug) {
     let url = process.env.REACT_APP_API_URL + '/api/issue/' + slug + '/';
 
-    return fetch(url).then(response => {
-      return response.json();
-    });
+    return fetch(url, { method: 'GET', headers: authHeader() }).then(
+      response => {
+        return response.json();
+      }
+    );
   }
 
   render() {

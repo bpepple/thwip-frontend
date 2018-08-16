@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { authHeader } from './helpers/auth-header';
 import {
   Alert,
   Button,
@@ -27,7 +28,7 @@ class MainBar extends Component {
   importComics() {
     let url = process.env.REACT_APP_API_URL + '/api/issue/import-comics/';
 
-    fetch(url).then(response => {
+    fetch(url, { method: 'GET', headers: authHeader() }).then(response => {
       if (response.status !== 200) {
         return this.setState({
           visible: true,

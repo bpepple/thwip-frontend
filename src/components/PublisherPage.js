@@ -4,6 +4,7 @@ import PublisherCard from './PublisherCard';
 import MainPagination from './MainPagination';
 import Footer from './Footer';
 import history from './History';
+import { authHeader } from './helpers/auth-header';
 
 class PublisherPage extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class PublisherPage extends Component {
     const apiUrl = endpoint + '?page=' + page;
     const newUrl = '/publisher/page/' + page;
 
-    fetch(apiUrl)
+    fetch(apiUrl, { method: 'GET', headers: authHeader() })
       .then(response => {
         if (response.status !== 200) {
           console.error('Something went wrong');
