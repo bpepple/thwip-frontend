@@ -1,7 +1,7 @@
-/* import history from '../components/History'; */
+import history from '../components/History';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
 
-export const signinUser = ({ username, password }) => {
+export const loginUser = ({ username, password }) => {
   let url = process.env.REACT_APP_API_URL + '/api-token-auth/';
 
   return dispatch => {
@@ -15,7 +15,7 @@ export const signinUser = ({ username, password }) => {
     })
       .then(response => {
         if (response.status !== 200) {
-          console.error('Something went wrong');
+          return Promise.reject(response.statusText);
         }
         return response.json();
       })
@@ -28,7 +28,7 @@ export const signinUser = ({ username, password }) => {
         localStorage.setItem('token', data.token);
 
         // - redirect to the route '/series/page/1'
-        /* history.push('/series/page/1'); */
+        history.push('/series/page/1');
       })
       .catch(() => {
         // if request is bad...
@@ -45,7 +45,7 @@ export const authError = error => {
   };
 };
 
-export const signoutUser = () => {
+export const logoutUser = () => {
   localStorage.removeItem('token');
   return { type: UNAUTH_USER };
 };

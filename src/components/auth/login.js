@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { Alert, Button, Container, Form, FormGroup, Label } from 'reactstrap';
 
-class Signin extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +20,7 @@ class Signin extends Component {
   }
 
   handleFormSubmit({ username, password }) {
-    this.props.signinUser({ username, password });
+    this.props.loginUser({ username, password });
   }
 
   renderError() {
@@ -63,7 +63,7 @@ class Signin extends Component {
           </FormGroup>
           {this.renderError()}
           <Button color="primary" action="submit">
-            Sign in
+            Login
           </Button>
         </Form>
       </Container>
@@ -76,10 +76,10 @@ const mapStateToProps = state => {
 };
 
 export default reduxForm({
-  form: 'signin'
+  form: 'login'
 })(
   connect(
     mapStateToProps,
     actions
-  )(Signin)
+  )(Login)
 );

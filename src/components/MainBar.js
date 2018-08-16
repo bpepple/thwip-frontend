@@ -47,9 +47,9 @@ class MainBar extends Component {
 
   renderLinks() {
     if (this.props.authenticated) {
-      return <NavLink href="/signout">Logout</NavLink>;
+      return <NavLink href="/logout">Logout</NavLink>;
     } else {
-      return <NavLink href="/signin">Login</NavLink>;
+      return <NavLink href="/login">Login</NavLink>;
     }
   }
 

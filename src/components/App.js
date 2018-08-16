@@ -9,8 +9,8 @@ import Reader from './reader/Reader';
 import MainBar from './MainBar';
 import { Container } from 'reactstrap';
 
-import Signin from './auth/signin';
-import SignOut from './auth/signout';
+import Login from './auth/login';
+import Logout from './auth/logout';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTimesCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
@@ -27,8 +27,8 @@ const App = withRouter(({ location }) => (
       <Route path="/publisher/:slug/page/:page" component={PublisherDetail} />
       <Route path="/issues/recent/page/:page" component={RecentIssues} />
       <Route path="/reader/:slug" component={Reader} />} />
-      <Route path="/signin" component={Signin} />
-      <Route path="/signout" component={SignOut} />
+      <Route path="/login" exact component={Login} />
+      <Route path="/Logout" component={Logout} />
       <Redirect from="/" to="/series/page/1" />
     </Switch>
   </Container>
