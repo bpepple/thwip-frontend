@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import PublisherList from './PublisherList';
 import PublisherDetail from './PublisherDetail';
 import SeriesList from './SeriesList';
@@ -9,6 +9,8 @@ import Reader from './reader/Reader';
 import MainBar from './MainBar';
 import { Container } from 'reactstrap';
 
+import history from './History';
+
 import Login from './auth/login';
 import Logout from './auth/logout';
 
@@ -17,9 +19,9 @@ import { faTimesCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faTimesCircle, faInfoCircle);
 
-const App = withRouter(({ location }) => (
+const App = () => (
   <Container fluid={true}>
-    {!location.pathname.includes('/reader/') && <MainBar />}
+    {!history.location.pathname.includes('/reader/') && <MainBar />}
     <Switch>
       <Route exact path="/series/page/:page" component={SeriesList} />
       <Route path="/series/:slug/page/:page" component={SeriesDetail} />
@@ -32,6 +34,6 @@ const App = withRouter(({ location }) => (
       <Redirect from="/" to="/series/page/1" />
     </Switch>
   </Container>
-));
+);
 
 export default App;
