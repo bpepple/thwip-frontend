@@ -8,6 +8,7 @@ import RecentIssues from './RecentIssues';
 import Reader from './reader/Reader';
 import MainBar from './MainBar';
 import { Container } from 'reactstrap';
+import { PrivateRoute } from './PrivateRoute';
 
 import history from './History';
 
@@ -23,12 +24,19 @@ const App = () => (
   <Container fluid={true}>
     {!history.location.pathname.includes('/reader/') && <MainBar />}
     <Switch>
-      <Route exact path="/series/page/:page" component={SeriesList} />
-      <Route path="/series/:slug/page/:page" component={SeriesDetail} />
-      <Route exact path="/publisher/page/:page" component={PublisherList} />
-      <Route path="/publisher/:slug/page/:page" component={PublisherDetail} />
-      <Route path="/issues/recent/page/:page" component={RecentIssues} />
-      <Route path="/reader/:slug" component={Reader} />} />
+      <PrivateRoute exact path="/series/page/:page" component={SeriesList} />
+      <PrivateRoute path="/series/:slug/page/:page" component={SeriesDetail} />
+      <PrivateRoute
+        exact
+        path="/publisher/page/:page"
+        component={PublisherList}
+      />
+      <PrivateRoute
+        path="/publisher/:slug/page/:page"
+        component={PublisherDetail}
+      />
+      <PrivateRoute path="/issues/recent/page/:page" component={RecentIssues} />
+      <PrivateRoute path="/reader/:slug" component={Reader} />} />
       <Route path="/login" exact component={Login} />
       <Route path="/Logout" component={Logout} />
       <Redirect from="/" to="/series/page/1" />
