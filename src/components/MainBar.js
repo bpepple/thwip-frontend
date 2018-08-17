@@ -45,6 +45,18 @@ class MainBar extends Component {
     });
   }
 
+  renderButton() {
+    if (this.props.authenticated) {
+      return <Button onClick={this.importComics}>Import</Button>;
+    } else {
+      return (
+        <Button onClick={this.importComics} disabled>
+          Import
+        </Button>
+      );
+    }
+  }
+
   renderLinks() {
     if (this.props.authenticated) {
       return <NavLink href="/logout">Logout</NavLink>;
@@ -54,7 +66,6 @@ class MainBar extends Component {
   }
 
   render() {
-    const { authenticated } = this.props;
     const { visible, color, placeholder } = this.state;
 
     return (
@@ -73,13 +84,7 @@ class MainBar extends Component {
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
-            {authenticated ? (
-              <Button onClick={this.importComics}>Import</Button>
-            ) : (
-              <Button onClick={this.importComics} disabled>
-                Import
-              </Button>
-            )}
+            {this.renderButton()}
             <NavItem>{this.renderLinks()}</NavItem>
           </Nav>
         </Navbar>
