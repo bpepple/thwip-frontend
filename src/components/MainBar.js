@@ -71,7 +71,7 @@ class MainBar extends Component {
     return (
       <Container fluid={true}>
         <Navbar className="mb-3" color="dark" dark expand="lg">
-          <NavbarBrand href="/series">Thwip!</NavbarBrand>
+          <NavbarBrand href="/series/page/1">Thwip!</NavbarBrand>
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink href="/series/page/1">Series</NavLink>
