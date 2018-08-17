@@ -70,7 +70,13 @@ class MainBar extends Component {
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
-            <Button onClick={this.importComics}>Import</Button>
+            {this.props.authenticated ? (
+              <Button onClick={this.importComics}>Import</Button>
+            ) : (
+              <Button onClick={this.importComics} disabled>
+                Import
+              </Button>
+            )}
             <NavItem>{this.renderLinks()}</NavItem>
           </Nav>
         </Navbar>
