@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { authHeader } from './helpers/auth-header';
 import {
   Alert,
   Button,
@@ -26,7 +28,7 @@ class MainBar extends Component {
   importComics() {
     let url = process.env.REACT_APP_API_URL + '/api/issue/import-comics/';
 
-    fetch(url).then(response => {
+    fetch(url, { method: 'GET', headers: authHeader() }).then(response => {
       if (response.status !== 200) {
         return this.setState({
           visible: true,
@@ -43,7 +45,29 @@ class MainBar extends Component {
     });
   }
 
+  renderButton() {
+    if (this.props.authenticated) {
+      return <Button onClick={this.importComics}>Import</Button>;
+    } else {
+      return (
+        <Button onClick={this.importComics} disabled>
+          Import
+        </Button>
+      );
+    }
+  }
+
+  renderLinks() {
+    if (this.props.authenticated) {
+      return <NavLink href="/logout">Logout</NavLink>;
+    } else {
+      return <NavLink href="/login">Login</NavLink>;
+    }
+  }
+
   render() {
+    const { visible, color, placeholder } = this.state;
+
     return (
       <Container fluid={true}>
         <Navbar className="mb-3" color="dark" dark expand="lg">
@@ -60,21 +84,13 @@ class MainBar extends Component {
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
-            <Button onClick={this.importComics}>Import</Button>
-            <NavItem>
-              <NavLink disabled href="#">
-                Login
-              </NavLink>
-            </NavItem>
+            {this.renderButton()}
+            <NavItem>{this.renderLinks()}</NavItem>
           </Nav>
         </Navbar>
-        {this.state.visible ? (
-          <Alert
-            color={this.state.color}
-            isOpen={this.state.visible}
-            toggle={this.onDismiss}
-          >
-            {this.state.placeholder}
+        {visible ? (
+          <Alert color={color} isOpen={visible} toggle={this.onDismiss}>
+            {placeholder}
           </Alert>
         ) : null}
       </Container>
@@ -82,4 +98,8 @@ class MainBar extends Component {
   }
 }
 
-export default MainBar;
+const mapStateToProps = state => {
+  return { authenticated: state.auth.authenticated };
+};
+
+export default connect(mapStateToProps)(MainBar);

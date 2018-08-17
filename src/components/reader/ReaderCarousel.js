@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
 import ReaderButtonGroup from './ReaderButtonGroup';
+import { authHeader } from '../helpers/auth-header';
 
 const imgStyle = {
   height: '100vh',
@@ -100,7 +101,7 @@ class ReaderCarousel extends Component {
     formData.append('leaf', page);
     formData.append('status', status);
 
-    fetch(url, { method: 'PUT', body: formData });
+    fetch(url, { method: 'PUT', headers: authHeader(), body: formData });
   }
 
   pageNumber() {
