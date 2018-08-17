@@ -1,8 +1,8 @@
-import history from '../components/History';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
+import history from '../components/History';
 
 export const loginUser = ({ username, password }) => {
-  let url = process.env.REACT_APP_API_URL + '/api-token-auth/';
+  const url = process.env.REACT_APP_API_URL + '/api-token-auth/';
 
   return dispatch => {
     /* Submit the username/password to the server */
