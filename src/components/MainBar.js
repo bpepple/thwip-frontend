@@ -54,6 +54,9 @@ class MainBar extends Component {
   }
 
   render() {
+    const { authenticated } = this.props;
+    const { visible, color, placeholder } = this.state;
+
     return (
       <Container fluid={true}>
         <Navbar className="mb-3" color="dark" dark expand="lg">
@@ -70,7 +73,7 @@ class MainBar extends Component {
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
-            {this.props.authenticated ? (
+            {authenticated ? (
               <Button onClick={this.importComics}>Import</Button>
             ) : (
               <Button onClick={this.importComics} disabled>
@@ -80,13 +83,9 @@ class MainBar extends Component {
             <NavItem>{this.renderLinks()}</NavItem>
           </Nav>
         </Navbar>
-        {this.state.visible ? (
-          <Alert
-            color={this.state.color}
-            isOpen={this.state.visible}
-            toggle={this.onDismiss}
-          >
-            {this.state.placeholder}
+        {visible ? (
+          <Alert color={color} isOpen={visible} toggle={this.onDismiss}>
+            {placeholder}
           </Alert>
         ) : null}
       </Container>
