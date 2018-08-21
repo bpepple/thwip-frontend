@@ -16,9 +16,13 @@ import Login from './auth/login';
 import Logout from './auth/logout';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimesCircle, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTimesCircle,
+  faInfoCircle,
+  faSearch
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faTimesCircle, faInfoCircle);
+library.add(faTimesCircle, faInfoCircle, faSearch);
 
 const App = () => (
   <Container fluid={true}>
