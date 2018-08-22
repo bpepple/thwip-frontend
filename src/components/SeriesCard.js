@@ -59,7 +59,7 @@ class SeriesCard extends Component {
     const { data } = this.props;
     const { modal, seriesData } = this.state;
 
-    return (
+    return data.results ? (
       <Container fluid={true}>
         <CardsModal
           toggle={this.toggle}
@@ -86,7 +86,7 @@ class SeriesCard extends Component {
           </Row>
         </Fade>
       </Container>
-    );
+    ) : null;
   }
 }
 
