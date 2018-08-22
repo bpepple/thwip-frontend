@@ -61,7 +61,7 @@ class IssueCard extends Component {
     const { data } = this.props;
     const { modal, issueData, creators } = this.state;
 
-    return (
+    return data.results ? (
       <Container fluid={true}>
         <CardsModal
           toggle={this.toggle}
@@ -92,7 +92,7 @@ class IssueCard extends Component {
           </Row>
         </Fade>
       </Container>
-    );
+    ) : null;
   }
 }
 

@@ -60,7 +60,7 @@ class PublisherCard extends Component {
     const { data } = this.props;
     const { modal, publisherData } = this.state;
 
-    return (
+    return data.results ? (
       <Container fluid={true}>
         <CardsModal
           toggle={this.toggle}
@@ -90,7 +90,7 @@ class PublisherCard extends Component {
           </Row>
         </Fade>
       </Container>
-    );
+    ) : null;
   }
 }
 
