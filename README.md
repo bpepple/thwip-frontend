@@ -1,4 +1,8 @@
+## Thwip-Frontend ##
 Thwip-Frontend is a React project that allows you to read comic book archives from the django-based [Thwip](https://github.com/bpepple/thwip) backend server.
+
+### Development Installation ###
+Instructions for development installation can be found on the [wiki](https://github.com/bpepple/thwip-frontend/wiki/Development-Installation).
 
 ### Screenshots ###
 #### Series List ####
