@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import history from '../History';
+import history from '../../History';
 
 const navbarStyle = {
   position: 'absolute',

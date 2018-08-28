@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import IssueCard from './IssueCard';
 import MainPagination from './MainPagination';
 import Footer from './Footer';
-import history from './History';
+import history from '../History';
 import { authHeader } from './helpers/auth-header';
 
 class IssuePage extends Component {
