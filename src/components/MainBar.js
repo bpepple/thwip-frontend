@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authHeader } from './helpers/auth-header';
+import SearchInput from './SearchInput';
 import {
   Alert,
   Button,
@@ -84,6 +85,7 @@ class MainBar extends Component {
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
+            <SearchInput />
             {this.renderButton()}
             <NavItem>{this.renderLinks()}</NavItem>
           </Nav>
