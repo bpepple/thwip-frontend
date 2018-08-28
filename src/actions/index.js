@@ -1,4 +1,5 @@
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from './types';
+import { push } from 'connected-react-router';
 
 export const loginUser = ({ username, password }) => {
   const url = process.env.REACT_APP_API_URL + '/api-token-auth/';
@@ -27,7 +28,7 @@ export const loginUser = ({ username, password }) => {
         localStorage.setItem('token', data.token);
 
         // - redirect to the route '/series/page/1'
-        window.location.href = '/series/page/1';
+        dispatch(push('/series/page/1'));
       })
       .catch(() => {
         // if request is bad...
