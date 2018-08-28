@@ -3,6 +3,7 @@ import * as actions from '../actions';
 import { connect } from 'react-redux';
 import IssueCard from './IssueCard';
 import MainPagination from './MainPagination';
+import Footer from './Footer';
 
 class RecentIssues extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class RecentIssues extends Component {
           onPageChanged={this.onPageChanged}
           page={page}
         />
+        <Footer cvUrl="https://comicvine.gamespot.com/" />
       </React.Fragment>
     ) : null;
   }
