@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import IssueCard from './IssueCard';
+import PublisherCard from './PublisherCard';
 import MainPagination from './MainPagination';
 import Footer from './Footer';
 
@@ -36,7 +36,7 @@ class RecentIssues extends Component {
 
     return loaded ? (
       <React.Fragment>
-        <IssueCard data={data} />
+        <PublisherCard data={data} />
         <MainPagination
           totalRecords={data.count}
           onPageChanged={this.onPageChanged}
