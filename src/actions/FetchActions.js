@@ -1,7 +1,8 @@
 import {
   FETCH_RECENT_ISSUES,
   FETCH_SERIES_LIST,
-  FETCH_SERIES_DETAIL
+  FETCH_SERIES_DETAIL,
+  FETCH_PUBLISHER_LIST
 } from './types';
 import { authHeader } from '../components/helpers/auth-header';
 import { push } from 'connected-react-router';
@@ -63,6 +64,25 @@ export const fetchSeriesDetail = (page, slug) => {
         dispatch({ type: FETCH_SERIES_DETAIL, data: data });
       })
       .catch(error => console.error('Fetch Recent Issues Error:\n', error));
+    /* If our curent url is the same as our new one don't push it. */
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchPublisherList = page => {
+  const url = process.env.REACT_APP_API_URL + '/api/publisher/?page=' + page;
+  const newUrl = '/publisher/page/' + page;
+
+  return dispatch => {
+    fetch(url, { method: 'GET', headers: authHeader() })
+      .then(response => response.json())
+      .then(data => {
+        // if request is good update state
+        dispatch({ type: FETCH_PUBLISHER_LIST, data: data });
+      })
+      .catch(error => console.error('Fetch Publisher List Error:\n', error));
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));
