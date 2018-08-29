@@ -5,7 +5,7 @@ import SeriesCard from './SeriesCard';
 import MainPagination from './MainPagination';
 import Footer from './Footer';
 
-class RecentIssues extends Component {
+class SeriesList extends Component {
   constructor(props) {
     super(props);
 
@@ -55,4 +55,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   actions
-)(RecentIssues);
+)(SeriesList);

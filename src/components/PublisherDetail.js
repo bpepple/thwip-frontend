@@ -5,7 +5,7 @@ import SeriesCard from './SeriesCard';
 import MainPagination from './MainPagination';
 import Footer from './Footer';
 
-class SeriesDetail extends Component {
+class PublisherDetail extends Component {
   constructor(props) {
     super(props);
 
@@ -58,4 +58,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   actions
-)(SeriesDetail);
+)(PublisherDetail);
