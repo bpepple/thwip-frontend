@@ -27,6 +27,7 @@ class RecentIssues extends Component {
     }
 
     this.props.fetchRecentIssues(currentPage);
+    this.setState({ page: currentPage });
   };
 
   render() {
