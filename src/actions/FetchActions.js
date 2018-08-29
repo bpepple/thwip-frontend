@@ -1,4 +1,4 @@
-import { FETCH_RECENT_ISSUES } from './types';
+import { FETCH_RECENT_ISSUES, FETCH_SERIES_DETAIL } from './types';
 import { authHeader } from '../components/helpers/auth-header';
 import { push } from 'connected-react-router';
 // Really should use the history from redux, but for now this works.
@@ -14,6 +14,30 @@ export const fetchRecentIssues = page => {
       .then(data => {
         // if request is good update state
         dispatch({ type: FETCH_RECENT_ISSUES, data: data });
+      })
+      .catch(error => console.error('Fetch Recent Issues Error:\n', error));
+    /* If our curent url is the same as our new one don't push it. */
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchSeriesDetail = (page, slug) => {
+  const url =
+    process.env.REACT_APP_API_URL +
+    '/api/series/' +
+    slug +
+    '/issue_list/?page=' +
+    page;
+  const newUrl = '/series/' + slug + '/page/' + page;
+
+  return dispatch => {
+    fetch(url, { method: 'GET', headers: authHeader() })
+      .then(response => response.json())
+      .then(data => {
+        // if request is good update state
+        dispatch({ type: FETCH_SERIES_DETAIL, data: data });
       })
       .catch(error => console.error('Fetch Recent Issues Error:\n', error));
     /* If our curent url is the same as our new one don't push it. */
