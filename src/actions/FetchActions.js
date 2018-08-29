@@ -2,6 +2,7 @@ import {
   FETCH_RECENT_ISSUES,
   FETCH_SERIES_LIST,
   FETCH_SERIES_DETAIL,
+  FETCH_SERIES_SEARCH,
   FETCH_PUBLISHER_LIST,
   FETCH_PUBLISHER_DETAIL
 } from './types';
@@ -65,6 +66,30 @@ export const fetchSeriesDetail = (page, slug) => {
         dispatch({ type: FETCH_SERIES_DETAIL, data: data });
       })
       .catch(error => console.error('Fetch Recent Issues Error:\n', error));
+    /* If our curent url is the same as our new one don't push it. */
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchSeriesSearch = (page, query) => {
+  const url =
+    process.env.REACT_APP_API_URL +
+    '/api/series/?page=' +
+    page +
+    '&search=' +
+    query;
+  const newUrl = '/search/page/' + page + '/?search=' + query;
+
+  return dispatch => {
+    fetch(url, { method: 'GET', headers: authHeader() })
+      .then(response => response.json())
+      .then(data => {
+        // if request is good update state
+        dispatch({ type: FETCH_SERIES_SEARCH, data: data });
+      })
+      .catch(error => console.error('Fetch Series Search Error:\n', error));
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));

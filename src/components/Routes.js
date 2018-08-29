@@ -4,6 +4,7 @@ import PublisherList from './PublisherList';
 import PublisherDetail from './PublisherDetail';
 import SeriesList from './SeriesList';
 import SeriesDetail from './SeriesDetail';
+import SeriesSearch from './SeriesSearch';
 import RecentIssues from './RecentIssues';
 import Reader from './reader/Reader';
 import { PrivateRoute } from './PrivateRoute';
@@ -14,6 +15,7 @@ const Routes = () => (
   <Switch>
     <PrivateRoute exact path="/series/page/:page" component={SeriesList} />
     <PrivateRoute path="/series/:slug/page/:page" component={SeriesDetail} />
+    <PrivateRoute exact path="/search/page/:page/" component={SeriesSearch} />
     <PrivateRoute
       exact
       path="/publisher/page/:page"
