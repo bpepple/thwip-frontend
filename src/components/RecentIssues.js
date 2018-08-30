@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import IssueCard from './IssueCard';
@@ -47,6 +48,13 @@ class RecentIssues extends Component {
     ) : null;
   }
 }
+
+RecentIssues.propTypes = {
+  // Don't make the data object required since
+  // the initial value of null will produce an error.
+  data: PropTypes.object,
+  loaded: PropTypes.bool.isRequired
+};
 
 const mapStateToProps = state => {
   return { data: state.fetch.data, loaded: state.fetch.loaded };
