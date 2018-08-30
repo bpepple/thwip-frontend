@@ -7,7 +7,12 @@ import {
   FETCH_PUBLISHER_LIST
 } from '../actions/types';
 
-export const reducer = (state = {}, action) => {
+const initialState = {
+  loaded: false,
+  data: null
+};
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_RECENT_ISSUES:
       return { ...state, error: '', loaded: true, data: action.data };
