@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import PublisherCard from './PublisherCard';
@@ -47,6 +48,13 @@ class PublisherList extends Component {
     ) : null;
   }
 }
+
+PublisherList.propTypes = {
+  // Don't make the data object required since
+  // the initial value of null will produce an error.
+  data: PropTypes.object,
+  loaded: PropTypes.bool.isRequired
+};
 
 const mapStateToProps = state => {
   return { data: state.fetch.data, loaded: state.fetch.loaded };
