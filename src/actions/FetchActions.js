@@ -4,7 +4,8 @@ import {
   FETCH_SERIES_DETAIL,
   FETCH_SERIES_SEARCH,
   FETCH_PUBLISHER_LIST,
-  FETCH_PUBLISHER_DETAIL
+  FETCH_PUBLISHER_DETAIL,
+  FETCH_ERROR
 } from './types';
 import { authHeader } from '../components/helpers/auth-header';
 import { push } from 'connected-react-router';
@@ -22,7 +23,10 @@ export const fetchRecentIssues = page => {
         // if request is good update state
         dispatch({ type: FETCH_RECENT_ISSUES, data: data });
       })
-      .catch(error => console.error('Fetch Recent Issues Error:\n', error));
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));
@@ -41,7 +45,9 @@ export const fetchSeriesList = page => {
         // if request is good update state
         dispatch({ type: FETCH_SERIES_LIST, data: data });
       })
-      .catch(error => console.error('Fetch Series List Error:\n', error));
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));
@@ -65,7 +71,10 @@ export const fetchSeriesDetail = (page, slug) => {
         // if request is good update state
         dispatch({ type: FETCH_SERIES_DETAIL, data: data });
       })
-      .catch(error => console.error('Fetch Recent Issues Error:\n', error));
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));
@@ -89,7 +98,10 @@ export const fetchSeriesSearch = (page, query) => {
         // if request is good update state
         dispatch({ type: FETCH_SERIES_SEARCH, data: data });
       })
-      .catch(error => console.error('Fetch Series Search Error:\n', error));
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));
@@ -108,7 +120,10 @@ export const fetchPublisherList = page => {
         // if request is good update state
         dispatch({ type: FETCH_PUBLISHER_LIST, data: data });
       })
-      .catch(error => console.error('Fetch Publisher List Error:\n', error));
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));
@@ -132,10 +147,20 @@ export const fetchPublisherDetail = (page, slug) => {
         // if request is good update state
         dispatch({ type: FETCH_PUBLISHER_DETAIL, data: data });
       })
-      .catch(error => console.error('Fetch Publisher Detail Error:\n', error));
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+
     /* If our curent url is the same as our new one don't push it. */
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));
     }
+  };
+};
+
+export const fetchError = error => {
+  return {
+    type: FETCH_ERROR,
+    payload: error
   };
 };

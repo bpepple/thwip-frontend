@@ -4,7 +4,8 @@ import {
   FETCH_SERIES_LIST,
   FETCH_SERIES_SEARCH,
   FETCH_PUBLISHER_DETAIL,
-  FETCH_PUBLISHER_LIST
+  FETCH_PUBLISHER_LIST,
+  FETCH_ERROR
 } from '../actions/types';
 
 const initialState = {
@@ -26,6 +27,8 @@ export const reducer = (state = initialState, action) => {
       return { ...state, error: '', loaded: true, data: action.data };
     case FETCH_PUBLISHER_DETAIL:
       return { ...state, error: '', loaded: true, data: action.data };
+    case FETCH_ERROR:
+      return { ...state, error: action.payload };
     default:
       return state;
   }
