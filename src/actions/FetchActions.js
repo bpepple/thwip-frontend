@@ -18,7 +18,12 @@ export const fetchRecentIssues = page => {
 
   return dispatch => {
     fetch(url, { method: 'GET', headers: authHeader() })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
       .then(data => {
         // if request is good update state
         dispatch({ type: FETCH_RECENT_ISSUES, data: data });
@@ -40,7 +45,12 @@ export const fetchSeriesList = page => {
 
   return dispatch => {
     fetch(url, { method: 'GET', headers: authHeader() })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
       .then(data => {
         // if request is good update state
         dispatch({ type: FETCH_SERIES_LIST, data: data });
@@ -66,7 +76,12 @@ export const fetchSeriesDetail = (page, slug) => {
 
   return dispatch => {
     fetch(url, { method: 'GET', headers: authHeader() })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
       .then(data => {
         // if request is good update state
         dispatch({ type: FETCH_SERIES_DETAIL, data: data });
@@ -93,7 +108,12 @@ export const fetchSeriesSearch = (page, query) => {
 
   return dispatch => {
     fetch(url, { method: 'GET', headers: authHeader() })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
       .then(data => {
         // if request is good update state
         dispatch({ type: FETCH_SERIES_SEARCH, data: data });
@@ -115,7 +135,12 @@ export const fetchPublisherList = page => {
 
   return dispatch => {
     fetch(url, { method: 'GET', headers: authHeader() })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
       .then(data => {
         // if request is good update state
         dispatch({ type: FETCH_PUBLISHER_LIST, data: data });
@@ -142,13 +167,18 @@ export const fetchPublisherDetail = (page, slug) => {
 
   return dispatch => {
     fetch(url, { method: 'GET', headers: authHeader() })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
       .then(data => {
         // if request is good update state
         dispatch({ type: FETCH_PUBLISHER_DETAIL, data: data });
       })
       .catch(error => {
-        dispatch(fetchError(error));
+        dispatch(fetchError('Failed to retrieve data.'));
       });
 
     /* If our curent url is the same as our new one don't push it. */
