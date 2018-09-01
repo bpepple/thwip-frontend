@@ -9,6 +9,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
+  error: '',
   loaded: false,
   data: null
 };
