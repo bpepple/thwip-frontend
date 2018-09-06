@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FETCH_PUBLISHER_LIST } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import PublisherCard from './PublisherCard';
@@ -14,7 +15,7 @@ class PublisherList extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchApiList(this.state.page);
+    this.props.fetchApiList(FETCH_PUBLISHER_LIST, this.state.page);
   }
 
   onPageChanged = pageData => {
@@ -25,7 +26,7 @@ class PublisherList extends Component {
       return;
     }
 
-    this.props.fetchApiList(currentPage);
+    this.props.fetchApiList(FETCH_PUBLISHER_LIST, currentPage);
     this.setState({ page: currentPage });
   };
 
@@ -52,7 +53,7 @@ PublisherList.propTypes = {
   loaded: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      page: PropTypes.string
+      page: PropTypes.string.isRequired
     }).isRequired
   }).isRequired
 };
