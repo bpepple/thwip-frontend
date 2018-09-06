@@ -1,7 +1,7 @@
 import React from 'react';
 import MainBar from './MainBar';
 import Routes from './Routes';
-import history from './History';
+import history from '../History';
 import { Container } from 'reactstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
