@@ -1,19 +1,26 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/App';
 import { AUTH_USER } from './actions/types';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
+import history from './History';
 
 import registerServiceWorker from './registerServiceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(
+  connectRouter(history)(rootReducer),
+  compose(
+    applyMiddleware(thunk),
+    applyMiddleware(routerMiddleware(history))
+  )
+);
 const token = localStorage.getItem('token');
 
 // if we have a token, consiger the user to be signed in
@@ -24,9 +31,7 @@ if (token) {
 
 render(
   <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
+    <App history={history} />
   </Provider>,
   document.getElementById('root')
 );
