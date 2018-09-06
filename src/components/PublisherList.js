@@ -1,11 +1,62 @@
-import React from 'react';
-import PublisherPage from './PublisherPage';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+import PublisherCard from './PublisherCard';
+import MainPagination from './MainPagination';
+import Footer from './Footer';
 
-const Publisher = props => (
-  <PublisherPage
-    endpoint={process.env.REACT_APP_API_URL + '/api/publisher/'}
-    page={props.match.params.page}
-  />
-);
+class PublisherList extends Component {
+  constructor(props) {
+    super(props);
 
-export default Publisher;
+    this.state = { page: this.props.match.params.page };
+  }
+
+  componentDidMount() {
+    this.props.fetchApiList(this.state.page);
+  }
+
+  onPageChanged = pageData => {
+    const { currentPage } = pageData;
+
+    /* Don't fetch the page twice. */
+    if (currentPage === Number(this.state.page)) {
+      return;
+    }
+
+    this.props.fetchApiList(currentPage);
+    this.setState({ page: currentPage });
+  };
+
+  render() {
+    const { data, loaded } = this.props;
+    const { page } = this.state;
+
+    return loaded ? (
+      <React.Fragment>
+        <PublisherCard data={data} />
+        <MainPagination
+          totalRecords={data.count}
+          onPageChanged={this.onPageChanged}
+          page={page}
+        />
+        <Footer cvUrl="https://comicvine.gamespot.com/" />
+      </React.Fragment>
+    ) : null;
+  }
+}
+
+PublisherList.propTypes = {
+  data: PropTypes.object,
+  loaded: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = state => {
+  return { data: state.fetch.data, loaded: state.fetch.loaded };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(PublisherList);
