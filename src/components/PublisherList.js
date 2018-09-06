@@ -49,7 +49,12 @@ class PublisherList extends Component {
 
 PublisherList.propTypes = {
   data: PropTypes.object,
-  loaded: PropTypes.bool.isRequired
+  loaded: PropTypes.bool.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      page: PropTypes.string
+    }).isRequired
+  }).isRequired
 };
 
 const mapStateToProps = state => {
