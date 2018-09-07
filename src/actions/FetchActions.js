@@ -41,7 +41,7 @@ export const fetchApiList = (type, page) => {
       })
       .then(data => {
         // If response is good update the state.
-        dispatch({ type: type, data: data });
+        dispatch({ type: type, data: data, page: page });
       })
       .catch(error => {
         dispatch(fetchError(error));
@@ -89,7 +89,7 @@ export const fetchApiDetail = (type, page, slug) => {
       })
       .then(data => {
         // If response is good update the state.
-        dispatch({ type: type, data: data });
+        dispatch({ type: type, data: data, page: page });
       })
       .catch(error => {
         dispatch(fetchError(error));

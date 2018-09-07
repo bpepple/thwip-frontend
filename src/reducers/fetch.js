@@ -10,21 +10,52 @@ import {
 const initialState = {
   error: '',
   loaded: false,
-  data: null
+  data: null,
+  page: 1
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_RECENT_ISSUES:
-      return { ...state, error: '', loaded: true, data: action.data };
+      return {
+        ...state,
+        error: '',
+        loaded: true,
+        data: action.data,
+        page: action.page
+      };
     case FETCH_SERIES_DETAIL:
-      return { ...state, error: '', loaded: true, data: action.data };
+      return {
+        ...state,
+        error: '',
+        loaded: true,
+        data: action.data,
+        page: action.page
+      };
     case FETCH_SERIES_LIST:
-      return { ...state, error: '', loaded: true, data: action.data };
+      return {
+        ...state,
+        error: '',
+        loaded: true,
+        data: action.data,
+        page: action.page
+      };
     case FETCH_PUBLISHER_LIST:
-      return { ...state, error: '', loaded: true, data: action.data };
+      return {
+        ...state,
+        error: '',
+        loaded: true,
+        data: action.data,
+        page: action.page
+      };
     case FETCH_PUBLISHER_DETAIL:
-      return { ...state, error: '', loaded: true, data: action.data };
+      return {
+        ...state,
+        error: '',
+        loaded: true,
+        data: action.data,
+        page: action.page
+      };
     case FETCH_ERROR:
       return { ...state, error: action.payload };
     default:
