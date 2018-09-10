@@ -87,7 +87,7 @@ const ModalCreators = ({ creators }) => (
   </React.Fragment>
 );
 
-class CardsModal extends Component {
+class IssueCardsModal extends Component {
   render() {
     const { toggle, modal, issue, creators } = this.props;
 
@@ -112,11 +112,11 @@ class CardsModal extends Component {
   }
 }
 
-CardsModal.propTypes = {
+IssueCardsModal.propTypes = {
   toggle: PropTypes.func.isRequired,
   modal: PropTypes.bool.isRequired,
   issue: PropTypes.object,
-  creators: PropTypes.array.isRequired
+  creators: PropTypes.array
 };
 
-export default CardsModal;
+export default IssueCardsModal;

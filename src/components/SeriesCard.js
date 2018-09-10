@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CardsModal from './CardsModal';
+import ListCardsModal from './ListCardsModal';
 
 import {
   Container,
@@ -61,12 +61,7 @@ class SeriesCard extends Component {
 
     return data.results ? (
       <Container fluid={true}>
-        <CardsModal
-          toggle={this.toggle}
-          modal={modal}
-          data={seriesData}
-          creators=""
-        />
+        <ListCardsModal toggle={this.toggle} modal={modal} data={seriesData} />
         <Fade in={true}>
           <Row>
             {data.results.map(el => (

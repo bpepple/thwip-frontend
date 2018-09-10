@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CardsModal from './CardsModal';
+import IssueCardsModal from './IssueCardsModal';
 import missingImg from '../img/image-not-found.png';
 
 import {
@@ -69,7 +69,7 @@ class IssueCard extends Component {
 
     return result ? (
       <Container fluid={true}>
-        <CardsModal
+        <IssueCardsModal
           toggle={this.toggle}
           modal={modal}
           issue={issue}

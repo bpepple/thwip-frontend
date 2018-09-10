@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CardsModal from './CardsModal';
+import ListCardsModal from './ListCardsModal';
 import missingImg from '../img/image-not-found.png';
 
 import {
@@ -62,11 +62,10 @@ class PublisherCard extends Component {
 
     return data.results ? (
       <Container fluid={true}>
-        <CardsModal
+        <ListCardsModal
           toggle={this.toggle}
           modal={modal}
           data={publisherData}
-          creators=""
         />
         <Fade in={true}>
           <Row>

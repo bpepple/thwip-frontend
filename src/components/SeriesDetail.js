@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FETCH_SERIES_DETAIL } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import IssueCard from './IssueCard';
@@ -18,7 +17,7 @@ class SeriesDetail extends Component {
 
   componentDidMount() {
     const { slug } = this.props.match.params;
-    this.props.fetchApiDetail(FETCH_SERIES_DETAIL, this.state.page, slug);
+    this.props.fetchSeriesDetail(this.state.page, slug);
   }
 
   onPageChanged = pageData => {
@@ -30,19 +29,19 @@ class SeriesDetail extends Component {
       return;
     }
 
-    this.props.fetchApiDetail(FETCH_SERIES_DETAIL, currentPage, slug);
+    this.props.fetchSeriesDetail(currentPage, slug);
     this.setState({ page: currentPage });
   };
 
   render() {
-    const { data, loaded } = this.props;
+    const { data, loaded, count } = this.props;
     const { page } = this.state;
 
     return loaded ? (
       <React.Fragment>
         <IssueCard data={data} />
         <MainPagination
-          totalRecords={data.count}
+          totalRecords={count}
           onPageChanged={this.onPageChanged}
           page={page}
         />
@@ -64,7 +63,11 @@ SeriesDetail.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return { data: state.fetch.data, loaded: state.fetch.loaded };
+  return {
+    data: state.fetch.data,
+    loaded: state.fetch.loaded,
+    count: state.fetch.count
+  };
 };
 
 export default connect(

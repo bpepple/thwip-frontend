@@ -93,15 +93,6 @@ export const fetchApiDetail = (type, page, slug) => {
         page;
       newUrl = '/publisher/' + slug + '/page/' + page;
       break;
-    case FETCH_SERIES_DETAIL:
-      url =
-        process.env.REACT_APP_API_URL +
-        '/api/series/' +
-        slug +
-        '/issue_list/?page=' +
-        page;
-      newUrl = '/series/' + slug + '/page/' + page;
-      break;
     default:
       url = '';
       newUrl = '';
@@ -118,6 +109,42 @@ export const fetchApiDetail = (type, page, slug) => {
       .then(data => {
         // If response is good update the state.
         dispatch({ type: type, data: data, page: page });
+      })
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+    // If our current url is the same as our new one don't push it.
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchSeriesDetail = (page, slug) => {
+  const url =
+    process.env.REACT_APP_API_URL +
+    '/api/series/' +
+    slug +
+    '/issue_list/?page=' +
+    page;
+  const newUrl = '/series/' + slug + '/page/' + page;
+
+  return dispatch => {
+    fetch(url, { method: 'GET', headers: authHeader() })
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // If response is good update the state.
+        dispatch({
+          type: FETCH_SERIES_DETAIL,
+          data: issuesNormalizer(data.results),
+          page: page,
+          count: data.count
+        });
       })
       .catch(error => {
         dispatch(fetchError(error));

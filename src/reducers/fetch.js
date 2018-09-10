@@ -32,7 +32,8 @@ export const reducer = (state = initialState, action) => {
         error: '',
         loaded: true,
         data: action.data,
-        page: action.page
+        page: action.page,
+        count: action.count
       };
     case FETCH_SERIES_LIST:
       return {
