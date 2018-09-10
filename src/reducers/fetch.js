@@ -11,7 +11,8 @@ const initialState = {
   error: '',
   loaded: false,
   data: null,
-  page: 1
+  page: 1,
+  count: 0
 };
 
 export const reducer = (state = initialState, action) => {
@@ -22,7 +23,8 @@ export const reducer = (state = initialState, action) => {
         error: '',
         loaded: true,
         data: action.data,
-        page: action.page
+        page: action.page,
+        count: action.count
       };
     case FETCH_SERIES_DETAIL:
       return {

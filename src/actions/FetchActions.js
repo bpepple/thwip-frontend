@@ -8,6 +8,7 @@ import {
 } from './types';
 import { authHeader } from '../components/helpers/auth-header';
 import { push } from 'connected-react-router';
+import issuesNormalizer from './issuesNormalizer';
 // Really should use the history from redux, but for now this works.
 import history from '../History';
 
@@ -21,10 +22,6 @@ export const fetchApiList = (type, page) => {
     case FETCH_SERIES_LIST:
       url = process.env.REACT_APP_API_URL + '/api/series/?page=' + page;
       newUrl = '/series/page/' + page;
-      break;
-    case FETCH_RECENT_ISSUES:
-      url = process.env.REACT_APP_API_URL + '/api/issue/recent/?page=' + page;
-      newUrl = '/issues/recent/page/' + page;
       break;
     default:
       url = '';
@@ -42,6 +39,37 @@ export const fetchApiList = (type, page) => {
       .then(data => {
         // If response is good update the state.
         dispatch({ type: type, data: data, page: page });
+      })
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+    // If our current url is the same as our new one don't push it.
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchRecentIssues = page => {
+  const url = process.env.REACT_APP_API_URL + '/api/issue/recent/?page=' + page;
+  const newUrl = '/issues/recent/page/' + page;
+
+  return dispatch => {
+    fetch(url, { method: 'GET', headers: authHeader() })
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // If response is good update the state.
+        dispatch({
+          type: FETCH_RECENT_ISSUES,
+          data: issuesNormalizer(data.results),
+          page: page,
+          count: data.count
+        });
       })
       .catch(error => {
         dispatch(fetchError(error));

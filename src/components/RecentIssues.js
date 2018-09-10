@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FETCH_RECENT_ISSUES } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import IssueCard from './IssueCard';
@@ -17,7 +16,7 @@ class RecentIssues extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchApiList(FETCH_RECENT_ISSUES, this.state.page);
+    this.props.fetchRecentIssues(this.state.page);
   }
 
   onPageChanged = pageData => {
@@ -28,19 +27,19 @@ class RecentIssues extends Component {
       return;
     }
 
-    this.props.fetchApiList(FETCH_RECENT_ISSUES, currentPage);
+    this.props.fetchRecentIssues(currentPage);
     this.setState({ page: currentPage });
   };
 
   render() {
-    const { data, loaded } = this.props;
+    const { data, loaded, count } = this.props;
     const { page } = this.state;
 
     return loaded ? (
       <React.Fragment>
         <IssueCard data={data} />
         <MainPagination
-          totalRecords={data.count}
+          totalRecords={count}
           onPageChanged={this.onPageChanged}
           page={page}
         />
@@ -61,7 +60,11 @@ RecentIssues.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return { data: state.fetch.data, loaded: state.fetch.loaded };
+  return {
+    data: state.fetch.data,
+    loaded: state.fetch.loaded,
+    count: state.fetch.count
+  };
 };
 
 export default connect(

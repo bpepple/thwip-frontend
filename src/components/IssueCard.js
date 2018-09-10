@@ -41,7 +41,7 @@ class IssueCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, issueData: [], creators: [] };
+    this.state = { modal: false, issue: null, creators: [] };
     this.toggle = this.toggle.bind(this);
   }
 
@@ -49,42 +49,56 @@ class IssueCard extends Component {
     this.setState({ modal: !this.state.modal });
   }
 
-  open(issueData) {
+  open(issue, creditsIndex) {
+    const { credits } = this.props.data.entities;
+
+    let issueCredits = [];
+    creditsIndex.map(creditIndex => issueCredits.push(credits[creditIndex]));
+
     this.setState({
       modal: true,
-      issueData: issueData,
-      creators: issueData.credits
+      issue: issue,
+      creators: issueCredits
     });
   }
 
   render() {
-    const { data } = this.props;
-    const { modal, issueData, creators } = this.state;
+    const { result } = this.props.data;
+    const { issues } = this.props.data.entities;
+    const { modal, issue, creators } = this.state;
 
-    return data.results ? (
+    return result ? (
       <Container fluid={true}>
         <CardsModal
           toggle={this.toggle}
           modal={modal}
-          data={issueData}
+          issue={issue}
           creators={creators}
         />
         <Fade in={true}>
           <Row>
-            {data.results.map(el => (
-              <Col xs="2" key={el.slug}>
+            {result.map(el => (
+              <Col xs="2" key={issues[el].slug}>
                 <Card className="text-white bg-dark mb-3">
-                  <CardHeader className="text-center">{el.__str__}</CardHeader>
-                  {el.image !== null ? (
-                    <CardImg src={el.image} alt="Issue Image" />
+                  <CardHeader className="text-center">
+                    {issues[el].__str__}
+                  </CardHeader>
+                  {issues[el].image !== null ? (
+                    <CardImg src={issues[el].image} alt="Issue Image" />
                   ) : (
                     <CardImg src={missingImg} alt="Placeholder image" />
                   )}
-                  <Progress value={el.percent_read} />
-                  <Body text={el.page_count} />
+                  <Progress value={issues[el].percent_read} />
+                  <Body text={issues[el].page_count} />
                   <CardFooter>
-                    <ReadButton url={`/reader/${el.slug}`} />
-                    <InfoButton click={this.open.bind(this, el)} />
+                    <ReadButton url={`/reader/${issues[el].slug}`} />
+                    <InfoButton
+                      click={this.open.bind(
+                        this,
+                        issues[el],
+                        issues[el].credits
+                      )}
+                    />
                   </CardFooter>
                 </Card>
               </Col>

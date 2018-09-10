@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import missingImg from '../img/creator-not-found.png';
 import {
   Media,
@@ -86,23 +87,36 @@ const ModalCreators = ({ creators }) => (
   </React.Fragment>
 );
 
-const CardsModal = ({ toggle, modal, data, creators }) => (
-  <Modal isOpen={modal} toggle={toggle} centered>
-    {data.__str__ ? (
-      <ModalHeader toggle={toggle}>{data.__str__}</ModalHeader>
-    ) : (
-      <ModalHeader toggle={toggle}>{data.name}</ModalHeader>
-    )}
-    <ModalBody>
-      {data.date && <ModalDate date={data.date} />}
-      {data.year && <ModalYear year={data.year} />}
-      {data.desc && <ModalSummary text={data.desc} />}
-      {creators.length > 0 && <ModalCreators creators={creators} />}
-    </ModalBody>
-    <ModalFooter>
-      <Button onClick={toggle}>Close</Button>
-    </ModalFooter>
-  </Modal>
-);
+class CardsModal extends Component {
+  render() {
+    const { toggle, modal, issue, creators } = this.props;
+
+    return issue ? (
+      <Modal isOpen={modal} toggle={toggle} centered>
+        {issue.__str__ ? (
+          <ModalHeader toggle={toggle}>{issue.__str__}</ModalHeader>
+        ) : (
+          <ModalHeader toggle={toggle}>{issue.name}</ModalHeader>
+        )}
+        <ModalBody>
+          {issue.date && <ModalDate date={issue.date} />}
+          {issue.year && <ModalYear year={issue.year} />}
+          {issue.desc && <ModalSummary text={issue.desc} />}
+          {creators.length > 0 && <ModalCreators creators={creators} />}
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={toggle}>Close</Button>
+        </ModalFooter>
+      </Modal>
+    ) : null;
+  }
+}
+
+CardsModal.propTypes = {
+  toggle: PropTypes.func.isRequired,
+  modal: PropTypes.bool.isRequired,
+  issue: PropTypes.object,
+  creators: PropTypes.array.isRequired
+};
 
 export default CardsModal;
