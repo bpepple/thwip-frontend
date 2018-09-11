@@ -40,7 +40,7 @@ class SeriesCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, seriesData: [] };
+    this.state = { modal: false, seriesData: {} };
     this.toggle = this.toggle.bind(this);
   }
 

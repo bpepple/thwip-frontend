@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
 
 const ModalHeadings = ({ text }) => <p className="font-weight-bold">{text}</p>;
@@ -29,5 +30,11 @@ const ListCardsModal = ({ toggle, modal, data }) => (
     </ModalFooter>
   </Modal>
 );
+
+ListCardsModal.propTypes = {
+  toggle: PropTypes.func.isRequired,
+  modal: PropTypes.bool.isRequired,
+  data: PropTypes.object.isRequired
+};
 
 export default ListCardsModal;

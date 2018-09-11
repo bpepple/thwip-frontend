@@ -40,7 +40,7 @@ class PublisherCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, publisherData: [] };
+    this.state = { modal: false, publisherData: {} };
 
     this.toggle = this.toggle.bind(this);
   }
