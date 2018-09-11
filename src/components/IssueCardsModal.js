@@ -93,11 +93,7 @@ class IssueCardsModal extends Component {
 
     return issue ? (
       <Modal isOpen={modal} toggle={toggle} centered>
-        {issue.__str__ ? (
-          <ModalHeader toggle={toggle}>{issue.__str__}</ModalHeader>
-        ) : (
-          <ModalHeader toggle={toggle}>{issue.name}</ModalHeader>
-        )}
+        <ModalHeader toggle={toggle}>{issue.__str__}</ModalHeader>
         <ModalBody>
           {issue.date && <ModalDate date={issue.date} />}
           {issue.year && <ModalYear year={issue.year} />}
