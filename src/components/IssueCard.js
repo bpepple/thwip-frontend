@@ -37,6 +37,16 @@ const InfoButton = ({ click }) => (
   </Button>
 );
 
+const DetailImg = ({ img }) => {
+  let i;
+  if (img !== null) {
+    i = <CardImg src={img} alt="Issue Image" />;
+  } else {
+    i = <CardImg src={missingImg} alt="Placeholder image" />;
+  }
+  return i;
+};
+
 class IssueCard extends Component {
   constructor(props) {
     super(props);
@@ -83,11 +93,7 @@ class IssueCard extends Component {
                   <CardHeader className="text-center">
                     {issues[el].__str__}
                   </CardHeader>
-                  {issues[el].image !== null ? (
-                    <CardImg src={issues[el].image} alt="Issue Image" />
-                  ) : (
-                    <CardImg src={missingImg} alt="Placeholder image" />
-                  )}
+                  <DetailImg img={issues[el].image} />
                   <Progress value={issues[el].percent_read} />
                   <Body text={issues[el].page_count} />
                   <CardFooter>
