@@ -115,7 +115,7 @@ class IssueCardsModal extends Component {
 IssueCardsModal.propTypes = {
   toggle: PropTypes.func.isRequired,
   modal: PropTypes.bool.isRequired,
-  issue: PropTypes.object,
+  issue: PropTypes.object.isRequired,
   creators: PropTypes.array
 };
 

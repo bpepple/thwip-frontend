@@ -51,7 +51,7 @@ class IssueCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, issue: null, creators: [] };
+    this.state = { modal: false, issue: {}, creators: [] };
     this.toggle = this.toggle.bind(this);
   }
 
