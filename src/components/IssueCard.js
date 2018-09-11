@@ -51,7 +51,7 @@ class IssueCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, issue: {}, creators: [] };
+    this.state = { modal: false, issue: {}, credits: [] };
     this.toggle = this.toggle.bind(this);
   }
 
@@ -68,14 +68,14 @@ class IssueCard extends Component {
     this.setState({
       modal: true,
       issue: issue,
-      creators: issueCredits
+      credits: issueCredits
     });
   }
 
   render() {
     const { result } = this.props.data;
     const { issues } = this.props.data.entities;
-    const { modal, issue, creators } = this.state;
+    const { modal, issue, credits } = this.state;
 
     return result ? (
       <Container fluid={true}>
@@ -83,7 +83,7 @@ class IssueCard extends Component {
           toggle={this.toggle}
           modal={modal}
           issue={issue}
-          creators={creators}
+          credits={credits}
         />
         <Fade in={true}>
           <Row>
