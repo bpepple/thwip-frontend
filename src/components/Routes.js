@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import PublisherList from './PublisherList';
-import PublisherDetail from './PublisherDetail';
-import SeriesList from './SeriesList';
-import SeriesDetail from './SeriesDetail';
-import RecentIssues from './RecentIssues';
+import PublisherList from '../containers/PublisherList';
+import PublisherDetail from '../containers/PublisherDetail';
+import SeriesList from '../containers/SeriesList';
+import SeriesDetail from '../containers/SeriesDetail';
+import RecentIssues from '../containers/RecentIssues';
 import Reader from './reader/Reader';
 import { PrivateRoute } from './PrivateRoute';
 import Login from './auth/login';

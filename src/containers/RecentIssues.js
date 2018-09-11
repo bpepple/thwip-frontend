@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FETCH_SERIES_LIST } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import SeriesCard from './SeriesCard';
-import MainPagination from './MainPagination';
-import Footer from './Footer';
+import IssueCard from '../components/IssueCard';
+import MainPagination from '../components/MainPagination';
+import Footer from '../components/Footer';
 
-class SeriesList extends Component {
+class RecentIssues extends Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +16,7 @@ class SeriesList extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchApiList(FETCH_SERIES_LIST, this.state.page);
+    this.props.fetchRecentIssues(this.state.page);
   }
 
   onPageChanged = pageData => {
@@ -28,19 +27,19 @@ class SeriesList extends Component {
       return;
     }
 
-    this.props.fetchApiList(FETCH_SERIES_LIST, currentPage);
+    this.props.fetchRecentIssues(currentPage);
     this.setState({ page: currentPage });
   };
 
   render() {
-    const { data, loaded } = this.props;
+    const { data, loaded, count } = this.props;
     const { page } = this.state;
 
     return loaded ? (
       <React.Fragment>
-        <SeriesCard data={data} />
+        <IssueCard data={data} />
         <MainPagination
-          totalRecords={data.count}
+          totalRecords={count}
           onPageChanged={this.onPageChanged}
           page={page}
         />
@@ -50,7 +49,7 @@ class SeriesList extends Component {
   }
 }
 
-SeriesList.propTypes = {
+RecentIssues.propTypes = {
   data: PropTypes.object,
   loaded: PropTypes.bool.isRequired,
   match: PropTypes.shape({
@@ -61,10 +60,14 @@ SeriesList.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return { data: state.fetch.data, loaded: state.fetch.loaded };
+  return {
+    data: state.fetch.data,
+    loaded: state.fetch.loaded,
+    count: state.fetch.count
+  };
 };
 
 export default connect(
   mapStateToProps,
   actions
-)(SeriesList);
+)(RecentIssues);

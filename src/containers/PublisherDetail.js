@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FETCH_PUBLISHER_DETAIL } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import IssueCard from './IssueCard';
-import MainPagination from './MainPagination';
-import Footer from './Footer';
+import SeriesCard from '../components/SeriesCard';
+import MainPagination from '../components/MainPagination';
+import Footer from '../components/Footer';
 
-class SeriesDetail extends Component {
+class PublisherDetail extends Component {
   constructor(props) {
     super(props);
 
@@ -17,7 +18,7 @@ class SeriesDetail extends Component {
 
   componentDidMount() {
     const { slug } = this.props.match.params;
-    this.props.fetchSeriesDetail(this.state.page, slug);
+    this.props.fetchApiDetail(FETCH_PUBLISHER_DETAIL, this.state.page, slug);
   }
 
   onPageChanged = pageData => {
@@ -29,19 +30,19 @@ class SeriesDetail extends Component {
       return;
     }
 
-    this.props.fetchSeriesDetail(currentPage, slug);
+    this.props.fetchApiDetail(FETCH_PUBLISHER_DETAIL, currentPage, slug);
     this.setState({ page: currentPage });
   };
 
   render() {
-    const { data, loaded, count } = this.props;
+    const { data, loaded } = this.props;
     const { page } = this.state;
 
     return loaded ? (
       <React.Fragment>
-        <IssueCard data={data} />
+        <SeriesCard data={data} />
         <MainPagination
-          totalRecords={count}
+          totalRecords={data.count}
           onPageChanged={this.onPageChanged}
           page={page}
         />
@@ -51,7 +52,7 @@ class SeriesDetail extends Component {
   }
 }
 
-SeriesDetail.propTypes = {
+PublisherDetail.propTypes = {
   data: PropTypes.object,
   loaded: PropTypes.bool.isRequired,
   match: PropTypes.shape({
@@ -63,14 +64,10 @@ SeriesDetail.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return {
-    data: state.fetch.data,
-    loaded: state.fetch.loaded,
-    count: state.fetch.count
-  };
+  return { data: state.fetch.data, loaded: state.fetch.loaded };
 };
 
 export default connect(
   mapStateToProps,
   actions
-)(SeriesDetail);
+)(PublisherDetail);

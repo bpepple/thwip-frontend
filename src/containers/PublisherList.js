@@ -1,36 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FETCH_PUBLISHER_DETAIL } from '../actions/types';
+import { FETCH_PUBLISHER_LIST } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import SeriesCard from './SeriesCard';
-import MainPagination from './MainPagination';
-import Footer from './Footer';
+import PublisherCard from '../components/PublisherCard';
+import MainPagination from '../components/MainPagination';
+import Footer from '../components/Footer';
 
-class PublisherDetail extends Component {
+class PublisherList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      page: this.props.match.params.page
-    };
+    this.state = { page: this.props.match.params.page };
   }
 
   componentDidMount() {
-    const { slug } = this.props.match.params;
-    this.props.fetchApiDetail(FETCH_PUBLISHER_DETAIL, this.state.page, slug);
+    this.props.fetchApiList(FETCH_PUBLISHER_LIST, this.state.page);
   }
 
   onPageChanged = pageData => {
     const { currentPage } = pageData;
-    const { slug } = this.props.match.params;
 
     /* Don't fetch the page twice. */
     if (currentPage === Number(this.state.page)) {
       return;
     }
 
-    this.props.fetchApiDetail(FETCH_PUBLISHER_DETAIL, currentPage, slug);
+    this.props.fetchApiList(FETCH_PUBLISHER_LIST, currentPage);
     this.setState({ page: currentPage });
   };
 
@@ -40,7 +36,7 @@ class PublisherDetail extends Component {
 
     return loaded ? (
       <React.Fragment>
-        <SeriesCard data={data} />
+        <PublisherCard data={data} />
         <MainPagination
           totalRecords={data.count}
           onPageChanged={this.onPageChanged}
@@ -52,13 +48,12 @@ class PublisherDetail extends Component {
   }
 }
 
-PublisherDetail.propTypes = {
+PublisherList.propTypes = {
   data: PropTypes.object,
   loaded: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      page: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired
+      page: PropTypes.string.isRequired
     }).isRequired
   }).isRequired
 };
@@ -70,4 +65,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   actions
-)(PublisherDetail);
+)(PublisherList);

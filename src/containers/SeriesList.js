@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FETCH_PUBLISHER_LIST } from '../actions/types';
+import { FETCH_SERIES_LIST } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import PublisherCard from './PublisherCard';
-import MainPagination from './MainPagination';
-import Footer from './Footer';
+import SeriesCard from '../components/SeriesCard';
+import MainPagination from '../components/MainPagination';
+import Footer from '../components/Footer';
 
-class PublisherList extends Component {
+class SeriesList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { page: this.props.match.params.page };
+    this.state = {
+      page: this.props.match.params.page
+    };
   }
 
   componentDidMount() {
-    this.props.fetchApiList(FETCH_PUBLISHER_LIST, this.state.page);
+    this.props.fetchApiList(FETCH_SERIES_LIST, this.state.page);
   }
 
   onPageChanged = pageData => {
@@ -26,7 +28,7 @@ class PublisherList extends Component {
       return;
     }
 
-    this.props.fetchApiList(FETCH_PUBLISHER_LIST, currentPage);
+    this.props.fetchApiList(FETCH_SERIES_LIST, currentPage);
     this.setState({ page: currentPage });
   };
 
@@ -36,7 +38,7 @@ class PublisherList extends Component {
 
     return loaded ? (
       <React.Fragment>
-        <PublisherCard data={data} />
+        <SeriesCard data={data} />
         <MainPagination
           totalRecords={data.count}
           onPageChanged={this.onPageChanged}
@@ -48,7 +50,7 @@ class PublisherList extends Component {
   }
 }
 
-PublisherList.propTypes = {
+SeriesList.propTypes = {
   data: PropTypes.object,
   loaded: PropTypes.bool.isRequired,
   match: PropTypes.shape({
@@ -65,4 +67,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   actions
-)(PublisherList);
+)(SeriesList);
