@@ -49,6 +49,28 @@ const ModalRole = ({ roles }) => (
   </React.Fragment>
 );
 
+const CreatorImg = ({ img }) => {
+  if (img) {
+    return (
+      <Media
+        object
+        className="rounded-left"
+        src={img}
+        alt="{credit.creator} image"
+      />
+    );
+  } else {
+    return (
+      <Media
+        object
+        className="rounded-left"
+        src={missingImg}
+        alt="Generic placeholder image"
+      />
+    );
+  }
+};
+
 const ModalCredits = ({ credits }) => (
   <React.Fragment>
     <ModalHeadings text="Credits" />
@@ -58,21 +80,7 @@ const ModalCredits = ({ credits }) => (
           <Col md="6" key={index}>
             <Media className="mb-3 border rounded">
               <Media left>
-                {credit.image !== null ? (
-                  <Media
-                    object
-                    className="rounded-left"
-                    src={credit.image}
-                    alt="{credit.creator} image"
-                  />
-                ) : (
-                  <Media
-                    object
-                    className="rounded-left"
-                    src={missingImg}
-                    alt="Generic placeholder image"
-                  />
-                )}
+                <CreatorImg img={credit.image} />
               </Media>
               <Media body className="ml-2 mt-2">
                 {credit.creator}
