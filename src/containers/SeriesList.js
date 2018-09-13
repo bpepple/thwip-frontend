@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import * as actions from '../actions';
+import { fetchSeriesList } from '../actions';
 import { connect } from 'react-redux';
 import SeriesCard from '../components/SeriesCard';
 import MainPagination from '../components/MainPagination';
@@ -67,5 +67,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  actions
+  { fetchSeriesList }
 )(SeriesList);
