@@ -10,7 +10,7 @@ import {
 const initialState = {
   error: '',
   loaded: false,
-  data: null,
+  data: {},
   page: 1,
   count: 0
 };

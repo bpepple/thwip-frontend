@@ -50,7 +50,7 @@ class RecentIssues extends Component {
 }
 
 RecentIssues.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.object.isRequired,
   loaded: PropTypes.bool.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
