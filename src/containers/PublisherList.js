@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FETCH_PUBLISHER_LIST } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import PublisherCard from '../components/PublisherCard';
@@ -8,31 +7,26 @@ import MainPagination from '../components/MainPagination';
 import Footer from '../components/Footer';
 
 class PublisherList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { page: this.props.match.params.page };
-  }
-
   componentDidMount() {
-    this.props.fetchApiList(FETCH_PUBLISHER_LIST, this.state.page);
+    const { page } = this.props.match.params;
+    this.props.fetchPublisherList(page);
   }
 
   onPageChanged = pageData => {
     const { currentPage } = pageData;
+    const { page } = this.props;
 
     /* Don't fetch the page twice. */
-    if (currentPage === Number(this.state.page)) {
+    if (currentPage === Number(page)) {
       return;
     }
 
-    this.props.fetchApiList(FETCH_PUBLISHER_LIST, currentPage);
+    this.props.fetchPublisherList(currentPage);
     this.setState({ page: currentPage });
   };
 
   render() {
-    const { data, loaded } = this.props;
-    const { page } = this.state;
+    const { data, loaded, page } = this.props;
 
     return loaded ? (
       <React.Fragment>
@@ -59,7 +53,11 @@ PublisherList.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return { data: state.fetch.data, loaded: state.fetch.loaded };
+  return {
+    data: state.fetch.data,
+    loaded: state.fetch.loaded,
+    page: state.fetch.page
+  };
 };
 
 export default connect(

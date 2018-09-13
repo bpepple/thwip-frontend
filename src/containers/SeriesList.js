@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FETCH_SERIES_LIST } from '../actions/types';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import SeriesCard from '../components/SeriesCard';
@@ -8,33 +7,25 @@ import MainPagination from '../components/MainPagination';
 import Footer from '../components/Footer';
 
 class SeriesList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      page: this.props.match.params.page
-    };
-  }
-
   componentDidMount() {
-    this.props.fetchApiList(FETCH_SERIES_LIST, this.state.page);
+    const { page } = this.props.match.params;
+    this.props.fetchSeriesList(page);
   }
 
   onPageChanged = pageData => {
     const { currentPage } = pageData;
+    const { page } = this.props;
 
     /* Don't fetch the page twice. */
-    if (currentPage === Number(this.state.page)) {
+    if (currentPage === Number(page)) {
       return;
     }
 
-    this.props.fetchApiList(FETCH_SERIES_LIST, currentPage);
-    this.setState({ page: currentPage });
+    this.props.fetchSeriesList(currentPage);
   };
 
   render() {
-    const { data, loaded } = this.props;
-    const { page } = this.state;
+    const { data, loaded, page } = this.props;
 
     return loaded ? (
       <React.Fragment>
@@ -61,7 +52,11 @@ SeriesList.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return { data: state.fetch.data, loaded: state.fetch.loaded };
+  return {
+    data: state.fetch.data,
+    loaded: state.fetch.loaded,
+    page: state.fetch.page
+  };
 };
 
 export default connect(

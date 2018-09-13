@@ -12,24 +12,41 @@ import issuesNormalizer from './issuesNormalizer';
 // Really should use the history from redux, but for now this works.
 import history from '../History';
 
-export const fetchApiList = (type, page) => {
-  let url, newUrl;
-  switch (type) {
-    case FETCH_PUBLISHER_LIST:
-      url = process.env.REACT_APP_API_URL + '/api/publisher/?page=' + page;
-      newUrl = '/publisher/page/' + page;
-      break;
-    case FETCH_SERIES_LIST:
-      url = process.env.REACT_APP_API_URL + '/api/series/?page=' + page;
-      newUrl = '/series/page/' + page;
-      break;
-    default:
-      url = '';
-      newUrl = '';
-  }
+const baseUrl = process.env.REACT_APP_API_URL;
+
+const Views = {
+  publisherList: page =>
+    fetch(baseUrl + `/api/publisher/?page=${page}`, {
+      method: 'GET',
+      headers: authHeader()
+    }),
+  publisherDetail: (slug, page) =>
+    fetch(baseUrl + `/api/publisher/${slug}/series_list/?page=${page}`, {
+      method: 'GET',
+      headers: authHeader()
+    }),
+  seriesList: page =>
+    fetch(baseUrl + `/api/series/?page=${page}`, {
+      method: 'GET',
+      headers: authHeader()
+    }),
+  seriesDetail: (slug, page) =>
+    fetch(baseUrl + `/api/series/${slug}/issue_list/?page=${page}`, {
+      method: 'GET',
+      headers: authHeader()
+    }),
+  recentIssues: page =>
+    fetch(baseUrl + `/api/issue/recent/?page=${page}`, {
+      method: 'GET',
+      headers: authHeader()
+    })
+};
+
+export const fetchPublisherList = page => {
+  const newUrl = `/publisher/page/${page}`;
 
   return dispatch => {
-    fetch(url, { method: 'GET', headers: authHeader() })
+    Views.publisherList(page)
       .then(response => {
         if (response.status !== 200) {
           return Promise.reject(response.statusText);
@@ -38,7 +55,32 @@ export const fetchApiList = (type, page) => {
       })
       .then(data => {
         // If response is good update the state.
-        dispatch({ type: type, data: data, page: page });
+        dispatch({ type: FETCH_PUBLISHER_LIST, data: data, page: page });
+      })
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+    // If our current url is the same as our new one don't push it.
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchSeriesList = page => {
+  const newUrl = `/series/page/${page}`;
+
+  return dispatch => {
+    Views.seriesList(page)
+      .then(response => {
+        if (response.status !== 200) {
+          return Promise.reject(response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // If response is good update the state.
+        dispatch({ type: FETCH_SERIES_LIST, data: data, page: page });
       })
       .catch(error => {
         dispatch(fetchError(error));
@@ -51,11 +93,10 @@ export const fetchApiList = (type, page) => {
 };
 
 export const fetchRecentIssues = page => {
-  const url = process.env.REACT_APP_API_URL + '/api/issue/recent/?page=' + page;
-  const newUrl = '/issues/recent/page/' + page;
+  const newUrl = `/issues/recent/page/${page}`;
 
   return dispatch => {
-    fetch(url, { method: 'GET', headers: authHeader() })
+    Views.recentIssues(page)
       .then(response => {
         if (response.status !== 200) {
           return Promise.reject(response.statusText);
@@ -81,25 +122,11 @@ export const fetchRecentIssues = page => {
   };
 };
 
-export const fetchApiDetail = (type, page, slug) => {
-  let url, newUrl;
-  switch (type) {
-    case FETCH_PUBLISHER_DETAIL:
-      url =
-        process.env.REACT_APP_API_URL +
-        '/api/publisher/' +
-        slug +
-        '/series_list/?page=' +
-        page;
-      newUrl = '/publisher/' + slug + '/page/' + page;
-      break;
-    default:
-      url = '';
-      newUrl = '';
-  }
+export const fetchPublisherDetail = (slug, page) => {
+  const newUrl = `/publisher/${slug}/page/${page}`;
 
   return dispatch => {
-    fetch(url, { method: 'GET', headers: authHeader() })
+    Views.publisherDetail(slug, page)
       .then(response => {
         if (response.status !== 200) {
           return Promise.reject(response.statusText);
@@ -108,7 +135,7 @@ export const fetchApiDetail = (type, page, slug) => {
       })
       .then(data => {
         // If response is good update the state.
-        dispatch({ type: type, data: data, page: page });
+        dispatch({ type: FETCH_PUBLISHER_DETAIL, data: data, page: page });
       })
       .catch(error => {
         dispatch(fetchError(error));
@@ -120,17 +147,11 @@ export const fetchApiDetail = (type, page, slug) => {
   };
 };
 
-export const fetchSeriesDetail = (page, slug) => {
-  const url =
-    process.env.REACT_APP_API_URL +
-    '/api/series/' +
-    slug +
-    '/issue_list/?page=' +
-    page;
-  const newUrl = '/series/' + slug + '/page/' + page;
+export const fetchSeriesDetail = (slug, page) => {
+  const newUrl = `/series/${slug}/page/${page}`;
 
   return dispatch => {
-    fetch(url, { method: 'GET', headers: authHeader() })
+    Views.seriesDetail(slug, page)
       .then(response => {
         if (response.status !== 200) {
           return Promise.reject(response.statusText);

@@ -7,23 +7,17 @@ import MainPagination from '../components/MainPagination';
 import Footer from '../components/Footer';
 
 class RecentIssues extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      page: this.props.match.params.page
-    };
-  }
-
   componentDidMount() {
-    this.props.fetchRecentIssues(this.state.page);
+    const { page } = this.props.match.params;
+    this.props.fetchRecentIssues(page);
   }
 
   onPageChanged = pageData => {
     const { currentPage } = pageData;
+    const { page } = this.props;
 
     /* Don't fetch the page twice. */
-    if (currentPage === Number(this.state.page)) {
+    if (currentPage === Number(page)) {
       return;
     }
 
@@ -32,8 +26,7 @@ class RecentIssues extends Component {
   };
 
   render() {
-    const { data, loaded, count } = this.props;
-    const { page } = this.state;
+    const { data, loaded, page, count } = this.props;
 
     return loaded ? (
       <React.Fragment>
@@ -63,7 +56,8 @@ const mapStateToProps = state => {
   return {
     data: state.fetch.data,
     loaded: state.fetch.loaded,
-    count: state.fetch.count
+    count: state.fetch.count,
+    page: state.fetch.page
   };
 };
 
