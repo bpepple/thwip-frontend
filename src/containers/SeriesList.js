@@ -25,7 +25,11 @@ class SeriesList extends Component {
   };
 
   render() {
-    const { data, loaded, page } = this.props;
+    const { data, loaded, page, error } = this.props;
+
+    if (error) {
+      return <h2 className="text-danger text-center">Error: {error}</h2>;
+    }
 
     return loaded ? (
       <React.Fragment>
@@ -44,6 +48,7 @@ class SeriesList extends Component {
 SeriesList.propTypes = {
   data: PropTypes.object.isRequired,
   loaded: PropTypes.bool.isRequired,
+  error: PropTypes.string,
   match: PropTypes.shape({
     params: PropTypes.shape({
       page: PropTypes.string.isRequired
@@ -55,7 +60,8 @@ const mapStateToProps = state => {
   return {
     data: state.fetch.data,
     loaded: state.fetch.loaded,
-    page: state.fetch.page
+    page: state.fetch.page,
+    error: state.fetch.error
   };
 };
 
