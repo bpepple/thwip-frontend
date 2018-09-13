@@ -23,7 +23,6 @@ class PublisherDetail extends Component {
     }
 
     this.props.fetchPublisherDetail(slug, currentPage);
-    this.setState({ page: currentPage });
   };
 
   render() {

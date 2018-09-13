@@ -23,7 +23,6 @@ class SeriesDetail extends Component {
     }
 
     this.props.fetchSeriesDetail(slug, currentPage);
-    this.setState({ page: currentPage });
   };
 
   render() {

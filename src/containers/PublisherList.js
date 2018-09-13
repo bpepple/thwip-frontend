@@ -22,7 +22,6 @@ class PublisherList extends Component {
     }
 
     this.props.fetchPublisherList(currentPage);
-    this.setState({ page: currentPage });
   };
 
   render() {
