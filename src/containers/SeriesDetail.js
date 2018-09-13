@@ -58,15 +58,13 @@ SeriesDetail.propTypes = {
   }).isRequired
 };
 
-const mapStateToProps = state => {
-  return {
-    data: state.fetch.data,
-    loaded: state.fetch.loaded,
-    count: state.fetch.count,
-    page: state.fetch.page,
-    error: state.fetch.error
-  };
-};
+const mapStateToProps = state => ({
+  data: state.fetch.data,
+  loaded: state.fetch.loaded,
+  count: state.fetch.count,
+  page: state.fetch.page,
+  error: state.fetch.error
+});
 
 export default connect(
   mapStateToProps,
