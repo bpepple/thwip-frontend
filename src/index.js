@@ -9,6 +9,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 import history from './History';
+import { Container } from 'reactstrap';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -32,7 +33,9 @@ if (token) {
 
 render(
   <Provider store={store}>
-    <App history={history} />
+    <Container fluid={true}>
+      <App history={history} />
+    </Container>
   </Provider>,
   document.getElementById('root')
 );

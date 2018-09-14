@@ -5,7 +5,6 @@ import ListCardsModal from './ListCardsModal';
 import missingImg from '../img/image-not-found.png';
 
 import {
-  Container,
   Col,
   Fade,
   Row,
@@ -61,7 +60,7 @@ class PublisherCard extends Component {
     const { modal, publisherData } = this.state;
 
     return data.results ? (
-      <Container fluid={true}>
+      <React.Fragment>
         <ListCardsModal
           toggle={this.toggle}
           modal={modal}
@@ -88,7 +87,7 @@ class PublisherCard extends Component {
             ))}
           </Row>
         </Fade>
-      </Container>
+      </React.Fragment>
     ) : null;
   }
 }

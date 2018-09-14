@@ -5,7 +5,6 @@ import IssueCardsModal from './IssueCardsModal';
 import missingImg from '../img/image-not-found.png';
 
 import {
-  Container,
   Fade,
   Col,
   Row,
@@ -78,7 +77,7 @@ class IssueCard extends Component {
     const { modal, issue, credits } = this.state;
 
     return result ? (
-      <Container fluid={true}>
+      <React.Fragment>
         <IssueCardsModal
           toggle={this.toggle}
           modal={modal}
@@ -111,7 +110,7 @@ class IssueCard extends Component {
             ))}
           </Row>
         </Fade>
-      </Container>
+      </React.Fragment>
     ) : null;
   }
 }

@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ListCardsModal from './ListCardsModal';
 
 import {
-  Container,
   Fade,
   Col,
   Row,
@@ -60,7 +59,7 @@ class SeriesCard extends Component {
     const { modal, seriesData } = this.state;
 
     return data.results ? (
-      <Container fluid={true}>
+      <React.Fragment>
         <ListCardsModal toggle={this.toggle} modal={modal} data={seriesData} />
         <Fade in={true}>
           <Row>
@@ -80,7 +79,7 @@ class SeriesCard extends Component {
             ))}
           </Row>
         </Fade>
-      </Container>
+      </React.Fragment>
     ) : null;
   }
 }

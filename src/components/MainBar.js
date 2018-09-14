@@ -4,7 +4,6 @@ import { authHeader } from './helpers/auth-header';
 import {
   Alert,
   Button,
-  Container,
   NavbarBrand,
   Nav,
   Navbar,
@@ -69,8 +68,8 @@ class MainBar extends Component {
     const { visible, color, placeholder } = this.state;
 
     return (
-      <Container fluid={true}>
-        <Navbar className="mb-3" color="dark" dark expand="lg">
+      <React.Fragment>
+        <Navbar className="mb-3" sticky="top" color="dark" dark expand="lg">
           <NavbarBrand href="/series/page/1">Thwip!</NavbarBrand>
           <Nav className="mr-auto" navbar>
             <NavItem>
@@ -93,7 +92,7 @@ class MainBar extends Component {
             {placeholder}
           </Alert>
         ) : null}
-      </Container>
+      </React.Fragment>
     );
   }
 }

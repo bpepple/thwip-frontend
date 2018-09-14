@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Container,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-  Row
-} from 'reactstrap';
+import { Pagination, PaginationItem, PaginationLink, Row } from 'reactstrap';
 
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
@@ -154,52 +148,50 @@ class MainPagination extends Component {
     const pages = this.fetchPageNumbers();
 
     return (
-      <Container fluid={true}>
-        <Row className="justify-content-center">
-          <Pagination>
-            {pages.map((page, index) => {
-              if (page === LEFT_PAGE)
-                return (
-                  <PaginationItem key={index}>
-                    <PaginationLink
-                      href="#"
-                      aria-label="Previous"
-                      onClick={this.handleMoveLeft}
-                    >
-                      <span aria-hidden="true">&laquo;</span>
-                      <span className="sr-only">Previous</span>
-                    </PaginationLink>
-                  </PaginationItem>
-                );
-
-              if (page === RIGHT_PAGE)
-                return (
-                  <PaginationItem key={index}>
-                    <PaginationLink
-                      href="#"
-                      aria-label="Next"
-                      onClick={this.handleMoveRight}
-                    >
-                      <span aria-hidden="true">&raquo;</span>
-                      <span className="sr-only">Next</span>
-                    </PaginationLink>
-                  </PaginationItem>
-                );
-
+      <Row className="justify-content-center">
+        <Pagination>
+          {pages.map((page, index) => {
+            if (page === LEFT_PAGE)
               return (
-                <PaginationItem
-                  key={index}
-                  active={Boolean(`${currentPage === page ? true : ''}`)}
-                >
-                  <PaginationLink onClick={this.handleClick(page)}>
-                    {page}
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    href="#"
+                    aria-label="Previous"
+                    onClick={this.handleMoveLeft}
+                  >
+                    <span aria-hidden="true">&laquo;</span>
+                    <span className="sr-only">Previous</span>
                   </PaginationLink>
                 </PaginationItem>
               );
-            })}
-          </Pagination>
-        </Row>
-      </Container>
+
+            if (page === RIGHT_PAGE)
+              return (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    href="#"
+                    aria-label="Next"
+                    onClick={this.handleMoveRight}
+                  >
+                    <span aria-hidden="true">&raquo;</span>
+                    <span className="sr-only">Next</span>
+                  </PaginationLink>
+                </PaginationItem>
+              );
+
+            return (
+              <PaginationItem
+                key={index}
+                active={Boolean(`${currentPage === page ? true : ''}`)}
+              >
+                <PaginationLink onClick={this.handleClick(page)}>
+                  {page}
+                </PaginationLink>
+              </PaginationItem>
+            );
+          })}
+        </Pagination>
+      </Row>
     );
   }
 }
