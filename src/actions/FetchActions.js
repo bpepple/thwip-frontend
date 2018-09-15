@@ -14,24 +14,14 @@ import history from '../History';
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
-const fetchHeader = { method: 'GET', headers: authHeader() };
-
 const Views = {
-  publisherList: page =>
-    fetch(baseUrl + `/api/publisher/?page=${page}`, fetchHeader),
+  publisherList: page => baseUrl + `/api/publisher/?page=${page}`,
   publisherDetail: (slug, page) =>
-    fetch(
-      baseUrl + `/api/publisher/${slug}/series_list/?page=${page}`,
-      fetchHeader
-    ),
-  seriesList: page => fetch(baseUrl + `/api/series/?page=${page}`, fetchHeader),
+    baseUrl + `/api/publisher/${slug}/series_list/?page=${page}`,
+  seriesList: page => baseUrl + `/api/series/?page=${page}`,
   seriesDetail: (slug, page) =>
-    fetch(
-      baseUrl + `/api/series/${slug}/issue_list/?page=${page}`,
-      fetchHeader
-    ),
-  recentIssues: page =>
-    fetch(baseUrl + `/api/issue/recent/?page=${page}`, fetchHeader)
+    baseUrl + `/api/series/${slug}/issue_list/?page=${page}`,
+  recentIssues: page => baseUrl + `/api/issue/recent/?page=${page}`
 };
 
 const responseStatus = response => {
@@ -50,7 +40,7 @@ export const fetchPublisherList = page => {
   const newUrl = `/publisher/page/${page}`;
 
   return dispatch => {
-    Views.publisherList(page)
+    fetch(Views.publisherList(page), { method: 'GET', headers: authHeader() })
       .then(responseStatus)
       .then(responseJSON)
       .then(data => {
@@ -71,7 +61,7 @@ export const fetchSeriesList = page => {
   const newUrl = `/series/page/${page}`;
 
   return dispatch => {
-    Views.seriesList(page)
+    fetch(Views.seriesList(page), { method: 'GET', headers: authHeader() })
       .then(responseStatus)
       .then(responseJSON)
       .then(data => {
@@ -92,7 +82,7 @@ export const fetchRecentIssues = page => {
   const newUrl = `/issues/recent/page/${page}`;
 
   return dispatch => {
-    Views.recentIssues(page)
+    fetch(Views.recentIssues(page), { method: 'GET', headers: authHeader() })
       .then(responseStatus)
       .then(responseJSON)
       .then(data => {
@@ -118,7 +108,10 @@ export const fetchPublisherDetail = (slug, page) => {
   const newUrl = `/publisher/${slug}/page/${page}`;
 
   return dispatch => {
-    Views.publisherDetail(slug, page)
+    fetch(Views.publisherDetail(slug, page), {
+      method: 'GET',
+      headers: authHeader()
+    })
       .then(responseStatus)
       .then(responseJSON)
       .then(data => {
@@ -139,7 +132,10 @@ export const fetchSeriesDetail = (slug, page) => {
   const newUrl = `/series/${slug}/page/${page}`;
 
   return dispatch => {
-    Views.seriesDetail(slug, page)
+    fetch(Views.seriesDetail(slug, page), {
+      method: 'GET',
+      headers: authHeader()
+    })
       .then(responseStatus)
       .then(responseJSON)
       .then(data => {
