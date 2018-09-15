@@ -34,6 +34,14 @@ const Views = {
     fetch(baseUrl + `/api/issue/recent/?page=${page}`, fetchHeader)
 };
 
+const responseStatus = response => {
+  if (response.status >= 200 && response.status < 300) {
+    return Promise.resolve(response);
+  } else {
+    return Promise.reject(response.statusText);
+  }
+};
+
 const responseJSON = response => {
   return response.json();
 };
@@ -43,6 +51,7 @@ export const fetchPublisherList = page => {
 
   return dispatch => {
     Views.publisherList(page)
+      .then(responseStatus)
       .then(responseJSON)
       .then(data => {
         // If response is good update the state.
@@ -63,6 +72,7 @@ export const fetchSeriesList = page => {
 
   return dispatch => {
     Views.seriesList(page)
+      .then(responseStatus)
       .then(responseJSON)
       .then(data => {
         // If response is good update the state.
@@ -83,6 +93,7 @@ export const fetchRecentIssues = page => {
 
   return dispatch => {
     Views.recentIssues(page)
+      .then(responseStatus)
       .then(responseJSON)
       .then(data => {
         // If response is good update the state.
@@ -108,6 +119,7 @@ export const fetchPublisherDetail = (slug, page) => {
 
   return dispatch => {
     Views.publisherDetail(slug, page)
+      .then(responseStatus)
       .then(responseJSON)
       .then(data => {
         // If response is good update the state.
@@ -128,6 +140,7 @@ export const fetchSeriesDetail = (slug, page) => {
 
   return dispatch => {
     Views.seriesDetail(slug, page)
+      .then(responseStatus)
       .then(responseJSON)
       .then(data => {
         // If response is good update the state.
