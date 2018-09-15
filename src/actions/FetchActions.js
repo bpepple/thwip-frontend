@@ -14,32 +14,24 @@ import history from '../History';
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
+const fetchHeader = { method: 'GET', headers: authHeader() };
+
 const Views = {
   publisherList: page =>
-    fetch(baseUrl + `/api/publisher/?page=${page}`, {
-      method: 'GET',
-      headers: authHeader()
-    }),
+    fetch(baseUrl + `/api/publisher/?page=${page}`, fetchHeader),
   publisherDetail: (slug, page) =>
-    fetch(baseUrl + `/api/publisher/${slug}/series_list/?page=${page}`, {
-      method: 'GET',
-      headers: authHeader()
-    }),
-  seriesList: page =>
-    fetch(baseUrl + `/api/series/?page=${page}`, {
-      method: 'GET',
-      headers: authHeader()
-    }),
+    fetch(
+      baseUrl + `/api/publisher/${slug}/series_list/?page=${page}`,
+      fetchHeader
+    ),
+  seriesList: page => fetch(baseUrl + `/api/series/?page=${page}`, fetchHeader),
   seriesDetail: (slug, page) =>
-    fetch(baseUrl + `/api/series/${slug}/issue_list/?page=${page}`, {
-      method: 'GET',
-      headers: authHeader()
-    }),
+    fetch(
+      baseUrl + `/api/series/${slug}/issue_list/?page=${page}`,
+      fetchHeader
+    ),
   recentIssues: page =>
-    fetch(baseUrl + `/api/issue/recent/?page=${page}`, {
-      method: 'GET',
-      headers: authHeader()
-    })
+    fetch(baseUrl + `/api/issue/recent/?page=${page}`, fetchHeader)
 };
 
 const responseJSON = response => {
