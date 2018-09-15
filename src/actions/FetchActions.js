@@ -42,17 +42,16 @@ const Views = {
     })
 };
 
+const responseJSON = response => {
+  return response.json();
+};
+
 export const fetchPublisherList = page => {
   const newUrl = `/publisher/page/${page}`;
 
   return dispatch => {
     Views.publisherList(page)
-      .then(response => {
-        if (response.status !== 200) {
-          return Promise.reject(response.statusText);
-        }
-        return response.json();
-      })
+      .then(responseJSON)
       .then(data => {
         // If response is good update the state.
         dispatch({ type: FETCH_PUBLISHER_LIST, data: data, page: page });
@@ -72,12 +71,7 @@ export const fetchSeriesList = page => {
 
   return dispatch => {
     Views.seriesList(page)
-      .then(response => {
-        if (response.status !== 200) {
-          return Promise.reject(response.statusText);
-        }
-        return response.json();
-      })
+      .then(responseJSON)
       .then(data => {
         // If response is good update the state.
         dispatch({ type: FETCH_SERIES_LIST, data: data, page: page });
@@ -97,12 +91,7 @@ export const fetchRecentIssues = page => {
 
   return dispatch => {
     Views.recentIssues(page)
-      .then(response => {
-        if (response.status !== 200) {
-          return Promise.reject(response.statusText);
-        }
-        return response.json();
-      })
+      .then(responseJSON)
       .then(data => {
         // If response is good update the state.
         dispatch({
@@ -127,12 +116,7 @@ export const fetchPublisherDetail = (slug, page) => {
 
   return dispatch => {
     Views.publisherDetail(slug, page)
-      .then(response => {
-        if (response.status !== 200) {
-          return Promise.reject(response.statusText);
-        }
-        return response.json();
-      })
+      .then(responseJSON)
       .then(data => {
         // If response is good update the state.
         dispatch({ type: FETCH_PUBLISHER_DETAIL, data: data, page: page });
@@ -152,12 +136,7 @@ export const fetchSeriesDetail = (slug, page) => {
 
   return dispatch => {
     Views.seriesDetail(slug, page)
-      .then(response => {
-        if (response.status !== 200) {
-          return Promise.reject(response.statusText);
-        }
-        return response.json();
-      })
+      .then(responseJSON)
       .then(data => {
         // If response is good update the state.
         dispatch({
