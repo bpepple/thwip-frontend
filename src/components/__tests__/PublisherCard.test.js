@@ -38,7 +38,7 @@ describe('PublisherCard', () => {
 
   describe('rendered `PublisherCard`', () => {
     it('contains everything else that gets rendered', () => {
-      const c = publisherCard().find('Container');
+      const c = publisherCard().find('Row');
       expect(c.length).toBeGreaterThan(0);
     });
     it('always renders an `InfoButton`', () => {
