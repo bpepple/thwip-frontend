@@ -2,6 +2,12 @@ import { reducer } from '../auth';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from '../../actions/types';
 
 describe('auth reducer', () => {
+  // Test the reducer default switch value.
+  it('is correct', () => {
+    const action = { type: 'dummy_action' };
+    const initialState = {};
+    expect(reducer(undefined, action)).toEqual(initialState);
+  });
   it('authenticated user', () => {
     const beforeState = {};
     const action = { type: AUTH_USER };
