@@ -42,7 +42,7 @@ describe('SeriesCard', () => {
 
   describe('rendered `SeriesCard`', () => {
     it('contains everything else that gets rendered', () => {
-      const c = seriesCard().find('Container');
+      const c = seriesCard().find('Row');
       expect(c.length).toBeGreaterThan(0);
     });
     it('always renders an `InfoButton`', () => {
