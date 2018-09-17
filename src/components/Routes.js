@@ -7,8 +7,8 @@ import SeriesDetail from '../containers/SeriesDetail';
 import RecentIssues from '../containers/RecentIssues';
 import Reader from './reader/Reader';
 import { PrivateRoute } from './PrivateRoute';
-import Login from './auth/login';
-import Logout from './auth/logout';
+import Login from '../containers/auth/login';
+import Logout from '../containers/auth/logout';
 
 const Routes = () => (
   <Switch>
