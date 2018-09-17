@@ -1,9 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Footer from '../Footer';
+import cvLogo from '../../img/comicvine_logo.png';
 
-test('renders without crashing', () => {
-  shallow(<Footer cvUrl="https://comicvine.gamespot.com/" />);
+describe('Footer', () => {
+  it('renders without crashing', () => {
+    shallow(<Footer cvUrl="https://comicvine.gamespot.com/" />);
+  });
+  it('renders the image', () => {
+    const footer = shallow(<Footer cvUrl="https://comicvine.gamespot.com/" />);
+    expect(footer.find('img').prop('src')).toEqual(cvLogo);
+  });
 });
-
-/* TODO: add test to verify the Comic Vine logo is present. */
