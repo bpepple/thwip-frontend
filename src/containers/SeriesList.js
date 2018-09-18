@@ -12,6 +12,10 @@ class SeriesList extends Component {
     this.props.fetchSeriesList(page);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   onPageChanged = pageData => {
     const { currentPage } = pageData;
     const { page } = this.props;

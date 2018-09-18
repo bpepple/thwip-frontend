@@ -12,6 +12,10 @@ class SeriesDetail extends Component {
     this.props.fetchSeriesDetail(slug, page);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   onPageChanged = pageData => {
     const { currentPage } = pageData;
     const { slug } = this.props.match.params;

@@ -12,6 +12,10 @@ class RecentIssues extends Component {
     this.props.fetchRecentIssues(page);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   onPageChanged = pageData => {
     const { currentPage } = pageData;
     const { page } = this.props;

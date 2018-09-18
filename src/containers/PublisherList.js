@@ -12,6 +12,10 @@ class PublisherList extends Component {
     this.props.fetchPublisherList(page);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   onPageChanged = pageData => {
     const { currentPage } = pageData;
     const { page } = this.props;

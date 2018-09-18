@@ -12,6 +12,10 @@ class PublisherDetail extends Component {
     this.props.fetchPublisherDetail(slug, page);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   onPageChanged = pageData => {
     const { currentPage } = pageData;
     const { slug } = this.props.match.params;
