@@ -1,14 +1,9 @@
 import { schema, normalize } from 'normalizr';
 
-const role = new schema.Entity('roles');
-const creator = new schema.Entity('creators');
-const credit = new schema.Entity('credits', {
-  creators: [creator],
-  roles: [role]
-});
-const issue = new schema.Entity('issues', { credits: [credit] });
-
-const issueList = [issue];
+const roleSchema = new schema.Entity('roles');
+const creditSchema = new schema.Entity('credits', { role: [roleSchema] });
+const issueSchema = new schema.Entity('issues', { credits: [creditSchema] });
+const issueList = [issueSchema];
 
 const issuesNormalizer = data => normalize(data, issueList);
 export default issuesNormalizer;

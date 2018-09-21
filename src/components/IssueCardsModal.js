@@ -28,20 +28,6 @@ const ModalSummary = ({ text }) => (
   </React.Fragment>
 );
 
-const ModalRole = ({ roles }) => (
-  <React.Fragment>
-    {roles
-      .map((t, index) => (
-        <span key={index}>
-          <small>
-            <em>{t.name}</em>
-          </small>
-        </span>
-      ))
-      .reduce((prev, curr) => [prev, ', ', curr])}
-  </React.Fragment>
-);
-
 const CreatorImg = ({ img }) => {
   if (img) {
     return (
@@ -64,7 +50,21 @@ const CreatorImg = ({ img }) => {
   }
 };
 
-const ModalCredits = ({ credits }) => (
+const ModalRole = ({ credits, roles }) => (
+  <React.Fragment>
+    {credits
+      .map((t, index) => (
+        <span key={index}>
+          <small>
+            <em>{roles[t].name}</em>
+          </small>
+        </span>
+      ))
+      .reduce((prev, curr) => [prev, ', ', curr])}
+  </React.Fragment>
+);
+
+const ModalCredits = ({ credits, roles }) => (
   <React.Fragment>
     <ModalHeadings text="Credits" />
     <Row>
@@ -78,7 +78,7 @@ const ModalCredits = ({ credits }) => (
               <Media body className="ml-2 mt-2">
                 {credit.creator}
                 <br />
-                <ModalRole roles={credit.role} />
+                <ModalRole credits={credit.role} roles={roles} />
               </Media>
             </Media>
           </Col>
@@ -90,7 +90,7 @@ const ModalCredits = ({ credits }) => (
 
 class IssueCardsModal extends Component {
   render() {
-    const { toggle, modal, issue, credits } = this.props;
+    const { toggle, modal, issue, credits, roles } = this.props;
 
     return issue ? (
       <Modal isOpen={modal} toggle={toggle} centered>
@@ -98,7 +98,9 @@ class IssueCardsModal extends Component {
         <ModalBody>
           {issue.date && <ModalDate date={issue.date} />}
           {issue.desc && <ModalSummary text={issue.desc} />}
-          {credits.length > 0 && <ModalCredits credits={credits} />}
+          {credits.length > 0 && (
+            <ModalCredits credits={credits} roles={roles} />
+          )}
         </ModalBody>
         <ModalFooter>
           <Button onClick={toggle}>Close</Button>
@@ -112,7 +114,8 @@ IssueCardsModal.propTypes = {
   toggle: PropTypes.func.isRequired,
   modal: PropTypes.bool.isRequired,
   issue: PropTypes.object.isRequired,
-  credits: PropTypes.array
+  credits: PropTypes.array,
+  roles: PropTypes.object
 };
 
 export default IssueCardsModal;

@@ -73,7 +73,7 @@ class IssueCard extends Component {
 
   render() {
     const { result } = this.props.data;
-    const { issues } = this.props.data.entities;
+    const { issues, roles } = this.props.data.entities;
     const { modal, issue, credits } = this.state;
 
     return result ? (
@@ -81,8 +81,9 @@ class IssueCard extends Component {
         <IssueCardsModal
           toggle={this.toggle}
           modal={modal}
-          issue={issue}
           credits={credits}
+          issue={issue}
+          roles={roles}
         />
         <Fade in={true}>
           <Row>
