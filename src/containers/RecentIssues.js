@@ -52,6 +52,7 @@ class RecentIssues extends Component {
 RecentIssues.propTypes = {
   data: PropTypes.object.isRequired,
   loaded: PropTypes.bool.isRequired,
+  count: PropTypes.number.isRequired,
   error: PropTypes.string,
   match: PropTypes.shape({
     params: PropTypes.shape({
