@@ -17,42 +17,113 @@ describe('IssueCardsModal', () => {
     props = {
       toggle: jest.fn(),
       modal: true,
-      issue: {
-        __str__: '52 #001',
-        slug: '52-001-2006',
-        cvurl:
-          'https://comicvine.gamespot.com/52-1-golden-lads-lasses-must/4000-105733/',
-        series: '52',
-        name: 'Golden Lads & Lasses Must...',
-        number: '001',
-        date: '2006-05-10',
-        leaf: 0,
-        page_count: 24,
-        percent_read: 100,
-        status: 2,
-        desc: 'After the INFINITE CRISIS and before One Year Later.',
-        image:
-          'http://127.0.0.1:8000/media/images/issues/6ad10fb8-6106-4d06-b0b4-0aed825e145f.jpg'
+      roles: {
+        '1': {
+          id: 1,
+          name: 'Letterer'
+        },
+        '2': {
+          id: 2,
+          name: 'Writer'
+        },
+        '3': {
+          id: 3,
+          name: 'Colorist'
+        },
+        '4': {
+          id: 4,
+          name: 'Artist'
+        },
+        '5': {
+          id: 5,
+          name: 'Cover'
+        }
       },
       credits: [
         {
-          creator: 'Alex Sinclair',
-          role: [{ name: 'Colorist' }, { name: 'Cover' }]
+          id: 38778,
+          creator: 'Aaron Lopresti',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/9fd16553-7b41-4464-88d4-17fce074e021.jpg',
+          role: [5]
         },
-        { creator: 'Dan DiDio', role: [{ name: 'Editor' }] },
-        { creator: 'Geoff Johns', role: [{ name: 'Writer' }] },
-        { creator: 'Grant Morrison', role: [{ name: 'Writer' }] },
-        { creator: 'Greg Rucka', role: [{ name: 'Writer' }] },
-        { creator: 'Harvey Richards', role: [{ name: 'Editor' }] },
-        { creator: 'Jann (Jones) Robinson', role: [{ name: 'Editor' }] },
-        { creator: 'J.G. Jones', role: [{ name: 'Cover' }] },
-        { creator: 'Joe Bennett', role: [{ name: 'Penciler' }] },
-        { creator: 'Keith Giffen', role: [{ name: 'Penciler' }] },
-        { creator: 'Mark Waid', role: [{ name: 'Writer' }] },
-        { creator: 'Nick J. Napolitano', role: [{ name: 'Letterer' }] },
-        { creator: 'Ruy Jose', role: [{ name: 'Inker' }] },
-        { creator: 'Stephen Wacker', role: [{ name: 'Editor' }] }
-      ]
+        {
+          id: 38779,
+          creator: 'Brian Augustyn',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/7117a02e-d7e7-4f91-a34e-42a359bace88.jpg',
+          role: [2]
+        },
+        {
+          id: 38780,
+          creator: 'Dave Johnson',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/fc16ef64-24ca-40bd-abea-9291edb1c950.jpg',
+          role: [5]
+        },
+        {
+          id: 38781,
+          creator: 'Francesco Francavilla',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/b6a8ad6b-ead4-41d9-aa8c-b8bce2795ecc.jpg',
+          role: [5]
+        },
+        {
+          id: 38782,
+          creator: 'Jack Morelli',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/4d973e14-a418-4aeb-9436-81b575ebee60.jpg',
+          role: [1]
+        },
+        {
+          id: 38783,
+          creator: 'Kelly Fitzpatrick',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/aa310334-d1bf-4873-820e-4d8ac88aefbf.jpg',
+          role: [3]
+        },
+        {
+          id: 38784,
+          creator: 'Mark Waid',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/44493e0d-3e17-4722-ba9b-a130cc30591f.jpg',
+          role: [2]
+        },
+        {
+          id: 38785,
+          creator: 'Peter Krause',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/ac358a0c-975e-4388-9315-bfdff91cf525.jpg',
+          role: [4, 5]
+        },
+        {
+          id: 38786,
+          creator: 'Sanya Anwar',
+          image:
+            'http://127.0.0.1:8000/media/images/creators/4127b26b-0e5d-4400-96b8-f237daa69a93.png',
+          role: [5]
+        }
+      ],
+      issue: {
+        id: 5162,
+        __str__: 'Archie: 1941 #001',
+        slug: 'archie-1941-001-2018',
+        cvurl:
+          'https://comicvine.gamespot.com/archie-1941-1-chapter-one-the-last-summer/4000-684934/',
+        series: 'archie-1941',
+        name: 'Chapter One: The Last Summer',
+        number: '001',
+        date: '2018-11-01',
+        leaf: 9,
+        page_count: 26,
+        percent_read: 38,
+        status: 1,
+        desc:
+          "THE HISTORIC, GROUND-BREAKING MINI-SERIES STARTS HERE! Archie has been around for over 75 years and has been through many significant moments in time, but never before have we seen the characters take on real-world events as they unfold. WWII is looming and Archie and many young men from Riverdale are close to enlistment age. If you're a Riverdale teen, how would you cope with a looming world-changing event? Join the writing team of MARK WAID and BRIAN AUGUSTYN along with artist PETER KRAUSE fo",
+        image:
+          'http://127.0.0.1:8000/media/images/issues/78166dd2-7d41-489d-b0ee-0d3cdf23f12e.jpg',
+        credits: [38778, 38779, 38780, 38781, 38782, 38783, 38784, 38785, 38786]
+      }
     };
     mountedIssueCardsModal = undefined;
   });
