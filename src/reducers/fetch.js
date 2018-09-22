@@ -2,6 +2,7 @@ import {
   FETCH_RECENT_ISSUES,
   FETCH_SERIES_DETAIL,
   FETCH_SERIES_LIST,
+  FETCH_SERIES_SEARCH,
   FETCH_PUBLISHER_DETAIL,
   FETCH_PUBLISHER_LIST,
   FETCH_ERROR
@@ -36,6 +37,14 @@ export const reducer = (state = initialState, action) => {
         count: action.count
       };
     case FETCH_SERIES_LIST:
+      return {
+        ...state,
+        error: '',
+        loaded: true,
+        data: action.data,
+        page: action.page
+      };
+    case FETCH_SERIES_SEARCH:
       return {
         ...state,
         error: '',

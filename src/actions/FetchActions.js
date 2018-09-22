@@ -3,6 +3,7 @@ import {
   FETCH_PUBLISHER_DETAIL,
   FETCH_SERIES_LIST,
   FETCH_SERIES_DETAIL,
+  FETCH_SERIES_SEARCH,
   FETCH_RECENT_ISSUES,
   FETCH_ERROR
 } from './types';
@@ -21,6 +22,8 @@ const Views = {
   seriesList: page => baseUrl + `/api/series/?page=${page}`,
   seriesDetail: (slug, page) =>
     baseUrl + `/api/series/${slug}/issue_list/?page=${page}`,
+  seriesSearch: (search, page) =>
+    baseUrl + `/api/series/?page=${page}&search=${search}`,
   recentIssues: page => baseUrl + `/api/issue/recent/?page=${page}`
 };
 
@@ -151,6 +154,29 @@ export const fetchSeriesDetail = (slug, page) => {
         dispatch(fetchError(error));
       });
     // If our current url is the same as our new one don't push it.
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchSeriesSearch = (search, page) => {
+  const newUrl = `/search/series/page/${page}?search=${search}`;
+
+  return dispatch => {
+    fetch(Views.seriesSearch(search, page), {
+      method: 'GET',
+      headers: authHeader()
+    })
+      .then(responseStatus)
+      .then(responseJSON)
+      .then(data => {
+        dispatch({ type: FETCH_SERIES_SEARCH, data: data, page: page });
+      })
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+
     if (history.location.pathname !== newUrl) {
       dispatch(push(newUrl));
     }
