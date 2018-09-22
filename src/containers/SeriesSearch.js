@@ -24,8 +24,8 @@ class SeriesSearch extends Component {
     const { page } = this.props;
     const values = queryString.parse(this.props.location.search);
 
-    /* Don't fetch the page twice. */
-    if (currentPage === Number(page)) {
+    /* Don't fetch if the page twice. */
+    if (currentPage === Number(page) || currentPage === 0) {
       return;
     }
 
