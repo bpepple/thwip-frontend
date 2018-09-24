@@ -11,7 +11,7 @@ class SearchInput extends Component {
   }
 
   searchClick() {
-    console.log('Search for:', this.state.searchValue);
+    this.setState({ searchValue: '' });
   }
 
   updateSearchValue(evt) {
@@ -27,6 +27,7 @@ class SearchInput extends Component {
           <Input
             placeholder="Series..."
             type="text"
+            value={this.state.searchValue}
             onChange={evt => this.updateSearchValue(evt)}
           />
           <InputGroupAddon addonType="append">
