@@ -22,7 +22,7 @@ class PublisherDetail extends Component {
     const { page } = this.props;
 
     /* Don't fetch the page twice. */
-    if (currentPage === Number(page)) {
+    if (currentPage === Number(page) || currentPage === 0) {
       return;
     }
 
