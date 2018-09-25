@@ -10,6 +10,8 @@ import {
 import { authHeader } from '../components/helpers/auth-header';
 import { push } from 'connected-react-router';
 import issuesNormalizer from './issuesNormalizer';
+// Really should use the history from redux, but for now this works.
+import history from '../History';
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
@@ -51,8 +53,9 @@ export const fetchPublisherList = page => {
       .catch(error => {
         dispatch(fetchError(error));
       });
-
-    dispatch(push(newUrl));
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
   };
 };
 
@@ -70,7 +73,9 @@ export const fetchSeriesList = page => {
       .catch(error => {
         dispatch(fetchError(error));
       });
-    dispatch(push(newUrl));
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
   };
 };
 
@@ -93,8 +98,9 @@ export const fetchRecentIssues = page => {
       .catch(error => {
         dispatch(fetchError(error));
       });
-
-    dispatch(push(newUrl));
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
   };
 };
 
@@ -115,7 +121,9 @@ export const fetchPublisherDetail = (slug, page) => {
       .catch(error => {
         dispatch(fetchError(error));
       });
-    dispatch(push(newUrl));
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
   };
 };
 
@@ -141,7 +149,9 @@ export const fetchSeriesDetail = (slug, page) => {
       .catch(error => {
         dispatch(fetchError(error));
       });
-    dispatch(push(newUrl));
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
   };
 };
 
@@ -161,7 +171,9 @@ export const fetchSeriesSearch = (search, page) => {
       .catch(error => {
         dispatch(fetchError(error));
       });
-    dispatch(push(newUrl));
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
   };
 };
 
