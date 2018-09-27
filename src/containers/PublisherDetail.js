@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { fetchPublisherDetail } from '../actions';
 import { connect } from 'react-redux';
 import SeriesCard from '../components/SeriesCard';
-import MainPagination from '../components/MainPagination';
 import Footer from '../components/Footer';
 
 class PublisherDetail extends Component {
@@ -38,11 +37,11 @@ class PublisherDetail extends Component {
 
     return loaded ? (
       <React.Fragment>
-        <SeriesCard data={data} />
-        <MainPagination
+        <SeriesCard
+          data={data}
           totalRecords={data.count}
           onPageChanged={this.onPageChanged}
-          page={page}
+          page={Number(page)}
         />
         <Footer cvUrl="https://comicvine.gamespot.com/" />
       </React.Fragment>

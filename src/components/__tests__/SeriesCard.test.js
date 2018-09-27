@@ -35,7 +35,10 @@ describe('SeriesCard', () => {
               'http://127.0.0.1:8000/media/images/issues/2a70956e-cd41-4308-982a-f0507a56fc26.jpg'
           }
         ]
-      }
+      },
+      totalRecords: 1,
+      onPageChanged: jest.fn(),
+      page: 1
     };
     mountedSeriesCard = undefined;
   });

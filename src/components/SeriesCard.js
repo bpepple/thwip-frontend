@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ListCardsModal from './ListCardsModal';
+import MainPagination from './MainPagination';
 
 import {
   Fade,
@@ -55,7 +56,7 @@ class SeriesCard extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, totalRecords, onPageChanged, page } = this.props;
     const { modal, seriesData } = this.state;
 
     const cards = data.results.map(el => {
@@ -84,6 +85,11 @@ class SeriesCard extends Component {
             data={seriesData}
           />
           <Row>{cards}</Row>
+          <MainPagination
+            totalRecords={totalRecords}
+            onPageChanged={onPageChanged}
+            page={page}
+          />
         </Fade>
       </React.Fragment>
     ) : null;
@@ -91,7 +97,10 @@ class SeriesCard extends Component {
 }
 
 SeriesCard.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  totalRecords: PropTypes.number.isRequired,
+  onPageChanged: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired
 };
 
 export default SeriesCard;
