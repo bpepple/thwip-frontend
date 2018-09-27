@@ -31,7 +31,10 @@ describe('PublisherCard', () => {
             series_count: 45
           }
         ]
-      }
+      },
+      totalRecords: 1,
+      onPageChanged: jest.fn(),
+      page: 1
     };
     mountedPublisherCard = undefined;
   });

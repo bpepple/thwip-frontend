@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { fetchPublisherList } from '../actions';
 import { connect } from 'react-redux';
 import PublisherCard from '../components/PublisherCard';
-import MainPagination from '../components/MainPagination';
 import Footer from '../components/Footer';
 
 class PublisherList extends Component {
@@ -37,8 +36,8 @@ class PublisherList extends Component {
 
     return loaded ? (
       <React.Fragment>
-        <PublisherCard data={data} />
-        <MainPagination
+        <PublisherCard
+          data={data}
           totalRecords={data.count}
           onPageChanged={this.onPageChanged}
           page={page}

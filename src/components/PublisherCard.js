@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ListCardsModal from './ListCardsModal';
+import MainPagination from './MainPagination';
 import missingImg from '../img/image-not-found.png';
 
 import {
@@ -56,7 +57,7 @@ class PublisherCard extends Component {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, totalRecords, onPageChanged, page } = this.props;
     const { modal, publisherData } = this.state;
 
     const cards = data.results.map(el => {
@@ -88,6 +89,11 @@ class PublisherCard extends Component {
             data={publisherData}
           />
           <Row>{cards}</Row>
+          <MainPagination
+            totalRecords={totalRecords}
+            onPageChanged={onPageChanged}
+            page={page}
+          />
         </Fade>
       </React.Fragment>
     ) : null;
@@ -95,7 +101,10 @@ class PublisherCard extends Component {
 }
 
 PublisherCard.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  totalRecords: PropTypes.number.isRequired,
+  onPageChanged: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired
 };
 
 export default PublisherCard;
