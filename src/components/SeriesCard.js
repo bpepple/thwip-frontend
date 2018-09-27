@@ -58,26 +58,28 @@ class SeriesCard extends Component {
     const { data } = this.props;
     const { modal, seriesData } = this.state;
 
+    const cards = data.results.map(el => {
+      return (
+        <Col xs="2" key={el.slug}>
+          <Card className="text-white bg-dark mb-3">
+            <CardHeader className="text-center">{el.name}</CardHeader>
+            <CardImg src={el.image} alt="Placeholder image" />
+            <Progress value={el.percent_read} />
+            <Body text={el.issue_count} />
+            <CardFooter>
+              <OpenButton url={`/series/${el.slug}/page/1`} />
+              <InfoButton click={this.open.bind(this, el)} />
+            </CardFooter>
+          </Card>
+        </Col>
+      );
+    });
+
     return data.results ? (
       <React.Fragment>
         <ListCardsModal toggle={this.toggle} modal={modal} data={seriesData} />
         <Fade in={true}>
-          <Row>
-            {data.results.map(el => (
-              <Col xs="2" key={el.slug}>
-                <Card className="text-white bg-dark mb-3">
-                  <CardHeader className="text-center">{el.name}</CardHeader>
-                  <CardImg src={el.image} alt="Placeholder image" />
-                  <Progress value={el.percent_read} />
-                  <Body text={el.issue_count} />
-                  <CardFooter>
-                    <OpenButton url={`/series/${el.slug}/page/1`} />
-                    <InfoButton click={this.open.bind(this, el)} />
-                  </CardFooter>
-                </Card>
-              </Col>
-            ))}
-          </Row>
+          <Row>{cards}</Row>
         </Fade>
       </React.Fragment>
     ) : null;
