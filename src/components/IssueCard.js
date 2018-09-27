@@ -123,7 +123,9 @@ class IssueCard extends Component {
 
 IssueCard.propTypes = {
   data: PropTypes.object.isRequired,
-  onPageChanged: PropTypes.func.isRequired
+  totalRecords: PropTypes.number.isRequired,
+  onPageChanged: PropTypes.func.isRequired,
+  page: PropTypes.number.isRequired
 };
 
 export default IssueCard;
