@@ -76,40 +76,38 @@ class IssueCard extends Component {
     const { issues, roles } = this.props.data.entities;
     const { modal, issue, credits } = this.state;
 
+    const cards = result.map((el, index) => {
+      return (
+        <Col xs="2" key={issues[el].slug}>
+          <Card className="text-white bg-dark mb-3">
+            <CardHeader className="text-center">
+              {issues[el].__str__}
+            </CardHeader>
+            <DetailImg img={issues[el].image} />
+            <Progress value={issues[el].percent_read} />
+            <Body text={issues[el].page_count} />
+            <CardFooter>
+              <ReadButton url={`/reader/${issues[el].slug}`} />
+              <InfoButton
+                click={this.open.bind(this, issues[el], issues[el].credits)}
+              />
+            </CardFooter>
+          </Card>
+        </Col>
+      );
+    });
+
     return result ? (
       <React.Fragment>
-        <IssueCardsModal
-          toggle={this.toggle}
-          modal={modal}
-          credits={credits}
-          issue={issue}
-          roles={roles}
-        />
         <Fade in={true}>
-          <Row>
-            {result.map(el => (
-              <Col xs="2" key={issues[el].slug}>
-                <Card className="text-white bg-dark mb-3">
-                  <CardHeader className="text-center">
-                    {issues[el].__str__}
-                  </CardHeader>
-                  <DetailImg img={issues[el].image} />
-                  <Progress value={issues[el].percent_read} />
-                  <Body text={issues[el].page_count} />
-                  <CardFooter>
-                    <ReadButton url={`/reader/${issues[el].slug}`} />
-                    <InfoButton
-                      click={this.open.bind(
-                        this,
-                        issues[el],
-                        issues[el].credits
-                      )}
-                    />
-                  </CardFooter>
-                </Card>
-              </Col>
-            ))}
-          </Row>
+          <IssueCardsModal
+            toggle={this.toggle}
+            modal={modal}
+            credits={credits}
+            issue={issue}
+            roles={roles}
+          />
+          <Row>{cards}</Row>
         </Fade>
       </React.Fragment>
     ) : null;
