@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { fetchSeriesDetail } from '../actions';
 import { connect } from 'react-redux';
 import IssueCard from '../components/IssueCard';
-import MainPagination from '../components/MainPagination';
 import Footer from '../components/Footer';
 
 class SeriesDetail extends Component {
@@ -38,11 +37,11 @@ class SeriesDetail extends Component {
 
     return loaded ? (
       <React.Fragment>
-        <IssueCard data={data} />
-        <MainPagination
+        <IssueCard
+          data={data}
           totalRecords={count}
           onPageChanged={this.onPageChanged}
-          page={page}
+          page={Number(page)}
         />
         <Footer cvUrl="https://comicvine.gamespot.com/" />
       </React.Fragment>

@@ -135,8 +135,9 @@ describe('IssueCard', () => {
         },
         result: [4945]
       },
-      page: '1',
-      count: 1
+      totalRecords: 1,
+      onPageChanged: jest.fn(),
+      page: 1
     };
     mountedIssueCard = undefined;
   });

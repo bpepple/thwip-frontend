@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import IssueCardsModal from './IssueCardsModal';
+import MainPagination from './MainPagination';
 import missingImg from '../img/image-not-found.png';
 
 import {
@@ -72,6 +73,7 @@ class IssueCard extends Component {
   }
 
   render() {
+    const { totalRecords, page, onPageChanged } = this.props;
     const { result } = this.props.data;
     const { issues, roles } = this.props.data.entities;
     const { modal, issue, credits } = this.state;
@@ -108,6 +110,11 @@ class IssueCard extends Component {
             roles={roles}
           />
           <Row>{cards}</Row>
+          <MainPagination
+            totalRecords={totalRecords}
+            onPageChanged={onPageChanged}
+            page={page}
+          />
         </Fade>
       </React.Fragment>
     ) : null;
@@ -115,7 +122,8 @@ class IssueCard extends Component {
 }
 
 IssueCard.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  onPageChanged: PropTypes.func.isRequired
 };
 
 export default IssueCard;
