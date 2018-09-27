@@ -77,8 +77,12 @@ class SeriesCard extends Component {
 
     return data.results ? (
       <React.Fragment>
-        <ListCardsModal toggle={this.toggle} modal={modal} data={seriesData} />
         <Fade in={true}>
+          <ListCardsModal
+            toggle={this.toggle}
+            modal={modal}
+            data={seriesData}
+          />
           <Row>{cards}</Row>
         </Fade>
       </React.Fragment>
