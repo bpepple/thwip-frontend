@@ -76,7 +76,7 @@ class IssueCard extends Component {
     const { issues, roles } = this.props.data.entities;
     const { modal, issue, credits } = this.state;
 
-    const cards = result.map((el, index) => {
+    const cards = result.map(el => {
       return (
         <Col xs="2" key={issues[el].slug}>
           <Card className="text-white bg-dark mb-3">
