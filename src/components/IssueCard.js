@@ -59,11 +59,11 @@ class IssueCard extends Component {
     this.setState({ modal: !this.state.modal });
   }
 
-  open(issue, creditsIndex) {
+  open(issue) {
     const { credits } = this.props.data.entities;
 
     let issueCredits = [];
-    creditsIndex.map(i => issueCredits.push(credits[i]));
+    issue.credits.map(i => issueCredits.push(credits[i]));
 
     this.setState({
       modal: true,
@@ -90,9 +90,7 @@ class IssueCard extends Component {
             <Body text={issues[el].page_count} />
             <CardFooter>
               <ReadButton url={`/reader/${issues[el].slug}`} />
-              <InfoButton
-                click={this.open.bind(this, issues[el], issues[el].credits)}
-              />
+              <InfoButton click={this.open.bind(this, issues[el])} />
             </CardFooter>
           </Card>
         </Col>
