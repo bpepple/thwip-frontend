@@ -12,6 +12,9 @@ import {
   Button
 } from 'reactstrap';
 
+const pluralizeTitle = (count, noun, suffix = 's') =>
+  `${noun}${count !== 1 ? suffix : ''}`;
+
 const ModalHeadings = ({ text }) => <p className="font-weight-bold">{text}</p>;
 
 const ModalDate = ({ date }) => (
@@ -49,6 +52,17 @@ const CreatorImg = ({ img }) => {
     );
   }
 };
+
+const ModalArcs = ({ issue, arcs }) => (
+  <React.Fragment>
+    <ModalHeadings text={pluralizeTitle(issue.length, 'Story Arc')} />
+    <p>
+      {issue
+        .map((i, index) => <span key={index}>{arcs[i].name}</span>)
+        .reduce((prev, curr) => [prev, ', ', curr])}
+    </p>
+  </React.Fragment>
+);
 
 const ModalRole = ({ credits, roles }) => (
   <React.Fragment>
@@ -90,13 +104,14 @@ const ModalCredits = ({ credits, roles }) => (
 
 class IssueCardsModal extends Component {
   render() {
-    const { toggle, modal, issue, credits, roles } = this.props;
+    const { toggle, modal, issue, credits, roles, arcs } = this.props;
 
     return issue ? (
       <Modal isOpen={modal} toggle={toggle} centered>
         <ModalHeader toggle={toggle}>{issue.__str__}</ModalHeader>
         <ModalBody>
           {issue.date && <ModalDate date={issue.date} />}
+          {issue.arcs > 0 && <ModalArcs issue={issue.arcs} arcs={arcs} />}
           {issue.desc && <ModalSummary text={issue.desc} />}
           {credits.length > 0 && (
             <ModalCredits credits={credits} roles={roles} />
@@ -115,7 +130,8 @@ IssueCardsModal.propTypes = {
   modal: PropTypes.bool.isRequired,
   issue: PropTypes.object.isRequired,
   credits: PropTypes.array,
-  roles: PropTypes.object
+  roles: PropTypes.object,
+  arcs: PropTypes.object
 };
 
 export default IssueCardsModal;

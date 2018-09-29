@@ -63,7 +63,7 @@ class IssueCard extends Component {
     const { credits } = this.props.data.entities;
 
     let issueCredits = [];
-    creditsIndex.map(creditIndex => issueCredits.push(credits[creditIndex]));
+    creditsIndex.map(i => issueCredits.push(credits[i]));
 
     this.setState({
       modal: true,
@@ -75,7 +75,7 @@ class IssueCard extends Component {
   render() {
     const { totalRecords, page, onPageChanged } = this.props;
     const { result } = this.props.data;
-    const { issues, roles } = this.props.data.entities;
+    const { issues, roles, arcs } = this.props.data.entities;
     const { modal, issue, credits } = this.state;
 
     const cards = result.map(el => {
@@ -105,9 +105,10 @@ class IssueCard extends Component {
           <IssueCardsModal
             toggle={this.toggle}
             modal={modal}
-            credits={credits}
             issue={issue}
+            credits={credits}
             roles={roles}
+            arcs={arcs}
           />
           <Row>{cards}</Row>
           <MainPagination
