@@ -5,6 +5,8 @@ import {
   FETCH_SERIES_SEARCH,
   FETCH_PUBLISHER_DETAIL,
   FETCH_PUBLISHER_LIST,
+  FETCH_ARC_DETAIL,
+  FETCH_ARC_LIST,
   FETCH_ERROR
 } from '../actions/types';
 
@@ -67,6 +69,23 @@ export const reducer = (state = initialState, action) => {
         loaded: true,
         data: action.data,
         page: action.page
+      };
+    case FETCH_ARC_LIST:
+      return {
+        ...state,
+        error: '',
+        loaded: true,
+        data: action.data,
+        page: action.page
+      };
+    case FETCH_ARC_DETAIL:
+      return {
+        ...state,
+        error: '',
+        loaded: true,
+        data: action.data,
+        page: action.page,
+        count: action.count
       };
     case FETCH_ERROR:
       return { ...state, error: action.payload };
