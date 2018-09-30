@@ -5,8 +5,20 @@ import {
   FETCH_SERIES_LIST,
   FETCH_PUBLISHER_DETAIL,
   FETCH_PUBLISHER_LIST,
+  FETCH_ARC_LIST,
+  FETCH_ARC_DETAIL,
   FETCH_ERROR
 } from '../../actions/types';
+
+const dataArc = {
+  id: 7,
+  name: 'Blackest Night',
+  slug: 'blackest-night',
+  image: 'http://127.0.0.1:8000/media/images/arcs/test.jpg',
+  issue_count: 9,
+  percent_read: 11,
+  desc: "The Blackest Night is the third part of Geoff Johns's trilogy."
+};
 
 const dataPublisher = {
   slug: 'dc-comics',
@@ -131,6 +143,30 @@ describe('fetch reducer', () => {
       error: '',
       loaded: true,
       data: dataIssue,
+      page: 1
+    });
+  });
+  it('fetch arc list', () => {
+    const beforeState = {};
+    const action = { type: FETCH_ARC_LIST, page: 1, data: dataArc };
+    const afterState = reducer(beforeState, action);
+
+    expect(afterState).toEqual({
+      error: '',
+      loaded: true,
+      data: dataArc,
+      page: 1
+    });
+  });
+  it('fetch arc detail', () => {
+    const beforeState = {};
+    const action = { type: FETCH_ARC_DETAIL, page: 1, data: dataArc };
+    const afterState = reducer(beforeState, action);
+
+    expect(afterState).toEqual({
+      error: '',
+      loaded: true,
+      data: dataArc,
       page: 1
     });
   });

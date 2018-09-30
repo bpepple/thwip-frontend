@@ -5,6 +5,8 @@ import {
   FETCH_SERIES_DETAIL,
   FETCH_SERIES_SEARCH,
   FETCH_RECENT_ISSUES,
+  FETCH_ARC_LIST,
+  FETCH_ARC_DETAIL,
   FETCH_ERROR
 } from './types';
 import { authHeader } from '../components/helpers/auth-header';
@@ -24,6 +26,9 @@ const Views = {
     baseUrl + `/api/series/${slug}/issue_list/?page=${page}`,
   seriesSearch: (search, page) =>
     baseUrl + `/api/series/?page=${page}&search=${search}`,
+  arcList: page => baseUrl + `/api/arc/?page=${page}`,
+  arcDetail: (slug, page) =>
+    baseUrl + `/api/arc/${slug}/issue_list/?page=${page}`,
   recentIssues: page => baseUrl + `/api/issue/recent/?page=${page}`
 };
 
@@ -69,6 +74,25 @@ export const fetchSeriesList = page => {
       .then(data => {
         // If response is good update the state.
         dispatch({ type: FETCH_SERIES_LIST, data: data, page: page });
+      })
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchArcList = page => {
+  const newUrl = `/arc/page/${page}`;
+
+  return dispatch => {
+    fetch(Views.arcList(page), { method: 'GET', headers: authHeader() })
+      .then(responseStatus)
+      .then(responseJSON)
+      .then(data => {
+        dispatch({ type: FETCH_ARC_LIST, data: data, page: page });
       })
       .catch(error => {
         dispatch(fetchError(error));
@@ -141,6 +165,34 @@ export const fetchSeriesDetail = (slug, page) => {
         // If response is good update the state.
         dispatch({
           type: FETCH_SERIES_DETAIL,
+          data: issuesNormalizer(data.results),
+          page: page,
+          count: data.count
+        });
+      })
+      .catch(error => {
+        dispatch(fetchError(error));
+      });
+    if (history.location.pathname !== newUrl) {
+      dispatch(push(newUrl));
+    }
+  };
+};
+
+export const fetchArcDetail = (slug, page) => {
+  const newUrl = `/arc/${slug}/page/${page}`;
+
+  return dispatch => {
+    fetch(Views.arcDetail(slug, page), {
+      method: 'GET',
+      headers: authHeader()
+    })
+      .then(responseStatus)
+      .then(responseJSON)
+      .then(data => {
+        // If response is good update the state.
+        dispatch({
+          type: FETCH_ARC_DETAIL,
           data: issuesNormalizer(data.results),
           page: page,
           count: data.count
