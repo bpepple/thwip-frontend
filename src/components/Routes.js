@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import ArcList from '../containers/ArcList';
 import PublisherList from '../containers/PublisherList';
 import PublisherDetail from '../containers/PublisherDetail';
 import SeriesList from '../containers/SeriesList';
@@ -13,6 +14,7 @@ import Logout from '../containers/auth/logout';
 
 const Routes = () => (
   <Switch>
+    <PrivateRoute exact path="/arc/page/:page" component={ArcList} />
     <PrivateRoute exact path="/series/page/:page" component={SeriesList} />
     <PrivateRoute path="/series/:slug/page/:page" component={SeriesDetail} />
     <PrivateRoute

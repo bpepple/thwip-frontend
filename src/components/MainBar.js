@@ -74,13 +74,16 @@ class MainBar extends Component {
           <NavbarBrand href="/series/page/1">Thwip!</NavbarBrand>
           <Nav className="mr-auto" navbar>
             <NavItem>
+              <NavLink href="/issues/recent/page/1">Recently Added</NavLink>
+            </NavItem>
+            <NavItem>
               <NavLink href="/series/page/1">Series</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/publisher/page/1">Publisher</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/issues/recent/page/1">Recently Added</NavLink>
+              <NavLink href="/arc/page/1">Story Arc</NavLink>
             </NavItem>
           </Nav>
           <Nav className="ml-auto" navbar>
