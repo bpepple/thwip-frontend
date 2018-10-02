@@ -51,7 +51,7 @@ class IssueCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { modal: false, issue: {}, credits: [] };
+    this.state = { modal: false, issue: {}, credits: [], arcs: [] };
     this.toggle = this.toggle.bind(this);
   }
 
@@ -60,23 +60,27 @@ class IssueCard extends Component {
   }
 
   open(issue) {
-    const { credits } = this.props.data.entities;
+    const { credits, arcs } = this.props.data.entities;
 
     let issueCredits = [];
     issue.credits.map(i => issueCredits.push(credits[i]));
 
+    let issueArcs = [];
+    issue.arcs.map(i => issueArcs.push(arcs[i]));
+
     this.setState({
       modal: true,
       issue: issue,
-      credits: issueCredits
+      credits: issueCredits,
+      arcs: issueArcs
     });
   }
 
   render() {
     const { totalRecords, page, onPageChanged } = this.props;
     const { result } = this.props.data;
-    const { issues, roles, arcs } = this.props.data.entities;
-    const { modal, issue, credits } = this.state;
+    const { issues, roles } = this.props.data.entities;
+    const { modal, issue, credits, arcs } = this.state;
 
     const cards = result.map(el => {
       return (

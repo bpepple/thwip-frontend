@@ -53,12 +53,12 @@ const CreatorImg = ({ img }) => {
   }
 };
 
-const ModalArcs = ({ issue, arcs }) => (
+const ModalArcs = ({ arcs }) => (
   <React.Fragment>
-    <ModalHeadings text={pluralizeTitle(issue.length, 'Story Arc')} />
+    <ModalHeadings text={pluralizeTitle(arcs.length, 'Story Arc')} />
     <p>
-      {issue
-        .map((i, index) => <span key={index}>{arcs[i].name}</span>)
+      {arcs
+        .map(i => <span key={i.id}>{i.name}</span>)
         .reduce((prev, curr) => [prev, ', ', curr])}
     </p>
   </React.Fragment>
@@ -111,7 +111,7 @@ class IssueCardsModal extends Component {
         <ModalHeader toggle={toggle}>{issue.__str__}</ModalHeader>
         <ModalBody>
           {issue.date && <ModalDate date={issue.date} />}
-          {issue.arcs > 0 && <ModalArcs issue={issue.arcs} arcs={arcs} />}
+          {arcs.length > 0 && <ModalArcs arcs={arcs} />}
           {issue.desc && <ModalSummary text={issue.desc} />}
           {credits.length > 0 && (
             <ModalCredits credits={credits} roles={roles} />
@@ -131,7 +131,7 @@ IssueCardsModal.propTypes = {
   issue: PropTypes.object.isRequired,
   credits: PropTypes.array,
   roles: PropTypes.object,
-  arcs: PropTypes.object
+  arcs: PropTypes.array
 };
 
 export default IssueCardsModal;
