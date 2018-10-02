@@ -53,16 +53,22 @@ const CreatorImg = ({ img }) => {
   }
 };
 
-const ModalArcs = ({ arcs }) => (
-  <React.Fragment>
-    <ModalHeadings text={pluralizeTitle(arcs.length, 'Story Arc')} />
-    <p>
-      {arcs
-        .map(i => <span key={i.id}>{i.name}</span>)
-        .reduce((prev, curr) => [prev, ', ', curr])}
-    </p>
-  </React.Fragment>
-);
+const ModalArcs = ({ arcs }) => {
+  if (arcs.length > 0) {
+    return (
+      <React.Fragment>
+        <ModalHeadings text={pluralizeTitle(arcs.length, 'Story Arc')} />
+        <p>
+          {arcs
+            .map(i => <span key={i.id}>{i.name}</span>)
+            .reduce((prev, curr) => [prev, ', ', curr])}
+        </p>
+      </React.Fragment>
+    );
+  } else {
+    return null;
+  }
+};
 
 const ModalRole = ({ credits, roles }) => (
   <React.Fragment>
@@ -78,29 +84,35 @@ const ModalRole = ({ credits, roles }) => (
   </React.Fragment>
 );
 
-const ModalCredits = ({ credits, roles }) => (
-  <React.Fragment>
-    <ModalHeadings text="Credits" />
-    <Row>
-      {credits.map(function(credit, index) {
-        return (
-          <Col md="6" key={index}>
-            <Media className="mb-3 border rounded">
-              <Media left>
-                <CreatorImg img={credit.image} />
-              </Media>
-              <Media body className="ml-2 mt-2">
-                {credit.creator}
-                <br />
-                <ModalRole credits={credit.role} roles={roles} />
-              </Media>
-            </Media>
-          </Col>
-        );
-      })}
-    </Row>
-  </React.Fragment>
-);
+const ModalCredits = ({ credits, roles }) => {
+  if (credits.length > 0) {
+    return (
+      <React.Fragment>
+        <ModalHeadings text="Credits" />
+        <Row>
+          {credits.map(function(credit, index) {
+            return (
+              <Col md="6" key={index}>
+                <Media className="mb-3 border rounded">
+                  <Media left>
+                    <CreatorImg img={credit.image} />
+                  </Media>
+                  <Media body className="ml-2 mt-2">
+                    {credit.creator}
+                    <br />
+                    <ModalRole credits={credit.role} roles={roles} />
+                  </Media>
+                </Media>
+              </Col>
+            );
+          })}
+        </Row>
+      </React.Fragment>
+    );
+  } else {
+    return null;
+  }
+};
 
 class IssueCardsModal extends Component {
   render() {
@@ -111,11 +123,9 @@ class IssueCardsModal extends Component {
         <ModalHeader toggle={toggle}>{issue.__str__}</ModalHeader>
         <ModalBody>
           {issue.date && <ModalDate date={issue.date} />}
-          {arcs.length > 0 && <ModalArcs arcs={arcs} />}
+          {arcs && <ModalArcs arcs={arcs} />}
           {issue.desc && <ModalSummary text={issue.desc} />}
-          {credits.length > 0 && (
-            <ModalCredits credits={credits} roles={roles} />
-          )}
+          {credits && <ModalCredits credits={credits} roles={roles} />}
         </ModalBody>
         <ModalFooter>
           <Button onClick={toggle}>Close</Button>
