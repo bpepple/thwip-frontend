@@ -11,7 +11,7 @@ class Footer extends PureComponent {
       <Row className="justify-content-end">
         <h6>
           Metadata retrieved from{' '}
-          <a href={cvUrl} target="_blank">
+          <a href={cvUrl} target="_blank" rel="noopener noreferrer">
             <img src={cvLogo} alt="Comic Vine" />
           </a>
         </h6>
