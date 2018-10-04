@@ -3,6 +3,7 @@ import {
   FETCH_RECENT_ISSUES,
   FETCH_SERIES_DETAIL,
   FETCH_SERIES_LIST,
+  FETCH_SERIES_SEARCH,
   FETCH_PUBLISHER_DETAIL,
   FETCH_PUBLISHER_LIST,
   FETCH_ARC_LIST,
@@ -125,6 +126,18 @@ describe('fetch reducer', () => {
   it('fetch series list', () => {
     const beforeState = {};
     const action = { type: FETCH_SERIES_LIST, page: 1, data: dataSeries };
+    const afterState = reducer(beforeState, action);
+
+    expect(afterState).toEqual({
+      error: '',
+      loaded: true,
+      data: dataSeries,
+      page: 1
+    });
+  });
+  it('fetch series search', () => {
+    const beforeState = {};
+    const action = { type: FETCH_SERIES_SEARCH, page: 1, data: dataSeries };
     const afterState = reducer(beforeState, action);
 
     expect(afterState).toEqual({
