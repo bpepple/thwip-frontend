@@ -24,6 +24,13 @@ const ModalDate = ({ date }) => (
   </React.Fragment>
 );
 
+const ModalTitle = ({ text }) => (
+  <React.Fragment>
+    <ModalHeadings text="Title" />
+    <p>{text}</p>
+  </React.Fragment>
+);
+
 const ModalSummary = ({ text }) => (
   <React.Fragment>
     <ModalHeadings text="Summary" />
@@ -124,6 +131,7 @@ class IssueCardsModal extends Component {
         <ModalBody>
           {issue.date && <ModalDate date={issue.date} />}
           {arcs && <ModalArcs arcs={arcs} />}
+          {issue.name && <ModalTitle text={issue.name} />}
           {issue.desc && <ModalSummary text={issue.desc} />}
           {credits && <ModalCredits credits={credits} roles={roles} />}
         </ModalBody>
