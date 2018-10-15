@@ -38,13 +38,11 @@ const InfoButton = ({ click }) => (
 );
 
 const DetailImg = ({ img }) => {
-  let i;
   if (img !== null) {
-    i = <CardImg src={img} alt="Issue Image" />;
+    return <CardImg src={img} alt="Issue Image" />;
   } else {
-    i = <CardImg src={missingImg} alt="Placeholder image" />;
+    return <CardImg src={missingImg} alt="Placeholder image" />;
   }
-  return i;
 };
 
 class IssueCard extends Component {
