@@ -19,11 +19,21 @@ import {
   Progress
 } from 'reactstrap';
 
-const Body = ({ text }) => (
-  <CardBody>
-    <CardText>{text} Issues</CardText>
-  </CardBody>
-);
+const Body = ({ text }) => {
+  if (Number(text) > 1) {
+    return (
+      <CardBody>
+        <CardText>{text} Issues</CardText>
+      </CardBody>
+    );
+  } else {
+    return (
+      <CardBody>
+        <CardText>{text} Issue</CardText>
+      </CardBody>
+    );
+  }
+};
 
 const OpenButton = ({ url }) => (
   <Button color="primary" href={url}>
