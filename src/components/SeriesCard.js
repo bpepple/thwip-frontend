@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import OpenButton from './OpenButton';
+import InfoButton from './InfoButton';
 import ListCardsModal from './ListCardsModal';
 import MainPagination from './MainPagination';
 import missingImg from '../img/image-not-found.png';
@@ -16,7 +16,6 @@ import {
   CardFooter,
   CardText,
   CardBody,
-  Button,
   Progress
 } from 'reactstrap';
 
@@ -35,12 +34,6 @@ const Body = ({ text }) => {
     );
   }
 };
-
-const InfoButton = ({ click }) => (
-  <Button className="float-right" color="info" onClick={click}>
-    <FontAwesomeIcon icon="info-circle" size="lg" />
-  </Button>
-);
 
 const SeriesImage = ({ img }) => {
   if (img !== null) {

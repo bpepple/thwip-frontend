@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import InfoButton from './InfoButton';
 import IssueCardsModal from './IssueCardsModal';
 import MainPagination from './MainPagination';
 import missingImg from '../img/image-not-found.png';
@@ -28,12 +28,6 @@ const Body = ({ text }) => (
 const ReadButton = ({ url }) => (
   <Button color="primary" href={url}>
     Read
-  </Button>
-);
-
-const InfoButton = ({ click }) => (
-  <Button className="float-right" color="info" onClick={click}>
-    <FontAwesomeIcon icon="info-circle" size="lg" />
   </Button>
 );
 

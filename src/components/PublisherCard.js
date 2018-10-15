@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import OpenButton from './OpenButton';
+import InfoButton from './InfoButton';
 import ListCardsModal from './ListCardsModal';
 import MainPagination from './MainPagination';
 import missingImg from '../img/image-not-found.png';
@@ -15,20 +15,13 @@ import {
   CardHeader,
   CardFooter,
   CardText,
-  CardBody,
-  Button
+  CardBody
 } from 'reactstrap';
 
 const Body = ({ text }) => (
   <CardBody>
     <CardText>{text} Series</CardText>
   </CardBody>
-);
-
-const InfoButton = ({ click }) => (
-  <Button className="float-right" color="info" onClick={click}>
-    <FontAwesomeIcon icon="info-circle" size="lg" />
-  </Button>
 );
 
 class PublisherCard extends Component {
