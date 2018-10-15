@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import OpenButton from './OpenButton';
 import InfoButton from './InfoButton';
 import CardImage from './CardImage';
+import SeriesCardBody from './SeriesCardBody';
 import ListCardsModal from './ListCardsModal';
 import MainPagination from './MainPagination';
 import {
@@ -12,16 +13,8 @@ import {
   Card,
   CardHeader,
   CardFooter,
-  CardText,
-  CardBody,
   Progress
 } from 'reactstrap';
-
-const Body = ({ text }) => (
-  <CardBody>
-    <CardText>{text} Issues</CardText>
-  </CardBody>
-);
 
 class ArcCard extends Component {
   constructor(props) {
@@ -53,7 +46,7 @@ class ArcCard extends Component {
             <CardHeader className="text-center">{el.name}</CardHeader>
             <CardImage src={el.image} />
             <Progress value={el.percent_read} />
-            <Body text={el.issue_count} />
+            <SeriesCardBody count={Number(el.issue_count)} />
             <CardFooter>
               <OpenButton url={`/arc/${el.slug}/page/1`} />
               <InfoButton click={this.open.bind(this, el)} />
