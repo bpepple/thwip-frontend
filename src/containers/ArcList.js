@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { fetchArcList } from '../actions';
 import { connect } from 'react-redux';
-import SeriesCard from '../components/SeriesCard';
+import ArcCard from '../components/ArcCard';
 import Footer from '../components/Footer';
 
 class ArcList extends Component {
@@ -36,7 +36,7 @@ class ArcList extends Component {
 
     return loaded ? (
       <React.Fragment>
-        <SeriesCard
+        <ArcCard
           data={data}
           totalRecords={data.count}
           onPageChanged={this.onPageChanged}
