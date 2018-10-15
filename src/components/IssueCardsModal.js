@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ModalHeadings from './ModalHeadings';
 import ModalSummary from './ModalSummary';
@@ -92,27 +92,25 @@ const ModalCredits = ({ credits, roles }) => {
   }
 };
 
-class IssueCardsModal extends Component {
-  render() {
-    const { toggle, modal, issue, credits, roles, arcs } = this.props;
+const IssueCardsModal = props => {
+  const { toggle, modal, issue, credits, roles, arcs } = props;
 
-    return issue ? (
-      <Modal isOpen={modal} toggle={toggle} centered>
-        <ModalHeader toggle={toggle}>{issue.__str__}</ModalHeader>
-        <ModalBody>
-          {issue.date && <ModalDate date={issue.date} />}
-          {arcs && <ModalArcs arcs={arcs} />}
-          {issue.name && <ModalTitle text={issue.name} />}
-          {issue.desc && <ModalSummary text={issue.desc} />}
-          {credits && <ModalCredits credits={credits} roles={roles} />}
-        </ModalBody>
-        <ModalFooter>
-          <Button onClick={toggle}>Close</Button>
-        </ModalFooter>
-      </Modal>
-    ) : null;
-  }
-}
+  return issue ? (
+    <Modal isOpen={modal} toggle={toggle} centered>
+      <ModalHeader toggle={toggle}>{issue.__str__}</ModalHeader>
+      <ModalBody>
+        {issue.date && <ModalDate date={issue.date} />}
+        {arcs && <ModalArcs arcs={arcs} />}
+        {issue.name && <ModalTitle text={issue.name} />}
+        {issue.desc && <ModalSummary text={issue.desc} />}
+        {credits && <ModalCredits credits={credits} roles={roles} />}
+      </ModalBody>
+      <ModalFooter>
+        <Button onClick={toggle}>Close</Button>
+      </ModalFooter>
+    </Modal>
+  ) : null;
+};
 
 IssueCardsModal.propTypes = {
   toggle: PropTypes.func.isRequired,
