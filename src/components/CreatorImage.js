@@ -14,7 +14,7 @@ const CreatorImage = ({ src }) => {
         object
         className="rounded-left"
         src={missingImg}
-        alt="Generic placeholder image"
+        alt="Missing image"
       />
     );
   }
