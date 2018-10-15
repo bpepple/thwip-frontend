@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ModalHeadings from './ModalHeadings';
 import ModalSummary from './ModalSummary';
-import missingImg from '../img/creator-not-found.png';
+import CreatorImage from './CreatorImage';
 import {
   Media,
   Modal,
@@ -30,28 +30,6 @@ const ModalTitle = ({ text }) => (
     <p>{text}</p>
   </React.Fragment>
 );
-
-const CreatorImg = ({ img }) => {
-  if (img) {
-    return (
-      <Media
-        object
-        className="rounded-left"
-        src={img}
-        alt="{credit.creator} image"
-      />
-    );
-  } else {
-    return (
-      <Media
-        object
-        className="rounded-left"
-        src={missingImg}
-        alt="Generic placeholder image"
-      />
-    );
-  }
-};
 
 const ModalArcs = ({ arcs }) => {
   if (arcs.length > 0) {
@@ -95,7 +73,7 @@ const ModalCredits = ({ credits, roles }) => {
               <Col md="6" key={index}>
                 <Media className="mb-3 border rounded">
                   <Media left>
-                    <CreatorImg img={credit.image} />
+                    <CreatorImage src={credit.image} />
                   </Media>
                   <Media body className="ml-2 mt-2">
                     {credit.creator}
