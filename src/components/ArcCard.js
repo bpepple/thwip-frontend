@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CardImage from './CardImage';
 import ListCardsModal from './ListCardsModal';
 import MainPagination from './MainPagination';
-import missingImg from '../img/image-not-found.png';
 import {
   Fade,
   Col,
   Row,
   Card,
-  CardImg,
   CardHeader,
   CardFooter,
   CardText,
@@ -23,16 +22,6 @@ const Body = ({ text }) => (
     <CardText>{text} Issues</CardText>
   </CardBody>
 );
-
-const ArcImg = ({ img }) => {
-  let i;
-  if (img !== null) {
-    i = <CardImg src={img} alt="Issue Image" />;
-  } else {
-    i = <CardImg src={missingImg} alt="Placeholder image" />;
-  }
-  return i;
-};
 
 const OpenButton = ({ url }) => (
   <Button color="primary" href={url}>
@@ -74,7 +63,7 @@ class ArcCard extends Component {
         <Col xs="2" key={el.slug}>
           <Card className="text-white bg-dark mb-3">
             <CardHeader className="text-center">{el.name}</CardHeader>
-            <ArcImg img={el.image} />
+            <CardImage src={el.image} />
             <Progress value={el.percent_read} />
             <Body text={el.issue_count} />
             <CardFooter>

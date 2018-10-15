@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import InfoButton from './InfoButton';
+import CardImage from './CardImage';
 import IssueCardsModal from './IssueCardsModal';
 import MainPagination from './MainPagination';
-import missingImg from '../img/image-not-found.png';
-
 import {
   Fade,
   Col,
   Row,
   Card,
-  CardImg,
   CardHeader,
   CardFooter,
   CardBody,
@@ -30,14 +28,6 @@ const ReadButton = ({ url }) => (
     Read
   </Button>
 );
-
-const DetailImg = ({ img }) => {
-  if (img !== null) {
-    return <CardImg src={img} alt="Issue Image" />;
-  } else {
-    return <CardImg src={missingImg} alt="Placeholder image" />;
-  }
-};
 
 class IssueCard extends Component {
   constructor(props) {
@@ -81,7 +71,7 @@ class IssueCard extends Component {
             <CardHeader className="text-center">
               {issues[el].__str__}
             </CardHeader>
-            <DetailImg img={issues[el].image} />
+            <CardImage src={issues[el].image} />
             <Progress value={issues[el].percent_read} />
             <Body text={issues[el].page_count} />
             <CardFooter>

@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import OpenButton from './OpenButton';
 import InfoButton from './InfoButton';
+import CardImage from './CardImage';
 import ListCardsModal from './ListCardsModal';
 import MainPagination from './MainPagination';
-import missingImg from '../img/image-not-found.png';
-
 import {
   Fade,
   Col,
   Row,
   Card,
-  CardImg,
   CardHeader,
   CardFooter,
   CardText,
@@ -32,14 +30,6 @@ const Body = ({ text }) => {
         <CardText>{text} Issue</CardText>
       </CardBody>
     );
-  }
-};
-
-const SeriesImage = ({ img }) => {
-  if (img !== null) {
-    return <CardImg src={img} alt="Series Image" />;
-  } else {
-    return <CardImg src={missingImg} alt="Placeholder image" />;
   }
 };
 
@@ -71,7 +61,7 @@ class SeriesCard extends Component {
         <Col xs="2" key={el.slug}>
           <Card className="text-white bg-dark mb-3">
             <CardHeader className="text-center">{el.name}</CardHeader>
-            <SeriesImage img={el.image} />
+            <CardImage src={el.image} />
             <Progress value={el.percent_read} />
             <Body text={el.issue_count} />
             <CardFooter>
