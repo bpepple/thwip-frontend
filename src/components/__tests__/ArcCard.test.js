@@ -49,8 +49,8 @@ describe('ArcCard', () => {
     it('always renders an `OpenButton`', () => {
       expect(arcCard().find('OpenButton').length).toBe(1);
     });
-    it('always render the `Body`', () => {
-      expect(arcCard().find('Body').length).toBe(1);
+    it('always render the `SeriesCardBody`', () => {
+      expect(arcCard().find('SeriesCardBody').length).toBe(1);
     });
   });
 });
