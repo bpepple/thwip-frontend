@@ -40,7 +40,7 @@ class PublisherList extends Component {
           data={data}
           totalRecords={data.count}
           onPageChanged={this.onPageChanged}
-          page={page}
+          page={Number(page)}
         />
         <Footer cvUrl="https://comicvine.gamespot.com/" />
       </React.Fragment>
