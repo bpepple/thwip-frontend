@@ -12,7 +12,7 @@ const CardImage = ({ src }) => {
 };
 
 CardImage.propTypes = {
-  src: PropTypes.string.isRequired
+  src: PropTypes.string
 };
 
 export default CardImage;
