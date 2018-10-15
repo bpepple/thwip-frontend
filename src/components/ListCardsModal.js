@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ModalHeadings from './ModalHeadings';
+import ModalSummary from './ModalSummary';
 import { Modal, ModalBody, ModalFooter, ModalHeader, Button } from 'reactstrap';
-
-const ModalHeadings = ({ text }) => <p className="font-weight-bold">{text}</p>;
 
 const ModalYear = ({ year }) => (
   <React.Fragment>
     <ModalHeadings text="Year" />
     <p>{year}</p>
-  </React.Fragment>
-);
-
-const ModalSummary = ({ text }) => (
-  <React.Fragment>
-    <ModalHeadings text="Summary" />
-    <p>{text}</p>
   </React.Fragment>
 );
 

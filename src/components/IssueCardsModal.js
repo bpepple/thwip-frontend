@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ModalHeadings from './ModalHeadings';
+import ModalSummary from './ModalSummary';
 import missingImg from '../img/creator-not-found.png';
 import {
   Media,
@@ -15,8 +17,6 @@ import {
 const pluralizeTitle = (count, noun, suffix = 's') =>
   `${noun}${count !== 1 ? suffix : ''}`;
 
-const ModalHeadings = ({ text }) => <p className="font-weight-bold">{text}</p>;
-
 const ModalDate = ({ date }) => (
   <React.Fragment>
     <ModalHeadings text="Date" />
@@ -27,13 +27,6 @@ const ModalDate = ({ date }) => (
 const ModalTitle = ({ text }) => (
   <React.Fragment>
     <ModalHeadings text="Title" />
-    <p>{text}</p>
-  </React.Fragment>
-);
-
-const ModalSummary = ({ text }) => (
-  <React.Fragment>
-    <ModalHeadings text="Summary" />
     <p>{text}</p>
   </React.Fragment>
 );
