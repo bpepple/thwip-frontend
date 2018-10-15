@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import OpenButton from './OpenButton';
 import InfoButton from './InfoButton';
+import CardImage from './CardImage';
 import ListCardsModal from './ListCardsModal';
 import MainPagination from './MainPagination';
-import missingImg from '../img/image-not-found.png';
-
 import {
   Col,
   Fade,
   Row,
   Card,
-  CardImg,
   CardHeader,
   CardFooter,
   CardText,
@@ -53,11 +51,7 @@ class PublisherCard extends Component {
         <Col xs="2" key={el.slug}>
           <Card className="text-white bg-dark mb-3">
             <CardHeader className="text-center">{el.name}</CardHeader>
-            {el.image !== null ? (
-              <CardImg src={el.image} alt="Publisher Logo" />
-            ) : (
-              <CardImg src={missingImg} alt="Placeholder image" />
-            )}
+            <CardImage src={el.image} />
             <Body text={el.series_count} />
             <CardFooter>
               <OpenButton url={`/publisher/${el.slug}/page/1`} />
