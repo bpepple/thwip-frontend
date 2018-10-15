@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import missingImg from '../img/image-not-found.png';
+import noImage from '../img/creator-not-found.png';
 import { Media } from 'reactstrap';
 
 const CreatorImage = ({ src }) => {
@@ -13,7 +13,7 @@ const CreatorImage = ({ src }) => {
       <Media
         object
         className="rounded-left"
-        src={missingImg}
+        src={noImage}
         alt="Missing image"
       />
     );
