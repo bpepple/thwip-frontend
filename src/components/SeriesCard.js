@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ListCardsModal from './ListCardsModal';
 import MainPagination from './MainPagination';
+import missingImg from '../img/image-not-found.png';
 
 import {
   Fade,
@@ -36,6 +37,14 @@ const InfoButton = ({ click }) => (
   </Button>
 );
 
+const SeriesImage = ({ img }) => {
+  if (img !== null) {
+    return <CardImg src={img} alt="Series Image" />;
+  } else {
+    return <CardImg src={missingImg} alt="Placeholder image" />;
+  }
+};
+
 class SeriesCard extends Component {
   constructor(props) {
     super(props);
@@ -64,7 +73,7 @@ class SeriesCard extends Component {
         <Col xs="2" key={el.slug}>
           <Card className="text-white bg-dark mb-3">
             <CardHeader className="text-center">{el.name}</CardHeader>
-            <CardImg src={el.image} alt="Placeholder image" />
+            <SeriesImage img={el.image} />
             <Progress value={el.percent_read} />
             <Body text={el.issue_count} />
             <CardFooter>
