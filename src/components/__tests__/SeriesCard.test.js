@@ -54,8 +54,8 @@ describe('SeriesCard', () => {
     it('always renders an `OpenButton`', () => {
       expect(seriesCard().find('OpenButton').length).toBe(1);
     });
-    it('always render the `Body`', () => {
-      expect(seriesCard().find('Body').length).toBe(1);
+    it('always render the `SeriesCardBody`', () => {
+      expect(seriesCard().find('SeriesCardBody').length).toBe(1);
     });
   });
 });
