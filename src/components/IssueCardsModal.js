@@ -24,12 +24,16 @@ const ModalDate = ({ date }) => (
   </React.Fragment>
 );
 
-const ModalTitle = ({ text }) => (
-  <React.Fragment>
-    <ModalHeadings text="Title" />
-    <p>{text}</p>
-  </React.Fragment>
-);
+const ModalTitle = ({ text }) => {
+  if (text !== 'None') {
+    return (
+      <React.Fragment>
+        <ModalHeadings text="Title" />
+        <p>{text}</p>
+      </React.Fragment>
+    );
+  } else return null;
+};
 
 const ModalArcs = ({ arcs }) => {
   if (arcs.length > 0) {
