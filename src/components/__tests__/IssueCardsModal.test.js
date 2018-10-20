@@ -122,8 +122,16 @@ describe('IssueCardsModal', () => {
           "THE HISTORIC, GROUND-BREAKING MINI-SERIES STARTS HERE! Archie has been around for over 75 years and has been through many significant moments in time, but never before have we seen the characters take on real-world events as they unfold. WWII is looming and Archie and many young men from Riverdale are close to enlistment age. If you're a Riverdale teen, how would you cope with a looming world-changing event? Join the writing team of MARK WAID and BRIAN AUGUSTYN along with artist PETER KRAUSE fo",
         image:
           'http://127.0.0.1:8000/media/images/issues/78166dd2-7d41-489d-b0ee-0d3cdf23f12e.jpg',
+        arcs: [18, 19],
         credits: [38778, 38779, 38780, 38781, 38782, 38783, 38784, 38785, 38786]
-      }
+      },
+      arcs: [
+        {
+          id: 18,
+          name: 'Infinity Wars'
+        },
+        { id: 19, name: 'Fake Arc' }
+      ]
     };
     mountedIssueCardsModal = undefined;
   });
@@ -168,6 +176,16 @@ describe('IssueCardsModal', () => {
       it('received props', () => {
         const m = cardsModal().find('ModalSummary');
         expect(Object.keys(m.props()).length).toBe(1);
+      });
+    });
+    describe('renderd `ModalCredits`', () => {
+      it('check for `ModalCredits`', () => {
+        expect(cardsModal().find('ModalCredits').length).toBe(1);
+      });
+      it('received props', () => {
+        const m = cardsModal().find('ModalCredits');
+        /* There should be two props passed (credits, roles) */
+        expect(Object.keys(m.props()).length).toBe(2);
       });
     });
   });
