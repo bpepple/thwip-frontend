@@ -43,8 +43,31 @@ describe('ArcCard', () => {
       const c = arcCard().find('Row');
       expect(c.length).toBeGreaterThan(0);
     });
+    /*
+    it('ListCardsModal is toggled', ()=> {
+      arcCard().simulate('toggle')
+      expect(arcCard().find('ListCardsModal').prop('modal')).toEqual(true);
+    })
+    */
     it('always renders an `InfoButton`', () => {
       expect(arcCard().find('InfoButton').length).toBe(1);
+    });
+    it('modal is initially closed', () => {
+      expect(
+        arcCard()
+          .find('ListCardsModal')
+          .prop('modal')
+      ).toEqual(false);
+    });
+    it('open modal when `InfoButton` is clicked', () => {
+      arcCard()
+        .find('InfoButton')
+        .simulate('click');
+      expect(
+        arcCard()
+          .find('ListCardsModal')
+          .prop('modal')
+      ).toEqual(true);
     });
     it('always renders an `OpenButton`', () => {
       expect(arcCard().find('OpenButton').length).toBe(1);
