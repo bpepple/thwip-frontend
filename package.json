@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.8",
-    "@fortawesome/free-solid-svg-icons": "^5.5.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.10",
+    "@fortawesome/free-solid-svg-icons": "^5.6.1",
     "@fortawesome/react-fontawesome": "0.1.0-11",
-    "ajv": "^6.5.5",
+    "ajv": "^6.6.2",
     "bootstrap": "^4.1.3",
     "connected-react-router": "^4.5.0",
     "normalizr": "^3.3.0",
     "query-string": "^6.2.0",
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "react-loading": "^2.0.3",
-    "react-redux": "^5.1.0",
+    "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.3",
     "reactstrap": "^6.5.0",
@@ -36,12 +36,12 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "husky": "^0.14.3",
     "jest-localstorage-mock": "^2.3.0",
     "lint-staged": "^7.3.0",
-    "prettier": "^1.15.1"
+    "prettier": "^1.15.3"
   },
   "browserslist": [
     ">0.2%",
