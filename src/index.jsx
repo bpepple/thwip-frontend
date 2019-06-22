@@ -1,21 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/App';
-import { AUTH_USER } from './actions/types';
-
+import { Container } from 'reactstrap';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
-import thunk from 'redux-thunk';
+import App from './components/App';
+import { AUTH_USER } from './actions/types';
 import rootReducer from './reducers';
 import history from './History';
-import { Container } from 'reactstrap';
-
 import registerServiceWorker from './registerServiceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose;
 const store = createStore(
   connectRouter(history)(rootReducer),
   composeEnhancers(
@@ -33,7 +31,7 @@ if (token) {
 
 render(
   <Provider store={store}>
-    <Container fluid={true}>
+    <Container fluid>
       <App history={history} />
     </Container>
   </Provider>,
