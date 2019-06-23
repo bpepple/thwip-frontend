@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import { Alert, Button, Col, Form, FormGroup, Label, Row } from 'reactstrap';
+import {
+  Alert, Button, Col, Form, FormGroup, Label, Row,
+} from 'reactstrap';
+import * as actions from '../../actions';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      visible: true
+      visible: true,
     };
 
     this.onDismiss = this.onDismiss.bind(this);
@@ -78,10 +80,10 @@ const mapStateToProps = state => {
 };
 
 export default reduxForm({
-  form: 'login'
+  form: 'login',
 })(
   connect(
     mapStateToProps,
-    actions
-  )(Login)
+    actions,
+  )(Login),
 );
