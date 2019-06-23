@@ -18,8 +18,8 @@ const store = createStore(
   connectRouter(history)(rootReducer),
   composeEnhancers(
     applyMiddleware(thunk),
-    applyMiddleware(routerMiddleware(history))
-  )
+    applyMiddleware(routerMiddleware(history)),
+  ),
 );
 const token = localStorage.getItem('token');
 
@@ -35,7 +35,7 @@ render(
       <App history={history} />
     </Container>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 registerServiceWorker();
