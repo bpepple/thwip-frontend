@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fetchPublisherDetail } from '../actions';
 import { connect } from 'react-redux';
+import { fetchPublisherDetail } from '../actions';
 import SeriesCard from '../components/SeriesCard';
 import Footer from '../components/Footer';
 
@@ -15,7 +15,7 @@ class PublisherDetail extends Component {
     window.scrollTo(0, 0);
   }
 
-  onPageChanged = pageData => {
+  onPageChanged = (pageData) => {
     const { currentPage } = pageData;
     const { slug } = this.props.match.params;
     const { page } = this.props;
@@ -56,19 +56,19 @@ PublisherDetail.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       page: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
   data: state.fetch.data,
   loaded: state.fetch.loaded,
   page: state.fetch.page,
-  error: state.fetch.error
+  error: state.fetch.error,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchPublisherDetail }
+  { fetchPublisherDetail },
 )(PublisherDetail);
