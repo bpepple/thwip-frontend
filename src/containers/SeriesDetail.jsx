@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fetchSeriesDetail } from '../actions';
 import { connect } from 'react-redux';
+import { fetchSeriesDetail } from '../actions';
 import IssueCard from '../components/IssueCard';
 import Footer from '../components/Footer';
 
@@ -15,7 +15,7 @@ class SeriesDetail extends Component {
     window.scrollTo(0, 0);
   }
 
-  onPageChanged = pageData => {
+  onPageChanged = (pageData) => {
     const { currentPage } = pageData;
     const { slug } = this.props.match.params;
     const { page } = this.props;
@@ -57,9 +57,9 @@ SeriesDetail.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       page: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -67,10 +67,10 @@ const mapStateToProps = state => ({
   loaded: state.fetch.loaded,
   count: state.fetch.count,
   page: state.fetch.page,
-  error: state.fetch.error
+  error: state.fetch.error,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchSeriesDetail }
+  { fetchSeriesDetail },
 )(SeriesDetail);
