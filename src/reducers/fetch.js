@@ -7,7 +7,7 @@ import {
   FETCH_PUBLISHER_LIST,
   FETCH_ARC_DETAIL,
   FETCH_ARC_LIST,
-  FETCH_ERROR
+  FETCH_ERROR,
 } from '../actions/types';
 
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
   loaded: false,
   data: {},
   page: 1,
-  count: 0
+  count: 0,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -27,7 +27,7 @@ export const reducer = (state = initialState, action) => {
         loaded: true,
         data: action.data,
         page: action.page,
-        count: action.count
+        count: action.count,
       };
     case FETCH_SERIES_DETAIL:
       return {
@@ -36,7 +36,7 @@ export const reducer = (state = initialState, action) => {
         loaded: true,
         data: action.data,
         page: action.page,
-        count: action.count
+        count: action.count,
       };
     case FETCH_SERIES_LIST:
       return {
@@ -44,7 +44,7 @@ export const reducer = (state = initialState, action) => {
         error: '',
         loaded: true,
         data: action.data,
-        page: action.page
+        page: action.page,
       };
     case FETCH_SERIES_SEARCH:
       return {
@@ -52,7 +52,7 @@ export const reducer = (state = initialState, action) => {
         error: '',
         loaded: true,
         data: action.data,
-        page: action.page
+        page: action.page,
       };
     case FETCH_PUBLISHER_LIST:
       return {
@@ -60,7 +60,7 @@ export const reducer = (state = initialState, action) => {
         error: '',
         loaded: true,
         data: action.data,
-        page: action.page
+        page: action.page,
       };
     case FETCH_PUBLISHER_DETAIL:
       return {
@@ -68,7 +68,7 @@ export const reducer = (state = initialState, action) => {
         error: '',
         loaded: true,
         data: action.data,
-        page: action.page
+        page: action.page,
       };
     case FETCH_ARC_LIST:
       return {
@@ -76,7 +76,7 @@ export const reducer = (state = initialState, action) => {
         error: '',
         loaded: true,
         data: action.data,
-        page: action.page
+        page: action.page,
       };
     case FETCH_ARC_DETAIL:
       return {
@@ -85,7 +85,7 @@ export const reducer = (state = initialState, action) => {
         loaded: true,
         data: action.data,
         page: action.page,
-        count: action.count
+        count: action.count,
       };
     case FETCH_ERROR:
       return { ...state, error: action.payload };
