@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
 import { Container, Jumbotron } from 'reactstrap';
+import * as actions from '../../actions';
 
 class Logout extends PureComponent {
   componentWillMount() {
@@ -10,7 +10,7 @@ class Logout extends PureComponent {
 
   render() {
     return (
-      <Container fluid={true} className="text-center">
+      <Container fluid className="text-center">
         <Jumbotron>
           <h1 className="display-6">Logged Out</h1>
         </Jumbotron>
@@ -21,5 +21,5 @@ class Logout extends PureComponent {
 
 export default connect(
   null,
-  actions
+  actions,
 )(Logout);
