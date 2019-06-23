@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fetchSeriesSearch } from '../actions';
 import { connect } from 'react-redux';
+import queryString from 'query-string';
+import { fetchSeriesSearch } from '../actions';
 import SeriesCard from '../components/SeriesCard';
 import MainPagination from '../components/MainPagination';
 import Footer from '../components/Footer';
-import queryString from 'query-string';
 
 class SeriesSearch extends Component {
   componentDidMount() {
@@ -19,7 +19,7 @@ class SeriesSearch extends Component {
     window.scrollTo(0, 0);
   }
 
-  onPageChanged = pageData => {
+  onPageChanged = (pageData) => {
     const { currentPage } = pageData;
     const { page } = this.props;
     const values = queryString.parse(this.props.location.search);
@@ -59,19 +59,19 @@ SeriesSearch.propTypes = {
   error: PropTypes.string,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      page: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
   data: state.fetch.data,
   loaded: state.fetch.loaded,
   page: state.fetch.page,
-  error: state.fetch.error
+  error: state.fetch.error,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchSeriesSearch }
+  { fetchSeriesSearch },
 )(SeriesSearch);
