@@ -6,13 +6,16 @@ import missingImg from '../img/image-not-found.png';
 const CardImage = ({ src }) => {
   if (src !== null) {
     return <CardImg src={src} alt="Card Image" />;
-  } else {
-    return <CardImg src={missingImg} alt="Placeholder image" />;
   }
+  return <CardImg src={missingImg} alt="Placeholder image" />;
+};
+
+CardImage.defaultProps = {
+  src: null,
 };
 
 CardImage.propTypes = {
-  src: PropTypes.string
+  src: PropTypes.string,
 };
 
 export default CardImage;
