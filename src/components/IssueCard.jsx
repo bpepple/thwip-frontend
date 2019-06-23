@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import InfoButton from './InfoButton';
-import CardImage from './CardImage';
-import IssueCardsModal from './IssueCardsModal';
-import MainPagination from './MainPagination';
 import {
   Fade,
   Col,
@@ -14,8 +10,12 @@ import {
   CardBody,
   CardText,
   Progress,
-  Button
+  Button,
 } from 'reactstrap';
+import InfoButton from './InfoButton';
+import CardImage from './CardImage';
+import IssueCardsModal from './IssueCardsModal';
+import MainPagination from './MainPagination';
 
 const Body = ({ text }) => (
   <CardBody>
@@ -44,17 +44,17 @@ class IssueCard extends Component {
   open(issue) {
     const { credits, arcs } = this.props.data.entities;
 
-    let issueCredits = [];
+    const issueCredits = [];
     issue.credits.map(i => issueCredits.push(credits[i]));
 
-    let issueArcs = [];
+    const issueArcs = [];
     issue.arcs.map(i => issueArcs.push(arcs[i]));
 
     this.setState({
       modal: true,
-      issue: issue,
+      issue,
       credits: issueCredits,
-      arcs: issueArcs
+      arcs: issueArcs,
     });
   }
 
@@ -64,24 +64,22 @@ class IssueCard extends Component {
     const { issues, roles } = this.props.data.entities;
     const { modal, issue, credits, arcs } = this.state;
 
-    const cards = result.map(el => {
-      return (
-        <Col xs="2" key={issues[el].slug}>
-          <Card className="text-white bg-dark mb-3">
-            <CardHeader className="text-center">
-              {issues[el].__str__}
-            </CardHeader>
-            <CardImage src={issues[el].image} />
-            <Progress value={issues[el].percent_read} />
-            <Body text={issues[el].page_count} />
-            <CardFooter>
-              <ReadButton url={`/reader/${issues[el].slug}`} />
-              <InfoButton click={this.open.bind(this, issues[el])} />
-            </CardFooter>
-          </Card>
-        </Col>
-      );
-    });
+    const cards = result.map(el => (
+      <Col xs="2" key={issues[el].slug}>
+        <Card className="text-white bg-dark mb-3">
+          <CardHeader className="text-center">
+            {issues[el].__str__}
+          </CardHeader>
+          <CardImage src={issues[el].image} />
+          <Progress value={issues[el].percent_read} />
+          <Body text={issues[el].page_count} />
+          <CardFooter>
+            <ReadButton url={`/reader/${issues[el].slug}`} />
+            <InfoButton click={this.open.bind(this, issues[el])} />
+          </CardFooter>
+        </Card>
+      </Col>
+    ));
 
     return result ? (
       <React.Fragment>
@@ -110,7 +108,7 @@ IssueCard.propTypes = {
   data: PropTypes.object.isRequired,
   totalRecords: PropTypes.number.isRequired,
   onPageChanged: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired
+  page: PropTypes.number.isRequired,
 };
 
 export default IssueCard;
