@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fetchRecentIssues } from '../actions';
 import { connect } from 'react-redux';
+import { fetchRecentIssues } from '../actions';
 import IssueCard from '../components/IssueCard';
 import Footer from '../components/Footer';
 
@@ -15,7 +15,7 @@ class RecentIssues extends Component {
     window.scrollTo(0, 0);
   }
 
-  onPageChanged = pageData => {
+  onPageChanged = (pageData) => {
     const { currentPage } = pageData;
     const { page } = this.props;
 
@@ -55,9 +55,9 @@ RecentIssues.propTypes = {
   error: PropTypes.string,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      page: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -65,10 +65,10 @@ const mapStateToProps = state => ({
   loaded: state.fetch.loaded,
   count: state.fetch.count,
   page: state.fetch.page,
-  error: state.fetch.error
+  error: state.fetch.error,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchRecentIssues }
+  { fetchRecentIssues },
 )(RecentIssues);
