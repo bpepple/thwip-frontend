@@ -6,7 +6,7 @@ import { reducer as fetchReducer } from './fetch';
 const rootReducer = combineReducers({
   form: formReducer,
   auth: authReducer,
-  fetch: fetchReducer
+  fetch: fetchReducer,
 });
 
 export default rootReducer;
