@@ -10,7 +10,7 @@ const InfoButton = ({ click }) => (
 );
 
 InfoButton.propTypes = {
-  click: PropTypes.func.isRequired
+  click: PropTypes.func.isRequired,
 };
 
 export default InfoButton;
