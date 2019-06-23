@@ -59,9 +59,9 @@ ArcDetail.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       page: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -69,10 +69,10 @@ const mapStateToProps = state => ({
   loaded: state.fetch.loaded,
   count: state.fetch.count,
   page: state.fetch.page,
-  error: state.fetch.error
+  error: state.fetch.error,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchArcDetail }
+  { fetchArcDetail },
 )(ArcDetail);
