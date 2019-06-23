@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fetchArcDetail } from '../actions';
 import { connect } from 'react-redux';
+import { fetchArcDetail } from '../actions';
 import IssueCard from '../components/IssueCard';
 import Footer from '../components/Footer';
 
 class ArcDetail extends Component {
   componentDidMount() {
-    const { slug, page } = this.props.match.params;
+    const { match } = this.props;
+    const { slug, page } = match.params;
     this.props.fetchArcDetail(slug, page);
   }
 
@@ -15,9 +16,10 @@ class ArcDetail extends Component {
     window.scrollTo(0, 0);
   }
 
-  onPageChanged = pageData => {
+  onPageChanged = (pageData) => {
+    const { match } = this.props;
     const { currentPage } = pageData;
-    const { slug } = this.props.match.params;
+    const { slug } = match.params;
     const { page } = this.props;
 
     /* Don't fetch the page twice. */
