@@ -8,7 +8,7 @@ import {
   FETCH_PUBLISHER_LIST,
   FETCH_ARC_LIST,
   FETCH_ARC_DETAIL,
-  FETCH_ERROR
+  FETCH_ERROR,
 } from '../../actions/types';
 
 const dataArc = {
@@ -18,7 +18,7 @@ const dataArc = {
   image: 'http://127.0.0.1:8000/media/images/arcs/test.jpg',
   issue_count: 9,
   percent_read: 11,
-  desc: "The Blackest Night is the third part of Geoff Johns's trilogy."
+  desc: "The Blackest Night is the third part of Geoff Johns's trilogy.",
 };
 
 const dataPublisher = {
@@ -28,7 +28,7 @@ const dataPublisher = {
   desc: 'DC is a publisher of comic books featuring iconic characters.',
   image:
     'http://127.0.0.1:8000/media/images/publishers/1efb47e0-fe10-4bee-afd7-c5adcf4ffd68.jpg',
-  series_count: 45
+  series_count: 45,
 };
 
 const dataSeries = {
@@ -43,7 +43,7 @@ const dataSeries = {
   issue_count: 415,
   percent_read: 6,
   image:
-    'http://127.0.0.1:8000/media/images/issues/2a70956e-cd41-4308-982a-f0507a56fc26.jpg'
+    'http://127.0.0.1:8000/media/images/issues/2a70956e-cd41-4308-982a-f0507a56fc26.jpg',
 };
 
 const dataIssue = {
@@ -61,7 +61,7 @@ const dataIssue = {
   status: 2,
   desc: 'After the INFINITE CRISIS and before One Year Later.',
   image:
-    'http://127.0.0.1:8000/media/images/issues/6ad10fb8-6106-4d06-b0b4-0aed825e145f.jpg'
+    'http://127.0.0.1:8000/media/images/issues/6ad10fb8-6106-4d06-b0b4-0aed825e145f.jpg',
 };
 
 describe('fetch reducer', () => {
@@ -71,7 +71,7 @@ describe('fetch reducer', () => {
       loaded: false,
       data: {},
       page: 1,
-      count: 0
+      count: 0,
     });
   });
   it('fetch error', () => {
@@ -87,7 +87,7 @@ describe('fetch reducer', () => {
       type: FETCH_RECENT_ISSUES,
       page: 2,
       count: 90,
-      data: dataIssue
+      data: dataIssue,
     };
     const afterState = reducer(beforeState, action);
 
@@ -96,7 +96,7 @@ describe('fetch reducer', () => {
       loaded: true,
       count: 90,
       page: 2,
-      data: dataIssue
+      data: dataIssue,
     });
   });
   it('fetch publisher list', () => {
@@ -108,7 +108,7 @@ describe('fetch reducer', () => {
       error: '',
       loaded: true,
       data: dataPublisher,
-      page: 1
+      page: 1,
     });
   });
   it('fetch publisher detail', () => {
@@ -120,7 +120,7 @@ describe('fetch reducer', () => {
       error: '',
       loaded: true,
       data: dataSeries,
-      page: 1
+      page: 1,
     });
   });
   it('fetch series list', () => {
@@ -132,7 +132,7 @@ describe('fetch reducer', () => {
       error: '',
       loaded: true,
       data: dataSeries,
-      page: 1
+      page: 1,
     });
   });
   it('fetch series search', () => {
@@ -144,7 +144,7 @@ describe('fetch reducer', () => {
       error: '',
       loaded: true,
       data: dataSeries,
-      page: 1
+      page: 1,
     });
   });
   it('fetch series detail', () => {
@@ -156,7 +156,7 @@ describe('fetch reducer', () => {
       error: '',
       loaded: true,
       data: dataIssue,
-      page: 1
+      page: 1,
     });
   });
   it('fetch arc list', () => {
@@ -168,7 +168,7 @@ describe('fetch reducer', () => {
       error: '',
       loaded: true,
       data: dataArc,
-      page: 1
+      page: 1,
     });
   });
   it('fetch arc detail', () => {
@@ -180,7 +180,7 @@ describe('fetch reducer', () => {
       error: '',
       loaded: true,
       data: dataArc,
-      page: 1
+      page: 1,
     });
   });
 });
