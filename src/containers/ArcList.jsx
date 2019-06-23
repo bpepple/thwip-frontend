@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { fetchArcList } from '../actions';
 import { connect } from 'react-redux';
+import { fetchArcList } from '../actions';
 import ArcCard from '../components/ArcCard';
 import Footer from '../components/Footer';
 
@@ -15,7 +15,7 @@ class ArcList extends Component {
     window.scrollTo(0, 0);
   }
 
-  onPageChanged = pageData => {
+  onPageChanged = (pageData) => {
     const { currentPage } = pageData;
     const { page } = this.props;
 
@@ -54,19 +54,19 @@ ArcList.propTypes = {
   error: PropTypes.string,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      page: PropTypes.string.isRequired
-    }).isRequired
-  }).isRequired
+      page: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({
   data: state.fetch.data,
   loaded: state.fetch.loaded,
   page: state.fetch.page,
-  error: state.fetch.error
+  error: state.fetch.error,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchArcList }
+  { fetchArcList },
 )(ArcList);
