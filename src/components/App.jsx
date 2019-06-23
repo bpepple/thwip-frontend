@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ConnectedRouter } from 'connected-react-router';
-import MainBar from './MainBar';
-import Routes from './Routes';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faTimesCircle,
   faInfoCircle,
-  faSearch
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
+import Routes from './Routes';
+import MainBar from './MainBar';
 
 library.add(faTimesCircle, faInfoCircle, faSearch);
 
@@ -22,7 +22,7 @@ const App = ({ history }) => (
 );
 
 App.propTypes = {
-  history: PropTypes.object
+  history: PropTypes.object,
 };
 
 export default App;
